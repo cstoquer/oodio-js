@@ -56,12 +56,17 @@ Clock.prototype.setTempo = function (tempo) {
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 function FreqSeq(params) {
+	this.out     = [0.0];
 	this._tempo  = params.tempo || 130;
 	this._pos    = 0.0;
 	this._inc    = 0.0;
 	this._steps  = [];
 	this._length = 8;
-	this.setTempo(this._tempo);
+	if (params.steps) {
+		this.setSteps(params.steps);
+	} else {
+		this.setTempo(this._tempo);
+	}
 }
 
 FreqSeq.prototype.tic = function () {
@@ -82,7 +87,7 @@ FreqSeq.prototype.setSteps = function (steps) {
 	this._steps = [];
 	var len = this._length = steps.length;
 	for (var i = 0; i < len; i++) {
-		this._steps.push(noteToFreq(steps[i]););
+		this._steps.push(noteToFreq(steps[i]));
 	}
 	this.setTempo(this._tempo);
 };
@@ -140,19 +145,18 @@ var DECAY_SMOOTH_INV = 1 - DECAY_SMOOTH;
 DecayEnvelope.prototype.tic = function () {
 	if (this.input[0] > 0.8) {
 		this._stopped = false;
-		this.t = 0;
+		this._t = 0;
 	}
 	if (this._stopped) return;
-	if (this.t++ > _duration) {
+	if (this._t++ > this._duration) {
 		this._stopped = true;
 		this._out[0]  = 0.0;
-		this.raw      = 0.0;
-		return;
+		this._raw     = 0.0;
 	}
-	this.raw = this.a * (this.t * this.t) + this.b * this.t + 1;
+	this._raw = this._a * (this._t * this._t) + this._b * this._t + 1;
 
 	// built-in smoothing filter
-	this._out[0] = this.raw * DECAY_SMOOTH + this.out[0] * DECAY_SMOOTH_INV;
+	this.out[0] = this._raw * DECAY_SMOOTH + this.out[0] * DECAY_SMOOTH_INV;
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
@@ -229,8 +233,8 @@ NesPseudoNoise.prototype.tic = function () {
 // filter
 function FastFilter(params) {
 	this.input = [0.0];
-	this.freq  = [0.1];
 	this.out   = [0.0];
+	this.freq  = params.freq === undefined ? [0.1] : [params.freq];
 }
 
 FastFilter.prototype.tic = function () {
@@ -241,8 +245,8 @@ FastFilter.prototype.tic = function () {
 function RCFilter(params) {
 	this.input = [0.0];
 	this.out   = [0.0];
-	this.cut   = [0.5];
-	this.res   = [0.4];
+	this.cut   = params.cut === undefined ? [0.5] : [params.cut];
+	this.res   = params.res === undefined ? [0.4] : [params.res];
 
 	this._state = 0.0;
 }
@@ -293,23 +297,52 @@ var mainNode     = null;
 createSynth();*/
 
 function SimpleSynth() {
-	this.lfo = new TriOsc({ freq: 0.3 });
-	// this.osc = new PulseOsc({ freq: 110.0 });
-	this.osc = new NesPseudoNoise({ freq: 1600.0 });
-	this.flt = new RCFilter();
-	this.clp = new Clipper();
+	var TEMPO = 88;
+	this.seq   = new FreqSeq({ tempo: TEMPO, steps: [69, 57, 60, 64, 48, 57, 52, 62] });
+	this.clk   = new Clock({ tempo: TEMPO });
+	this.glide = new FastFilter({ freq: 0.004 });
+	this.lfo   = new TriOsc({ freq: 0.03, width: 0.9 });
+	this.osc1  = new PulseOsc({ freq: 110.0 });
+	this.osc2  = new TriOsc({ freq: 110.0 });
+	this.env   = new DecayEnvelope({ decay: 0.3, curvature: 0.1 });
+	// this.noiz = new NesPseudoNoise({ freq: 1600.0 });
+	this.fltr  = new RCFilter({ cut: 0.5, res: 0.4 });
+	this.clp   = new Clipper();
+	// this.vrb   = new FreeVerb({ size: 0.3, damp: 0.3 });
 
-	this.flt.input = this.osc.out;
-	this.clp.input = this.flt.out;
+	this.env.input = this.clk.out;
+	this.glide.input = this.seq.out;
+	this.oscMix = [0.0];
+	// this.fltr.cut = this.env.out;
+	this.fltr.input = this.oscMix;
+	this.clp.input = this.fltr.out;
 
 	this.out = this.clp.out;
 }
 
 SimpleSynth.prototype.tic = function () {
-	this.osc.tic();
+	this.clk.tic();
+	this.seq.tic();
+	this.glide.tic();
+	var f = this.glide.out[0];
+	this.osc1.freq = f;
+	this.osc2.freq = f / 3.01;
+
+	this.osc1.tic();
+	this.osc2.tic();
 	this.lfo.tic();
-	this.flt.cut[0] = this.lfo.out[0] * 0.2 + 0.4;
-	this.flt.tic();
+
+	var w = map(this.lfo.out[0], -1, 1, 0, 0.5);
+	this.osc1.width = w;
+	this.osc2.width = w;
+
+	this.oscMix[0] = this.env.out[0] * (this.osc1.out[0] + this.osc2.out[0]);
+
+	this.env.tic();
+
+	// this.fltr.cut[0] = 0.2 * this.env.out[0];
+
+	this.fltr.tic();
 	this.clp.tic();
 };
 
