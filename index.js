@@ -16,26 +16,93 @@ function inherit(Child, Parent) {
 }
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+// utils
+function map(value, iMin, iMax, oMin, oMax) {
+	return oMin + (oMax - oMin) * (value - iMin) / (iMax - iMin);
+}
+
+function noteToFreq(midiNoteNumber) {
+	return 440 * Math.pow(2, (midiNoteNumber - 69) / 12);
+}
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 // freeverb
+
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+// sequencer
+function Clock(params) {
+	this._tempo = params.tempo || 130;
+	this.out    = [0.0];
+	this._pos   = 0.0;
+	this._inc   = 0.0;
+	this.setTempo(this._tempo);
+}
+
+Clock.prototype.tic = function () {
+	this._pos += this._inc;
+	if (this._pos >= 1) {
+		this.out[0] = 1;
+		this._pos--;
+	} else {
+		this.out[0] = 0;
+	}
+}
+
+Clock.prototype.setTempo = function (tempo) {
+	this._tempo = tempo;
+	this._inc = tempo / (30 * SAMPLE_RATE);
+};
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+function FreqSeq(params) {
+	this._tempo  = params.tempo || 130;
+	this._pos    = 0.0;
+	this._inc    = 0.0;
+	this._steps  = [];
+	this._length = 8;
+	this.setTempo(this._tempo);
+}
+
+FreqSeq.prototype.tic = function () {
+	this._pos += this._inc;
+	if (this._pos > this._length) this._pos -= this._length;
+	var p = ~~this._pos;
+	// if (p < 0) p = 0;
+	// if (p > 7) p = 7;
+	this.out[0] = this._steps[p];
+};
+
+FreqSeq.prototype.setTempo = function (tempo) {
+	this._tempo = tempo;
+	this._inc = this._length * tempo / (120 * SAMPLE_RATE);
+};
+
+FreqSeq.prototype.setSteps = function (steps) {
+	this._steps = [];
+	var len = this._length = steps.length;
+	for (var i = 0; i < len; i++) {
+		this._steps.push(noteToFreq(steps[i]););
+	}
+	this.setTempo(this._tempo);
+};
+
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 // envelope
-
-var DECAY_SMOOTH     = 0.02;
-var DECAY_SMOOTH_INV = 1 - DECAY_SMOOTH;
 
 function DecayEnvelope(params) {
 	this.input = [0.0]; // trigger envelope
 	this.out   = [0.0]; // output signal
 
-	this._decay       = params.decay     === undefined ? 0.5 : params.decay;
-	this._curvature   = params.curvature === undefined ? 0.3 : params.curvature;
-	this._stopped     = true;
-	this._raw         = 0.0;
-	this._a           = 0;
-	this._b           = 0;
-	this._t           = 0;
-	this._duration    = 0; 
+	this._decay     = params.decay     === undefined ? 0.5 : params.decay;
+	this._curvature = params.curvature === undefined ? 0.3 : params.curvature;
+	this._stopped   = true;
+	this._raw       = 0.0;
+	this._a         = 0;
+	this._b         = 0;
+	this._t         = 0;
+	this._duration  = 0; 
 
 	this.update();
 }
@@ -67,6 +134,9 @@ DecayEnvelope.prototype.update = function () {
 	this.b = (4 * this._curvature - 3) / d;
 };
 
+var DECAY_SMOOTH     = 0.02;
+var DECAY_SMOOTH_INV = 1 - DECAY_SMOOTH;
+
 DecayEnvelope.prototype.tic = function () {
 	if (this.input[0] > 0.8) {
 		this._stopped = false;
@@ -81,7 +151,7 @@ DecayEnvelope.prototype.tic = function () {
 	}
 	this.raw = this.a * (this.t * this.t) + this.b * this.t + 1;
 
-	// built in smoothing filter
+	// built-in smoothing filter
 	this._out[0] = this.raw * DECAY_SMOOTH + this.out[0] * DECAY_SMOOTH_INV;
 };
 
