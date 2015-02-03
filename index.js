@@ -97,11 +97,13 @@ FreqSeq.prototype.setSteps = function (steps) {
 // envelope
 
 function DecayEnvelope(params) {
-	this.input = [0.0]; // trigger envelope
+	this.trig  = [0.0]; // input trigger
+	this.input = [0.0]; // input signal
+	this.env   = [0.0]; // output signal
 	this.out   = [0.0]; // output signal
 
 	this._decay     = params.decay     === undefined ? 0.5 : params.decay;
-	this._curvature = params.curvature === undefined ? 0.3 : params.curvature;
+	this._curvature = params.curvature === undefined ? 0.5 : map(params.curvature, 0, 1, 0.3, 0.7);
 	this._stopped   = true;
 	this._raw       = 0.0;
 	this._a         = 0;
@@ -143,20 +145,23 @@ var DECAY_SMOOTH     = 0.02;
 var DECAY_SMOOTH_INV = 1 - DECAY_SMOOTH;
 
 DecayEnvelope.prototype.tic = function () {
-	if (this.input[0] > 0.8) {
+	if (this.trig[0] > 0.8) {
 		this._stopped = false;
 		this._t = 0;
 	}
 	if (this._stopped) return;
 	if (this._t++ > this._duration) {
 		this._stopped = true;
-		this._out[0]  = 0.0;
 		this._raw     = 0.0;
+		this.env[0]   = 0.0;
+		this.out[0]   = 0.0;
+		return;
 	}
 	this._raw = this._a * (this._t * this._t) + this._b * this._t + 1;
 
 	// built-in smoothing filter
-	this.out[0] = this._raw * DECAY_SMOOTH + this.out[0] * DECAY_SMOOTH_INV;
+	this.env[0] = this._raw * DECAY_SMOOTH + this.env[0] * DECAY_SMOOTH_INV;
+	this.out[0] = this.input[0] * this.env[0];
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
@@ -304,17 +309,18 @@ function SimpleSynth() {
 	this.lfo   = new TriOsc({ freq: 0.03, width: 0.9 });
 	this.osc1  = new PulseOsc({ freq: 110.0 });
 	this.osc2  = new TriOsc({ freq: 110.0 });
-	this.env   = new DecayEnvelope({ decay: 0.3, curvature: 0.1 });
+	this.env   = new DecayEnvelope({ decay: 0.2, curvature: 0.5 });
 	// this.noiz = new NesPseudoNoise({ freq: 1600.0 });
 	this.fltr  = new RCFilter({ cut: 0.5, res: 0.4 });
 	this.clp   = new Clipper();
 	// this.vrb   = new FreeVerb({ size: 0.3, damp: 0.3 });
 
-	this.env.input = this.clk.out;
+	this.env.trig = this.clk.out;
 	this.glide.input = this.seq.out;
 	this.oscMix = [0.0];
+	this.env.input = this.oscMix;
 	// this.fltr.cut = this.env.out;
-	this.fltr.input = this.oscMix;
+	this.fltr.input = this.env.out;
 	this.clp.input = this.fltr.out;
 
 	this.out = this.clp.out;
@@ -336,7 +342,7 @@ SimpleSynth.prototype.tic = function () {
 	this.osc1.width = w;
 	this.osc2.width = w;
 
-	this.oscMix[0] = this.env.out[0] * (this.osc1.out[0] + this.osc2.out[0]);
+	this.oscMix[0] = this.osc1.out[0] + this.osc2.out[0];
 
 	this.env.tic();
 
