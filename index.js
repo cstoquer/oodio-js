@@ -666,7 +666,27 @@ mainVolume.connect(context.destination);
 var generator = context.createScriptProcessor(BUFFER_LENGTH, 1, 1);
 generator.connect(mainVolume);
 
+var perf = {
+	started: performance.now(),
+	now:     performance.now(),
+	cycles:  0,
+	total:   0,
+	average: function () {
+		this.now = performance.now();
+		var average = this.total / this.cycles;
+		var elapsed = this.now - this.started;
+		console.log('----------------------------');
+		console.log('elapsed:  ' + elapsed + ' ms');
+		console.log('computed: ' + this.total + ' ms');
+		console.log('load:     ' + (100 * this.total / elapsed) + ' %');
+		console.log('cycles:   ' + this.cycles);
+		console.log('average:  ' + average + ' ms/cycle');
+	}
+};
+
+
 generator.onaudioprocess = function (e) {
+	var startTime = performance.now();
 	var outBuffer = e.outputBuffer.getChannelData(0);
 	for (var i = 0; i < BUFFER_LENGTH; i++) {
 		for (var j = 0; j < audioNodes.length; j++) {
@@ -678,6 +698,10 @@ generator.onaudioprocess = function (e) {
 		if (out < -1) out = -1;
 		outBuffer[i] = out;
 	}
+	perf.cycles++;
+	perf.total += performance.now() - startTime;
 };
+
+window.setInterval(function () { perf.average(); }, 10000);
 
 
