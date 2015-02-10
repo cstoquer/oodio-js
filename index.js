@@ -35,7 +35,7 @@ function SimpleSynth() {
 	// this.noiz = new NesPseudoNoise({ freq: 1600.0 });
 	this.fltr  = new RCFilter({ cut: 0.5, res: 0.4 });
 	this.clp   = new Clipper();
-	this.vrb   = new FreeVerb({ size: 0.3, damp: 0.3 });
+	this.vrb   = new FreeVerb({ size: 0.6, damp: 0.3 });
 
 	this.env.trig = this.clk.out;
 	this.glide.input = this.seq.out;
@@ -43,8 +43,9 @@ function SimpleSynth() {
 	this.env.input = this.oscMix;
 	// this.fltr.cut = this.env.out;
 	this.fltr.input = this.env.out;
-	this.vrb.inputR = this.fltr.out;
-	this.vrb.inputL = this.fltr.out;
+	this.gain = [0.0];
+	this.vrb.inputR = this.gain;
+	this.vrb.inputL = this.gain;
 	this.clp.input = this.vrb.outR;
 
 	this.out = this.clp.out;
@@ -73,6 +74,7 @@ SimpleSynth.prototype.tic = function () {
 	// this.fltr.cut[0] = 0.2 * this.env.out[0];
 
 	this.fltr.tic();
+	this.gain[0] = this.fltr.out[0] * 0.1;
 	this.vrb.tic();
 	this.clp.tic();
 };

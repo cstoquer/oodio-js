@@ -60,7 +60,7 @@ function CombFilter(size) {
 	this.setBuffer(size);
 }
 
-Object.defineProperty(DecayEnvelope.prototype, 'damp', {
+Object.defineProperty(CombFilter.prototype, 'damp', {
 	get: function() {
 		return this._damp1;
 	},
