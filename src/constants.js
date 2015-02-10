@@ -1,0 +1,2 @@
+var BUFFER_LENGTH = 4096;
+var SAMPLE_RATE   = 44100;
