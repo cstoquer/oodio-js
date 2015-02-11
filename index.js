@@ -31,6 +31,7 @@ function SimpleSynth() {
 	this.lfo   = new TriOsc({ freq: 0.03, width: 0.9 });
 	this.osc1  = new PulseOsc({ freq: 110.0 });
 	this.osc2  = new TriOsc({ freq: 110.0 });
+	this.oscMix = new Mix1_1A({ volume: 1.0 });
 	this.env   = new DecayEnvelope({ decay: 0.4, curvature: 0.1 });
 	// this.noiz = new NesPseudoNoise({ freq: 1600.0 });
 	this.fltr  = new RCFilter({ cut: 0.5, res: 0.4 });
@@ -39,8 +40,9 @@ function SimpleSynth() {
 
 	this.env.trig = this.clk.out;
 	this.glide.input = this.seq.out;
-	this.oscMix = [0.0];
-	this.env.input = this.oscMix;
+	this.oscMix.input1 = this.osc1.out;
+	this.oscMix.input2 = this.osc2.out;
+	this.env.input = this.oscMix.out;
 	// this.fltr.cut = this.env.out;
 	this.fltr.input = this.env.out;
 	this.gain = [0.0];
@@ -67,8 +69,7 @@ SimpleSynth.prototype.tic = function () {
 	this.osc1.width = w;
 	this.osc2.width = w;
 
-	this.oscMix[0] = this.osc1.out[0] + this.osc2.out[0];
-
+	this.oscMix.tic();
 	this.env.tic();
 
 	// this.fltr.cut[0] = 0.2 * this.env.out[0];
