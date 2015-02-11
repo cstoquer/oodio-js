@@ -1,0 +1,14 @@
+body {
+	font-family: "Arial", "Verdana";
+	font-weight: bold;
+	font-size: 11px;
+}
+
+.module {
+	text-align: center;
+	width: 254px;
+	height: 13px;
+	border: 1px;
+	-webkit-border-image: url("img/mod-bg.png") 1 1 1 1;
+	border-image: url("img/mod-bg.png") 1 1 1 1 fill;
+};
