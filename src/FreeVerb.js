@@ -176,7 +176,6 @@ function FreeVerb(params) {
 	this._wet2      = 0;
 	this._dry       = 0;
 	this._width     = 0;
-	this._mode      = 0;
 
 	this.combL = [
 		new CombFilter(FREEVERB_TUNING.combTuningL1),
@@ -219,22 +218,15 @@ function FreeVerb(params) {
 	this.setDry(      params.dry   !== undefined ? params.dry   : FREEVERB_TUNING.initialDry);
 	this.setDamp(     params.damp  !== undefined ? params.damp  : FREEVERB_TUNING.initialDamp);
 	this.setWidth(    params.width !== undefined ? params.width : FREEVERB_TUNING.initialWidth);
-	this.setMode(     params.mode  !== undefined ? params.mode  : FREEVERB_TUNING.initialMode);
 }
 
 FreeVerb.prototype.update = function () {
 	this._wet1 = this._wet * (this._width / 2 + 0.5);
 	this._wet2 = this._wet * ((1 - this._width) / 2);
 
-	if (this._mode >= FREEVERB_TUNING.freezeMode) {
-		this._roomSize1 = 1.0;
-		this._damp1     = 0.0;
-		this._gain      = FREEVERB_TUNING.muted;
-	} else {
-		this._roomSize1 = this._roomSize;
-		this._damp1     = this._damp;
-		this._gain      = FREEVERB_TUNING.fixedGain;
-	}
+	this._roomSize1 = this._roomSize;
+	this._damp1     = this._damp;
+	this._gain      = FREEVERB_TUNING.fixedGain;
 
 	for (var i = 0; i < FREEVERB_TUNING.numCombs; i++) {
 		this.combL[i].feedback = this._roomSize1;
@@ -245,8 +237,6 @@ FreeVerb.prototype.update = function () {
 };
 
 FreeVerb.prototype.mute = function () {
-	if (this._mode >= FREEVERB_TUNING.freezeMode) return;
-
 	for (var i = 0; i < FREEVERB_TUNING.numCombs; i++) {
 		this.combL[i].mute();
 		this.combR[i].mute();
@@ -277,8 +267,8 @@ FreeVerb.prototype.tic = function () {
 	}
 
 	// Calculate output
-	this.outL[0] = l * this._wet1 + r * this._wet2;
-	this.outR[0] = r * this._wet1 + l * this._wet2;
+	this.outL[0] = l * this._wet1 + r * this._wet2 + this.inputL[0] * this._dry;
+	this.outR[0] = r * this._wet1 + l * this._wet2 + this.inputR[0] * this._dry;
 };
 
 FreeVerb.prototype.setWet = function (value) {
@@ -302,10 +292,5 @@ FreeVerb.prototype.setDamp = function (value) {
 
 FreeVerb.prototype.setWidth = function (value) {
 	this._width = value;
-	this.update();
-};
-
-FreeVerb.prototype.setMode = function (value) {
-	this._mode = value;
 	this.update();
 };
