@@ -4,9 +4,7 @@
  *
  * @author Cedric Stoquer
  */
-
 function DecayEnvelope(params) {
-	this.trig  = [0.0]; // input trigger // TODO: use event signal
 	this.input = [0.0]; // input signal  // TODO: remove built-in audio (to make it a KR module)
 	this.out   = [0.0]; // output signal
 	this.env   = [0.0]; // output signal 
@@ -54,10 +52,6 @@ var DECAY_SMOOTH     = 0.02;
 var DECAY_SMOOTH_INV = 1 - DECAY_SMOOTH;
 
 DecayEnvelope.prototype.tic = function () {
-	if (this.trig[0] > 0.8) {
-		this._stopped = false;
-		this._t = 0;
-	}
 	if (this._stopped) return;
 	if (this._t++ > this._duration) {
 		this._stopped = true;
@@ -71,4 +65,9 @@ DecayEnvelope.prototype.tic = function () {
 	// built-in smoothing filter
 	this.env[0] = this._raw * DECAY_SMOOTH + this.env[0] * DECAY_SMOOTH_INV;
 	this.out[0] = this.input[0] * this.env[0];
+};
+
+DecayEnvelope.prototype.trigger = function () {
+	this._stopped = false;
+	this._t = 0;
 };

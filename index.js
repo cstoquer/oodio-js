@@ -24,9 +24,12 @@ var mainNode     = null;
 createSynth();*/
 
 function SimpleSynth() {
-	var TEMPO = 88;
-	this.seq   = new FreqSeq({ tempo: TEMPO, steps: [69, 57, 60, 64, 48, 57, 52, 62] });
-	this.clk   = new Clock({ tempo: TEMPO });
+	var TEMPO = 180;
+	// this.seq   = new FreqSeq({ tempo: TEMPO, steps: [69, 57, 60, 64, 48, 57, 52, 62] });
+	// this.clk   = new Clock({ tempo: TEMPO });
+	this.seq   = new SeqNote({ steps: [69, 57, 60, 64, 48, 57, 52, 62] });
+	this.clk   = new ClockGen({ tempo: TEMPO });
+
 	this.glide = new FastFilter({ freq: 0.004 });
 	this.lfo   = new TriOsc({ freq: 0.03, width: 0.9 });
 	this.osc1  = new PulseOsc({ freq: 110.0 });
@@ -38,12 +41,14 @@ function SimpleSynth() {
 	this.clp   = new Clipper();
 	this.vrb   = new FreeVerb({ wet: 0.01, dry: 0.9, size: 0.6, damp: 0.3, width: 1.0 });
 
-	this.env.trig = this.clk.out;
+	this.clk.out.connect(this.seq, 'clk');
+	this.clk.out.connect(this.env, 'trigger');
+	// this.env.trig = this.clk.out;
 	this.glide.input = this.seq.out;
 	this.oscMix.input1 = this.osc1.out;
 	this.oscMix.input2 = this.osc2.out;
 	this.env.input = this.oscMix.out;
-	// this.fltr.cut = this.env.out;
+	// this.fltr.cut = this.env.env;
 	this.fltr.input = this.env.out;
 	this.gain = [0.0];
 	this.vrb.inputR = this.gain;
@@ -55,7 +60,7 @@ function SimpleSynth() {
 
 SimpleSynth.prototype.tic = function () {
 	this.clk.tic();
-	this.seq.tic();
+	// this.seq.tic();
 	this.glide.tic();
 	var f = this.glide.out[0];
 	this.osc1.freq = f;
