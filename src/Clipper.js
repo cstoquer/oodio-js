@@ -6,7 +6,7 @@
  */
 
 function Clipper() {
-	this.input = [0.0];
+	this.input = ROOT.UNPLUGGED;
 	this.out   = [0.0];
 }
 

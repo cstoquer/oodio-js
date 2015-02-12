@@ -161,10 +161,10 @@ var FREEVERB_TUNING = {
 function FreeVerb(params) {
 	params = params || {};
 
+	this.inputL = ROOT.UNPLUGGED;
+	this.inputR = ROOT.UNPLUGGED;
 	this.outR   = [0.0];
 	this.outL   = [0.0];
-	this.inputL = [0.0];
-	this.inputR = [0.0];
 
 	this._gain      = 0;
 	this._roomSize  = 0;

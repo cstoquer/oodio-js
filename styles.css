@@ -2,6 +2,8 @@ body {
 	font-family: "Arial", "Verdana";
 	font-weight: bold;
 	font-size: 11px;
+	background-repeat: repeat;
+	background-image: url("img/background.png");
 }
 
 .module {
@@ -11,4 +13,16 @@ body {
 	border: 1px;
 	-webkit-border-image: url("img/mod-bg.png") 1 1 1 1;
 	border-image: url("img/mod-bg.png") 1 1 1 1 fill;
-};
+}
+
+.performance {
+	position: absolute;
+	left: 500px;
+	top: 0;
+	text-align: center;
+	width: 80px;
+	height: 40px;
+	border: 1px;
+	-webkit-border-image: url("img/mod-bg.png") 1 1 1 1;
+	border-image: url("img/mod-bg.png") 1 1 1 1 fill;
+}

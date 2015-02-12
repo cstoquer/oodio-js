@@ -6,7 +6,7 @@
  */
 
 function RCFilter(params) {
-	this.input = [0.0];
+	this.input = ROOT.UNPLUGGED;
 	this.out   = [0.0];
 	this.cut   = params.cut === undefined ? [0.5] : [params.cut];
 	this.res   = params.res === undefined ? [0.4] : [params.res];

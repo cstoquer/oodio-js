@@ -8,8 +8,8 @@
 function Mix1_1A(params) {
 	params = params || {};
 
-	this.input1 = [0.0];
-	this.input2 = [0.0];
+	this.input1 = ROOT.UNPLUGGED;
+	this.input2 = ROOT.UNPLUGGED;
 	this.out    = [0.0];
 	this.volume = params.volume !== undefined ? params.volume : 0.0;
 }

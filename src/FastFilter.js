@@ -5,7 +5,7 @@
  * @author Cedric Stoquer
  */
 function FastFilter(params) {
-	this.input = [0.0];
+	this.input = ROOT.UNPLUGGED;
 	this.out   = [0.0];
 	this.freq  = params.freq === undefined ? [0.1] : [params.freq];
 }

@@ -8,6 +8,11 @@ function Performance() {
 	this.cycles  = 0;
 	this.total   = 0;
 	this.id      = null;
+
+	var dom  = document.createElement('div');
+	document.getElementsByTagName('body')[0].appendChild(dom);
+	dom.className = 'performance';
+	this.dom = dom;
 }
 
 Performance.prototype.sample = function (startTime) {
@@ -25,14 +30,16 @@ Performance.prototype.start = function (interval) {
 	interval = interval || 2000;
 	t.id  = window.setInterval(function () {
 		t.now = performance.now();
-		var average = t.total / t.cycles;
 		var elapsed = t.now - t.started;
-		console.log('----------------------------');
-		console.log('elapsed:  ' + elapsed + ' ms');
-		console.log('computed: ' + t.total + ' ms');
-		console.log('load:     ' + (100 * t.total / elapsed) + ' %');
-		console.log('cycles:   ' + t.cycles);
-		console.log('average:  ' + average + ' ms/cycle');
+		var load = 100 * t.total / elapsed;
+		t.dom.textContent = 'load:' + load.toFixed(2) + '%';
+		// var average = t.total / t.cycles;
+		// console.log('----------------------------');
+		// console.log('elapsed:  ' + elapsed + ' ms');
+		// console.log('computed: ' + t.total + ' ms');
+		// console.log('load:     ' + (100 * t.total / elapsed) + ' %');
+		// console.log('cycles:   ' + t.cycles);
+		// console.log('average:  ' + average + ' ms/cycle');
 	}, interval);
 	return t;
 };

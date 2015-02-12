@@ -5,7 +5,7 @@
  * @author Cedric Stoquer
  */
 function DecayEnvelope(params) {
-	this.input = [0.0]; // input signal  // TODO: remove built-in audio (to make it a KR module)
+	this.input = ROOT.UNPLUGGED; // input signal  // TODO: remove built-in audio (to make it a KR module)
 	this.out   = [0.0]; // output signal
 	this.env   = [0.0]; // output signal 
 
