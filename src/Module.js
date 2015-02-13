@@ -12,8 +12,11 @@ function Module(params) {
 		var input = this.description_inputs[id];
 		switch (input.rate) {
 			case 'E': this[id] = new EventInConnector(this, input.func); break;
+			case 'K': 
 			case 'A':
-			case 'K':
+				this[id] = ROOT.UNPLUGGED;
+				new AudioInConnector(this, id, input);
+				break;
 			default: break;
 		}
 	}
@@ -22,8 +25,11 @@ function Module(params) {
 		var output = this.description_outputs[id];
 		switch (output.rate) {
 			case 'E': this[id] = new EventOutConnector(this); break;
-			case 'A':
 			case 'K':
+			case 'A':
+				this[id] = [0.0];
+				new AudioOutConnector(this, id, output);
+				break;
 			default: break;
 		}
 	}

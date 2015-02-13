@@ -1,4 +1,4 @@
-/** Event Out Connector
+/** Event In Connector
  *
  * @author Cedric Stoquer
  */

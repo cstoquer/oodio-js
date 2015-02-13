@@ -7,6 +7,7 @@ body {
 }
 
 .module {
+	position:   relative;
 	width:      254px;
 	height:     13px;
 	border:     1px;
@@ -58,10 +59,15 @@ body {
 }
 
 .connector {
+	position: absolute;
+	display: inline-block;
 	width:  11px;
 	height: 11px;
 }
 
-.eventOut {	background-image: url("img/out-Y.png"); }
-.eventIn  {	background-image: url("img/in-Y.png"); }
-
+.eventOut   { background-image: url("img/out-Y.png"); }
+.eventIn    { background-image: url("img/in-Y.png");  }
+.audioOut   { background-image: url("img/out-R.png"); }
+.audioIn    { background-image: url("img/in-R.png");  }
+.controlOut { background-image: url("img/out-B.png"); }
+.controlIn  { background-image: url("img/in-Y.png");  }

@@ -20,7 +20,7 @@ inherit(ClockGen, Module);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ClockGen.prototype.description_moduleName = 'ClockGen';
 ClockGen.prototype.description_moduleSize = 2;
-ClockGen.prototype.description_rate       = 'E';
+ClockGen.prototype.description_rate       = 'K';
 ClockGen.prototype.description_inputs     = {};
 ClockGen.prototype.description_outputs    = {
 	out: { rate: 'E', type: null }
