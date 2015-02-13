@@ -4,11 +4,9 @@
  */
 
 function Module(params) {
-	var dom  = document.createElement('div');
-	document.getElementsByTagName('body')[0].appendChild(dom);
-	dom.className   = 'module x' + this.description_moduleSize;
+	var dom = createDom('module x' + this.description_moduleSize);
 	dom.textContent = this.description_moduleName;
-	this.dom = dom;
+	this._dom = dom;
 }
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄

@@ -41,8 +41,9 @@ function SimpleSynth() {
 	this.clp   = new Clipper();
 	this.vrb   = new FreeVerb({ wet: 0.01, dry: 0.9, size: 0.6, damp: 0.3, width: 1.0 });
 
-	this.clk.out.connect(this.seq, 'clk');
-	this.clk.out.connect(this.env, 'trigger');
+	this.clk.out.connect(this.seq.clk);
+	// this.clk.out.connect(this.env.trigger);
+	this.env.trigger.connect(this.clk.out);
 	// this.env.trig = this.clk.out;
 	this.glide.input = this.seq.out;
 	this.oscMix.input1 = this.osc1.out;

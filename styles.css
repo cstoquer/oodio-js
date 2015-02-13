@@ -57,5 +57,11 @@ body {
 	width:      75px;
 }
 
+.connector {
+	width:  11px;
+	height: 11px;
+}
 
+.eventOut {	background-image: url("img/out-Y.png"); }
+.eventIn  {	background-image: url("img/in-Y.png"); }
 

@@ -6,9 +6,10 @@
  */
 function DecayEnvelope(params) {
 	Module.call(this, params);
-	this.input = ROOT.UNPLUGGED; // input signal  // TODO: remove built-in audio (to make it a KR module)
-	this.out   = [0.0]; // output signal
-	this.env   = [0.0]; // output signal 
+	this.input   = ROOT.UNPLUGGED; // input signal  // TODO: remove built-in audio (to make it a KR module)
+	this.out     = [0.0]; // output signal
+	this.env     = [0.0]; // output signal 
+	this.trigger = new EventInConnector(this, '_trigger');
 
 	this._decay     = params.decay     === undefined ? 0.5 : params.decay;
 	this._curvature = params.curvature === undefined ? 0.5 : map(params.curvature, 0, 1, 0.3, 0.7);
@@ -78,7 +79,7 @@ DecayEnvelope.prototype.tic = function () {
 	this.out[0] = this.input[0] * this.env[0];
 };
 
-DecayEnvelope.prototype.trigger = function () {
+DecayEnvelope.prototype._trigger = function () {
 	this._stopped = false;
 	this._t = 0;
 };
