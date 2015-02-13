@@ -18,7 +18,7 @@ inherit(Mix1_1A, Module);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 Mix1_1A.prototype.description_moduleName = 'Mix1-1A';
-Mix1_1A.prototype.description_moduleSize = 1;
+Mix1_1A.prototype.description_moduleSize = 2;
 Mix1_1A.prototype.description_rate       = 'A';
 Mix1_1A.prototype.description_inputs     = {};
 Mix1_1A.prototype.description_outputs    = {};

@@ -10,7 +10,6 @@ function SeqNote(params) {
 	this.out     = [0.0];
 	this.clk     = new EventInConnector(this, '_clk');
 
-
 	this._pos    = 0;
 	this._steps  = [];
 	this._length = 8;
@@ -21,7 +20,7 @@ inherit(SeqNote, Module);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 SeqNote.prototype.description_moduleName = 'Note Sequencer';
-SeqNote.prototype.description_moduleSize = 3;
+SeqNote.prototype.description_moduleSize = 2;
 SeqNote.prototype.description_rate       = 'E';
 SeqNote.prototype.description_inputs     = {
 	'clk': { rate: 'E' } // TODO: positions

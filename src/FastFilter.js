@@ -14,7 +14,7 @@ inherit(FastFilter, Module);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 FastFilter.prototype.description_moduleName = 'FastFilter';
-FastFilter.prototype.description_moduleSize = 1;
+FastFilter.prototype.description_moduleSize = 2;
 FastFilter.prototype.description_rate       = 'A';
 FastFilter.prototype.description_inputs     = {};
 FastFilter.prototype.description_outputs    = {};

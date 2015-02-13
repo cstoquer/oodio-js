@@ -15,7 +15,7 @@ inherit(Clipper, Module);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 Clipper.prototype.description_moduleName = 'Clipper';
-Clipper.prototype.description_moduleSize = 1;
+Clipper.prototype.description_moduleSize = 2;
 Clipper.prototype.description_rate       = 'A';
 Clipper.prototype.description_inputs     = {};
 Clipper.prototype.description_outputs    = {};

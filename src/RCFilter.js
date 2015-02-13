@@ -18,7 +18,7 @@ inherit(RCFilter, Module);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 RCFilter.prototype.description_moduleName = 'RCFilter';
-RCFilter.prototype.description_moduleSize = 1;
+RCFilter.prototype.description_moduleSize = 2;
 RCFilter.prototype.description_rate       = 'A';
 RCFilter.prototype.description_inputs     = {};
 RCFilter.prototype.description_outputs    = {};

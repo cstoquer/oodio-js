@@ -224,7 +224,7 @@ inherit(FreeVerb, Module);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 FreeVerb.prototype.description_moduleName = 'FreeVerb';
-FreeVerb.prototype.description_moduleSize = 1;
+FreeVerb.prototype.description_moduleSize = 2;
 FreeVerb.prototype.description_rate       = 'A';
 FreeVerb.prototype.description_inputs     = {};
 FreeVerb.prototype.description_outputs    = {};

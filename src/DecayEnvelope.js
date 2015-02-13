@@ -26,7 +26,7 @@ inherit(DecayEnvelope, Module);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 DecayEnvelope.prototype.description_moduleName = 'Decay Envelope';
-DecayEnvelope.prototype.description_moduleSize = 1;
+DecayEnvelope.prototype.description_moduleSize = 2;
 DecayEnvelope.prototype.description_rate       = 'A';
 DecayEnvelope.prototype.description_inputs     = {};
 DecayEnvelope.prototype.description_outputs    = {};
