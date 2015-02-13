@@ -24,6 +24,31 @@ body {
 .x8 { height: 118px; }
 .x9 { height: 133px; }
 
+.R0 { -webkit-border-image: url("img/mod-bgR0.png") 1 1 1 1; border-image: url("img/mod-bgR0.png") 1 1 1 1 fill; }
+.R1 { -webkit-border-image: url("img/mod-bgR1.png") 1 1 1 1; border-image: url("img/mod-bgR1.png") 1 1 1 1 fill; }
+.R2 { -webkit-border-image: url("img/mod-bgR2.png") 1 1 1 1; border-image: url("img/mod-bgR2.png") 1 1 1 1 fill; }
+.R3 { -webkit-border-image: url("img/mod-bgR3.png") 1 1 1 1; border-image: url("img/mod-bgR3.png") 1 1 1 1 fill; }
+.Y0 { -webkit-border-image: url("img/mod-bgY0.png") 1 1 1 1; border-image: url("img/mod-bgY0.png") 1 1 1 1 fill; }
+.Y1 { -webkit-border-image: url("img/mod-bgY1.png") 1 1 1 1; border-image: url("img/mod-bgY1.png") 1 1 1 1 fill; }
+.Y2 { -webkit-border-image: url("img/mod-bgY2.png") 1 1 1 1; border-image: url("img/mod-bgY2.png") 1 1 1 1 fill; }
+.Y3 { -webkit-border-image: url("img/mod-bgY3.png") 1 1 1 1; border-image: url("img/mod-bgY3.png") 1 1 1 1 fill; }
+.G0 { -webkit-border-image: url("img/mod-bgG0.png") 1 1 1 1; border-image: url("img/mod-bgG0.png") 1 1 1 1 fill; }
+.G1 { -webkit-border-image: url("img/mod-bgG1.png") 1 1 1 1; border-image: url("img/mod-bgG1.png") 1 1 1 1 fill; }
+.G2 { -webkit-border-image: url("img/mod-bgG2.png") 1 1 1 1; border-image: url("img/mod-bgG2.png") 1 1 1 1 fill; }
+.G3 { -webkit-border-image: url("img/mod-bgG3.png") 1 1 1 1; border-image: url("img/mod-bgG3.png") 1 1 1 1 fill; }
+.C0 { -webkit-border-image: url("img/mod-bgC0.png") 1 1 1 1; border-image: url("img/mod-bgC0.png") 1 1 1 1 fill; }
+.C1 { -webkit-border-image: url("img/mod-bgC1.png") 1 1 1 1; border-image: url("img/mod-bgC1.png") 1 1 1 1 fill; }
+.C2 { -webkit-border-image: url("img/mod-bgC2.png") 1 1 1 1; border-image: url("img/mod-bgC2.png") 1 1 1 1 fill; }
+.C3 { -webkit-border-image: url("img/mod-bgC3.png") 1 1 1 1; border-image: url("img/mod-bgC3.png") 1 1 1 1 fill; }
+.B0 { -webkit-border-image: url("img/mod-bgB0.png") 1 1 1 1; border-image: url("img/mod-bgB0.png") 1 1 1 1 fill; }
+.B1 { -webkit-border-image: url("img/mod-bgB1.png") 1 1 1 1; border-image: url("img/mod-bgB1.png") 1 1 1 1 fill; }
+.B2 { -webkit-border-image: url("img/mod-bgB2.png") 1 1 1 1; border-image: url("img/mod-bgB2.png") 1 1 1 1 fill; }
+.B3 { -webkit-border-image: url("img/mod-bgB3.png") 1 1 1 1; border-image: url("img/mod-bgB3.png") 1 1 1 1 fill; }
+.P0 { -webkit-border-image: url("img/mod-bgP0.png") 1 1 1 1; border-image: url("img/mod-bgP0.png") 1 1 1 1 fill; }
+.P1 { -webkit-border-image: url("img/mod-bgP1.png") 1 1 1 1; border-image: url("img/mod-bgP1.png") 1 1 1 1 fill; }
+.P2 { -webkit-border-image: url("img/mod-bgP2.png") 1 1 1 1; border-image: url("img/mod-bgP2.png") 1 1 1 1 fill; }
+.P3 { -webkit-border-image: url("img/mod-bgP3.png") 1 1 1 1; border-image: url("img/mod-bgP3.png") 1 1 1 1 fill; }
+
 .performance {
 	position:   absolute;
 	text-align: center;
