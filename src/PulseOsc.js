@@ -11,7 +11,7 @@ function PulseOsc(params) {
 inherit(PulseOsc, Oscillator);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-PulseOsc.prototype.description_moduleName = 'Pulse Oscillator';
+PulseOsc.prototype.description_moduleName = 'OscPulse';
 PulseOsc.prototype.description_moduleSize = 2;
 PulseOsc.prototype.description_inputs     = {};
 PulseOsc.prototype.description_outputs    = {};

@@ -9,7 +9,7 @@ function DecayEnvelope(params) {
 	this.input   = ROOT.UNPLUGGED; // input signal  // TODO: remove built-in audio (to make it a KR module)
 	this.out     = [0.0]; // output signal
 	this.env     = [0.0]; // output signal 
-	this.trigger = new EventInConnector(this, '_trigger');
+	// this.trigger = new EventInConnector(this, '_trigger');
 
 	this._decay     = params.decay     === undefined ? 0.5 : params.decay;
 	this._curvature = params.curvature === undefined ? 0.5 : map(params.curvature, 0, 1, 0.3, 0.7);
@@ -25,10 +25,12 @@ function DecayEnvelope(params) {
 inherit(DecayEnvelope, Module);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-DecayEnvelope.prototype.description_moduleName = 'Decay Envelope';
+DecayEnvelope.prototype.description_moduleName = 'EnvDecay';
 DecayEnvelope.prototype.description_moduleSize = 2;
 DecayEnvelope.prototype.description_rate       = 'A';
-DecayEnvelope.prototype.description_inputs     = {};
+DecayEnvelope.prototype.description_inputs     = {
+	trigger: { rate: 'E', func: '_trigger' } // TODO: positions
+};
 DecayEnvelope.prototype.description_outputs    = {};
 DecayEnvelope.prototype.description_params     = {};
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
