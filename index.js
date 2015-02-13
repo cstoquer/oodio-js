@@ -27,8 +27,8 @@ function SimpleSynth() {
 	var TEMPO = 180;
 	// this.seq   = new FreqSeq({ tempo: TEMPO, steps: [69, 57, 60, 64, 48, 57, 52, 62] });
 	// this.clk   = new Clock({ tempo: TEMPO });
-	this.seq   = new SeqNote({ steps: [69, 57, 60, 64, 48, 57, 52, 62] });
 	this.clk   = new ClockGen({ tempo: TEMPO });
+	this.seq   = new SeqNote({ steps: [69, 57, 60, 64, 48, 57, 52, 62] });
 
 	this.glide = new FastFilter({ freq: 0.004 });
 	this.lfo   = new TriOsc({ freq: 0.03, width: 0.9 });

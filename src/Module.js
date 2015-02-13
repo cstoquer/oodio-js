@@ -1,25 +1,21 @@
-/** Naive Pulse Oscillator
- *
- * AR module
+/** Main abstract class for modules. Handle UI display.
  *
  * @author Cedric Stoquer
  */
-function PulseOsc(params) {
-	Oscillator.call(this, params);
-	this.width = params.width === undefined ? 0.5 : params.width;
+
+function Module(params) {
+	var dom  = document.createElement('div');
+	document.getElementsByTagName('body')[0].appendChild(dom);
+	dom.className   = this.description_classNames;
+	dom.textContent = this.description_moduleName;
+	this.dom = dom;
 }
-inherit(PulseOsc, Oscillator);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-PulseOsc.prototype.description_moduleName = 'Pulse Oscillator';
-PulseOsc.prototype.description_classNames = 'module x1';
-PulseOsc.prototype.description_inputs     = {};
-PulseOsc.prototype.description_outputs    = {};
-PulseOsc.prototype.description_params     = {};
+Module.prototype.description_moduleName = 'Abstract Module';
+Module.prototype.description_classNames = 'module x1';
+Module.prototype.description_rate       = 'E';
+Module.prototype.description_inputs     = {};
+Module.prototype.description_outputs    = {};
+Module.prototype.description_params     = {};
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
-PulseOsc.prototype.tic = function () {
-	this._pos += this._pinc;
-	if (this._pos > 1) this._pos -= 1;
-	this.out[0] = (this._pos > this.width) ? 1 : -1;
-};

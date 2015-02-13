@@ -5,11 +5,22 @@
  * @author Cedric Stoquer
  */
 function Oscillator(params) {
+	Module.call(this, params);
 	this.out   = [0.0];
 	this._pos  = 0.0;
 	this._freq = params.freq  === undefined ? 440.0 : params.freq;
 	this._pinc = this._freq / SAMPLE_RATE;
 }
+inherit(Oscillator, Module);
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+Oscillator.prototype.description_moduleName = 'Ramp Oscillator';
+Oscillator.prototype.description_classNames = 'module x1';
+Oscillator.prototype.description_rate       = 'A';
+Oscillator.prototype.description_inputs     = {};
+Oscillator.prototype.description_outputs    = {};
+Oscillator.prototype.description_params     = {};
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 Object.defineProperty(Oscillator.prototype, 'freq', {
 	get: function() {

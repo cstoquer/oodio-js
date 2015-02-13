@@ -5,6 +5,7 @@
  * @author Cedric Stoquer
  */
 function DecayEnvelope(params) {
+	Module.call(this, params);
 	this.input = ROOT.UNPLUGGED; // input signal  // TODO: remove built-in audio (to make it a KR module)
 	this.out   = [0.0]; // output signal
 	this.env   = [0.0]; // output signal 
@@ -20,6 +21,16 @@ function DecayEnvelope(params) {
 
 	this.update();
 }
+inherit(DecayEnvelope, Module);
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+DecayEnvelope.prototype.description_moduleName = 'Decay Envelope';
+DecayEnvelope.prototype.description_classNames = 'module x1';
+DecayEnvelope.prototype.description_rate       = 'A';
+DecayEnvelope.prototype.description_inputs     = {};
+DecayEnvelope.prototype.description_outputs    = {};
+DecayEnvelope.prototype.description_params     = {};
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 Object.defineProperty(DecayEnvelope.prototype, 'curvature', {
 	get: function() {

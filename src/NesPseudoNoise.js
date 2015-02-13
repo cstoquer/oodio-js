@@ -10,6 +10,15 @@ function NesPseudoNoise(params) {
 }
 inherit(NesPseudoNoise, Oscillator);
 
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+NesPseudoNoise.prototype.description_moduleName = 'NES Pseudo Noise';
+NesPseudoNoise.prototype.description_classNames = 'module x1';
+NesPseudoNoise.prototype.description_rate       = 'A';
+NesPseudoNoise.prototype.description_inputs     = {};
+NesPseudoNoise.prototype.description_outputs    = {};
+NesPseudoNoise.prototype.description_params     = {};
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
 NesPseudoNoise.prototype.tic = function () {
 	this._pos += this._pinc;
 	if (this._pos > 1) {

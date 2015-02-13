@@ -159,6 +159,7 @@ var FREEVERB_TUNING = {
 // FreeVerb
 
 function FreeVerb(params) {
+	Module.call(this, params);
 	params = params || {};
 
 	this.inputL = ROOT.UNPLUGGED;
@@ -219,6 +220,16 @@ function FreeVerb(params) {
 	this.setDamp(     params.damp  !== undefined ? params.damp  : FREEVERB_TUNING.initialDamp);
 	this.setWidth(    params.width !== undefined ? params.width : FREEVERB_TUNING.initialWidth);
 }
+inherit(FreeVerb, Module);
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+FreeVerb.prototype.description_moduleName = 'FreeVerb';
+FreeVerb.prototype.description_classNames = 'module x1';
+FreeVerb.prototype.description_rate       = 'A';
+FreeVerb.prototype.description_inputs     = {};
+FreeVerb.prototype.description_outputs    = {};
+FreeVerb.prototype.description_params     = {};
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 FreeVerb.prototype.update = function () {
 	this._wet1 = this._wet * (this._width / 2 + 0.5);

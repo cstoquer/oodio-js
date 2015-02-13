@@ -5,6 +5,8 @@
  * @author Cedric Stoquer
  */
 function SeqNote(params) {
+	Module.call(this, params);
+
 	this.out     = [0.0];
 	this._pos    = 0;
 	this._steps  = [];
@@ -12,16 +14,20 @@ function SeqNote(params) {
 
 	params.steps && this.setNotes(params.steps);
 }
+inherit(SeqNote, Module);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-SeqNote.prototype.description = {
-	rate: 'E',
-	inputs: {
-		'clk': { rate: 'E' }
-	},
-	outputs: {
-		'out': { rate: 'A', type: 'freq' }
-	}
+SeqNote.prototype.description_moduleName = 'Note Sequencer';
+SeqNote.prototype.description_classNames = 'module x2';
+SeqNote.prototype.description_rate       = 'E';
+SeqNote.prototype.description_inputs     = {
+	'clk': { rate: 'E' } // TODO: positions
+};
+SeqNote.prototype.description_outputs    = {
+	'out': { rate: 'A', type: 'freq' }
+};
+SeqNote.prototype.description_params     = {
+	'setNotes': {} // TODO
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄

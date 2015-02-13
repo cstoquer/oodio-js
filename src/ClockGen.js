@@ -5,6 +5,8 @@
  * @author Cedric Stoquer
  */
 function ClockGen(params) {
+	Module.call(this, params);
+
 	this.out    = new EventConnector();
 
 	this._pos   = 0.0;
@@ -13,6 +15,20 @@ function ClockGen(params) {
 
 	this.tempo = this._tempo;
 }
+inherit(ClockGen, Module);
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+ClockGen.prototype.description_moduleName = 'Clock Generator';
+ClockGen.prototype.description_classNames = 'module x1';
+ClockGen.prototype.description_rate       = 'E';
+ClockGen.prototype.description_inputs     = {};
+ClockGen.prototype.description_outputs    = {
+	'out': { rate: 'E', type: null }
+};
+ClockGen.prototype.description_params     = {
+	'tempo': {} // TODO
+};
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 Object.defineProperty(ClockGen.prototype, 'tempo', {
 	get: function() {

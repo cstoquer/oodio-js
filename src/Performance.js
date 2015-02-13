@@ -11,7 +11,8 @@ function Performance() {
 
 	var dom  = document.createElement('div');
 	document.getElementsByTagName('body')[0].appendChild(dom);
-	dom.className = 'performance';
+	dom.className = 'module performance';
+	dom.textContent = 'load: ----';
 	this.dom = dom;
 }
 

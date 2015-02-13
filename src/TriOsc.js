@@ -10,6 +10,14 @@ function TriOsc(params) {
 }
 inherit(TriOsc, Oscillator);
 
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+TriOsc.prototype.description_moduleName = 'Triangle Oscillator';
+TriOsc.prototype.description_classNames = 'module x1';
+TriOsc.prototype.description_inputs     = {};
+TriOsc.prototype.description_outputs    = {};
+TriOsc.prototype.description_params     = {};
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
 TriOsc.prototype.tic = function () {
 	this._pos += this._pinc;
 	if (this._pos > 1) this._pos -= 1;

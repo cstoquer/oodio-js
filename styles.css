@@ -7,22 +7,30 @@ body {
 }
 
 .module {
-	text-align: center;
-	width: 254px;
-	height: 13px;
-	border: 1px;
+	width:      254px;
+	height:     13px;
+	border:     1px;
 	-webkit-border-image: url("img/mod-bg.png") 1 1 1 1;
-	border-image: url("img/mod-bg.png") 1 1 1 1 fill;
+	border-image:         url("img/mod-bg.png") 1 1 1 1 fill;
 }
 
+.x1 { height: 13px; }
+.x2 { height: 28px; }
+.x3 { height: 43px; }
+.x4 { height: 58px; }
+.x5 { height: 73px; }
+.x6 { height: 88px; }
+.x7 { height: 103px; }
+.x8 { height: 118px; }
+.x9 { height: 133px; }
+
 .performance {
-	position: absolute;
-	left: 500px;
-	top: 0;
+	position:   absolute;
 	text-align: center;
-	width: 80px;
-	height: 40px;
-	border: 1px;
-	-webkit-border-image: url("img/mod-bg.png") 1 1 1 1;
-	border-image: url("img/mod-bg.png") 1 1 1 1 fill;
+	right:      0;
+	top:        0;
+	width:      75px;
 }
+
+
+
