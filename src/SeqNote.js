@@ -18,7 +18,7 @@ inherit(SeqNote, Module);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 SeqNote.prototype.description_moduleName = 'Note Sequencer';
-SeqNote.prototype.description_classNames = 'module x2';
+SeqNote.prototype.description_moduleSize = 3;
 SeqNote.prototype.description_rate       = 'E';
 SeqNote.prototype.description_inputs     = {
 	'clk': { rate: 'E' } // TODO: positions

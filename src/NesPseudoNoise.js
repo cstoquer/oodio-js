@@ -12,7 +12,7 @@ inherit(NesPseudoNoise, Oscillator);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 NesPseudoNoise.prototype.description_moduleName = 'NES Pseudo Noise';
-NesPseudoNoise.prototype.description_classNames = 'module x1';
+NesPseudoNoise.prototype.description_moduleSize = 1;
 NesPseudoNoise.prototype.description_rate       = 'A';
 NesPseudoNoise.prototype.description_inputs     = {};
 NesPseudoNoise.prototype.description_outputs    = {};

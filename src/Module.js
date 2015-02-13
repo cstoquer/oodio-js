@@ -6,14 +6,14 @@
 function Module(params) {
 	var dom  = document.createElement('div');
 	document.getElementsByTagName('body')[0].appendChild(dom);
-	dom.className   = this.description_classNames;
+	dom.className   = 'module x' + this.description_moduleSize;
 	dom.textContent = this.description_moduleName;
 	this.dom = dom;
 }
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 Module.prototype.description_moduleName = 'Abstract Module';
-Module.prototype.description_classNames = 'module x1';
+Module.prototype.description_moduleSize = 1;
 Module.prototype.description_rate       = 'E';
 Module.prototype.description_inputs     = {};
 Module.prototype.description_outputs    = {};
