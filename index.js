@@ -25,34 +25,38 @@ createSynth();*/
 
 function SimpleSynth() {
 	var TEMPO = 180;
-	this.clk   = new ClockGen({ tempo: TEMPO });
-	this.seq   = new SeqNote({ steps: [69, 57, 60, 64, 48, 57, 52, 62] });
 
-	this.glide = new FastFilter({ freq: 0.004 });
-	this.lfo   = new TriOsc({ freq: 0.03, width: 0.9 });
-	this.osc1  = new PulseOsc({ freq: 110.0 });
-	this.osc2  = new TriOsc({ freq: 110.0 });
+	this.clk    = new ClockGen({ tempo: TEMPO });
+	this.seq    = new SeqNote({ steps: [69, 57, 60, 64, 48, 57, 52, 62] });
+	this.glide  = new FastFilter({ freq: 0.004 });
+	this.lfo    = new TriOsc({ freq: 0.03, width: 0.9 });
+	this.osc1   = new PulseOsc({ freq: 110.0 });
+	this.osc2   = new TriOsc({ freq: 110.0 });
 	this.oscMix = new Mix1_1A({ volume: 1.0 });
-	this.env   = new DecayEnvelope({ decay: 0.4, curvature: 0.1 });
-	// this.noiz = new NesPseudoNoise({ freq: 1600.0 });
-	this.fltr  = new RCFilter({ cut: 0.5, res: 0.4 });
-	this.clp   = new Clipper();
-	this.vrb   = new FreeVerb({ wet: 0.01, dry: 0.9, size: 0.6, damp: 0.3, width: 1.0 });
+	this.env    = new DecayEnvelope({ decay: 0.4, curvature: 0.1 });
+	// this.noiz  = new NesPseudoNoise({ freq: 1600.0 });
+	this.fltr   = new RCFilter({ cut: 0.5, res: 0.4 });
+	this.clp    = new Clipper();
+	this.vrb    = new FreeVerb({ wet: 0.01, dry: 0.9, size: 0.6, damp: 0.3, width: 1.0 });
+
+	this.gain = [0.0]; // TODO: add a gain module
+
 
 	this.clk.out.connect(this.seq.clk);
 	// this.clk.out.connect(this.env.trigger);
 	this.env.trigger.connect(this.clk.out);
-	// this.env.trig = this.clk.out;
-	this.glide.input = this.seq.out;
+
+	// TODO: add connectors for audio/control output/input
+
+	this.glide.input   = this.seq.out;
 	this.oscMix.input1 = this.osc1.out;
 	this.oscMix.input2 = this.osc2.out;
-	this.env.input = this.oscMix.out;
-	// this.fltr.cut = this.env.env;
-	this.fltr.input = this.env.out;
-	this.gain = [0.0];
-	this.vrb.inputR = this.gain;
-	this.vrb.inputL = this.gain;
-	this.clp.input = this.vrb.outR;
+	this.env.input     = this.oscMix.out;
+	// this.fltr.cut   = this.env.env;
+	this.fltr.input    = this.env.out;
+	this.vrb.inputR    = this.gain;
+	this.vrb.inputL    = this.gain;
+	this.clp.input     = this.vrb.outR;
 
 	this.out = this.clp.out;
 }
@@ -62,6 +66,8 @@ SimpleSynth.prototype.tic = function () {
 	// this.seq.tic();
 	this.glide.tic();
 	var f = this.glide.out[0];
+
+	// TODO: add some oscillator with note / frequency inputs
 	this.osc1.freq = f;
 	this.osc2.freq = f / 3.01;
 
@@ -69,7 +75,7 @@ SimpleSynth.prototype.tic = function () {
 	this.osc2.tic();
 	this.lfo.tic();
 
-	var w = map(this.lfo.out[0], -1, 1, 0, 0.5);
+	var w = map(this.lfo.out[0], -1, 1, 0, 0.5); // TODO: add a level converter module
 	this.osc1.width = w;
 	this.osc2.width = w;
 
