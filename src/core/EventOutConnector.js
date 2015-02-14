@@ -2,15 +2,15 @@
  *
  * @author Cedric Stoquer
  */
-function EventOutConnector(module, connector) {
-	this.module = module;
+function EventOutConnector(module, id, connectorDescription) {
+	Connector.call(this, module, id, connectorDescription);
 
 	this._mod    = [];
 	this._func   = [];
 	this._length = 0;
-
-	this._dom = createDom('connector eventOut', module._dom);
 }
+inherit(EventOutConnector, Connector);
+EventOutConnector.prototype.connectorClassName = 'eventOut';
 
 /*EventOutConnector.prototype.connect = function (mod, func) {
 	this._mod.push(mod);

@@ -59,6 +59,8 @@ function SimpleSynth() {
 	this.out = this.clp.out;
 }
 
+
+
 SimpleSynth.prototype.tic = function () {
 	this.clk.tic();
 	// this.seq.tic();
@@ -92,6 +94,7 @@ var synth = new SimpleSynth();
 audioNodes.push(synth);
 mainNode = synth;
 
+new TestModule();
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 // create context, generator and start audio processing

@@ -2,12 +2,13 @@
  *
  * @author Cedric Stoquer
  */
-function EventInConnector(module, connector) {
-	this.module       = module;
-	this.functionName = connector.func;
+function EventInConnector(module, id, connectorDescription) {
+	Connector.call(this, module, id, connectorDescription);
 
-	this._dom = createDom('connector eventIn', module._dom);
+	this.functionName = connectorDescription.func;
 }
+inherit(EventInConnector, Connector);
+EventInConnector.prototype.connectorClassName = 'eventIn';
 
 EventInConnector.prototype.connect = function (connector) {
 	// TODO: check connector type
