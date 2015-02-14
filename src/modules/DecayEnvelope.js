@@ -23,7 +23,7 @@ inherit(DecayEnvelope, Module);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 DecayEnvelope.prototype.description_moduleName = 'EnvDecay';
 DecayEnvelope.prototype.description_moduleSize = 2;
-DecayEnvelope.prototype.description_rate       = 'A';
+DecayEnvelope.prototype.description_rate       = 'A'; // TODO: KR
 DecayEnvelope.prototype.description_inputs     = {
 	trigger: { rate: 'E', func: '_trigger', x: 0,  y: 1 }, // TODO: positions
 	input:   { rate: 'A',                   x: 14, y: 1 }, // TODO: remove built-in audio

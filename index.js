@@ -2,9 +2,6 @@
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 // create synthesizer
 
-var audioNodes   = [];
-var controlNodes = [];
-var mainNode     = null;
 
 /*function createSynth() {
 	var osc = new PulseOsc({ freq: 110.0 });
@@ -36,7 +33,6 @@ function SimpleSynth() {
 	this.env    = new DecayEnvelope({ decay: 0.4, curvature: 0.1 });
 	// this.noiz  = new NesPseudoNoise({ freq: 1600.0 });
 	this.fltr   = new RCFilter({ cut: 0.5, res: 0.4 });
-	this.clp    = new Clipper();
 	this.vrb    = new FreeVerb({ wet: 0.01, dry: 0.9, size: 0.6, damp: 0.3, width: 1.0 });
 
 	this.gain = [0.0]; // TODO: add a gain module
@@ -54,12 +50,8 @@ function SimpleSynth() {
 	this.fltr.input    = this.env.out;
 	this.vrb.inputR    = this.gain;
 	this.vrb.inputL    = this.gain;
-	this.clp.input     = this.vrb.outR;
-
-	this.out = this.clp.out;
 }
-
-
+SimpleSynth.prototype.description_rate = 'A';
 
 SimpleSynth.prototype.tic = function () {
 	this.clk.tic();
@@ -87,41 +79,33 @@ SimpleSynth.prototype.tic = function () {
 	this.fltr.tic();
 	this.gain[0] = this.fltr.out[0] * 0.3;
 	this.vrb.tic();
-	this.clp.tic();
 };
 
-var synth = new SimpleSynth();
-audioNodes.push(synth);
-mainNode = synth;
+var synth = moduleManager.add(new SimpleSynth());
+var out   = moduleManager.add(new Output());
+
+out.inputL = synth.vrb.outL;
+out.inputR = synth.vrb.outR;
 
 // new TestModule();
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 // create context, generator and start audio processing
 
-var context = new webkitAudioContext();
-var mainVolume = context.createGain();
-mainVolume.gain.value = 0.1;
-mainVolume.connect(context.destination);
-
-var generator = context.createScriptProcessor(BUFFER_LENGTH, 1, 1);
-generator.connect(mainVolume);
-
 var perf = (new Performance()).start();
+var audioContext = new webkitAudioContext();
+var mainVolume = audioContext.createGain();
+var generator  = audioContext.createScriptProcessor(BUFFER_LENGTH, 1, 2);
+mainVolume.gain.value = 0.1;
+mainVolume.connect(audioContext.destination);
+generator.connect(mainVolume);
 
 generator.onaudioprocess = function (e) {
 	var startTime = performance.now();
-	var outBuffer = e.outputBuffer.getChannelData(0);
-	for (var i = 0; i < BUFFER_LENGTH; i++) {
-		for (var j = 0; j < audioNodes.length; j++) {
-			audioNodes[j].tic();
-		}
-		// clip main output
-		var out = mainNode.out[0];
-		if (out >  1) out =  1;
-		if (out < -1) out = -1;
-		outBuffer[i] = out;
-	}
+	moduleManager.processAudio(
+		e.outputBuffer.getChannelData(0),
+		e.outputBuffer.getChannelData(1)
+	);
 	perf.sample(startTime);
 };
 

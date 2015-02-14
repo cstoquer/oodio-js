@@ -10,7 +10,7 @@ inherit(TestModule, Module);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 TestModule.prototype.description_moduleName = 'TestModule';
 TestModule.prototype.description_moduleSize = 3;
-TestModule.prototype.description_rate       = 'A';
+TestModule.prototype.description_rate       = 'E';
 TestModule.prototype.description_inputs     = {
 	/*a0_00:  { rate: 'E', x:0,  y:0 },*/ a1_00:  { rate: 'E', x:0,  y:1 }, a2_00:  { rate: 'E', x:0,  y:2 },
 	/*a0_01:  { rate: 'E', x:1,  y:0 },*/ a1_01:  { rate: 'E', x:1,  y:1 }, a2_01:  { rate: 'E', x:1,  y:2 },

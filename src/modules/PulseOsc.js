@@ -13,6 +13,7 @@ inherit(PulseOsc, Oscillator);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 PulseOsc.prototype.description_moduleName = 'OscPulse';
 PulseOsc.prototype.description_moduleSize = 2;
+PulseOsc.prototype.description_rate       = 'A';
 PulseOsc.prototype.description_inputs     = {};
 PulseOsc.prototype.description_outputs    = {};
 PulseOsc.prototype.description_params     = {};

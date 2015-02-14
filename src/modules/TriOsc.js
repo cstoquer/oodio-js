@@ -13,6 +13,7 @@ inherit(TriOsc, Oscillator);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 TriOsc.prototype.description_moduleName = 'OscTri';
 TriOsc.prototype.description_moduleSize = 2;
+TriOsc.prototype.description_rate       = 'A';
 TriOsc.prototype.description_inputs     = {};
 TriOsc.prototype.description_outputs    = {};
 TriOsc.prototype.description_params     = {};
