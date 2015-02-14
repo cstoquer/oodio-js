@@ -2,9 +2,9 @@
  *
  * @author Cedric Stoquer
  */
-function EventInConnector(module, functionName) {
+function EventInConnector(module, connector) {
 	this.module       = module;
-	this.functionName = functionName;
+	this.functionName = connector.func;
 
 	this._dom = createDom('connector eventIn', module._dom);
 }

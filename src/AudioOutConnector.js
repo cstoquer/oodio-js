@@ -3,17 +3,10 @@
  * @author Cedric Stoquer
  */
 function AudioOutConnector(module, name, connector) {
-	this.module = module;
-	this.name   = name;
-
-	var dom = this._dom = createDom('connector audioOut', module._dom);
-	if (connector.x === undefined) {
-		dom.style.position = 'relative'
-		return;
-	}
-	dom.style.left = connector.x + 'px';
-	dom.style.top  = connector.y + 'px';
+	Connector.call(this, module, name, connector);
 }
+inherit(AudioOutConnector, Connector);
+AudioOutConnector.prototype.connectorClassName = 'audioOut';
 
 AudioOutConnector.prototype.connect = function (connector) {
 	// TODO: check connector type

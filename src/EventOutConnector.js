@@ -2,7 +2,7 @@
  *
  * @author Cedric Stoquer
  */
-function EventOutConnector(module) {
+function EventOutConnector(module, connector) {
 	this.module = module;
 
 	this._mod    = [];

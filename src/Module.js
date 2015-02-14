@@ -11,7 +11,7 @@ function Module(params) {
 	for (var id in this.description_inputs) {
 		var input = this.description_inputs[id];
 		switch (input.rate) {
-			case 'E': this[id] = new EventInConnector(this, input.func); break;
+			case 'E': this[id] = new EventInConnector(this, input); break;
 			case 'K': 
 			case 'A':
 				this[id] = ROOT.UNPLUGGED;
@@ -24,7 +24,7 @@ function Module(params) {
 	for (var id in this.description_outputs) {
 		var output = this.description_outputs[id];
 		switch (output.rate) {
-			case 'E': this[id] = new EventOutConnector(this); break;
+			case 'E': this[id] = new EventOutConnector(this, input); break;
 			case 'K':
 			case 'A':
 				this[id] = [0.0];

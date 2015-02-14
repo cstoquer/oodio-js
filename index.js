@@ -46,8 +46,6 @@ function SimpleSynth() {
 	// this.clk.out.connect(this.env.trigger);
 	this.env.trigger.connect(this.clk.out);
 
-	// TODO: add connectors for audio/control output/input
-
 	this.glide.input   = this.seq.out;
 	this.oscMix.input1 = this.osc1.out;
 	this.oscMix.input2 = this.osc2.out;
