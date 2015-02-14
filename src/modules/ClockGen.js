@@ -20,7 +20,7 @@ inherit(ClockGen, Module);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ClockGen.prototype.description_moduleName = 'ClockGen';
 ClockGen.prototype.description_moduleSize = 2;
-ClockGen.prototype.description_rate       = 'A'; // TODO: KR
+ClockGen.prototype.description_rate       = 'K';
 ClockGen.prototype.description_inputs     = {};
 ClockGen.prototype.description_outputs    = {
 	out: { rate: 'E', type: null }
@@ -36,15 +36,15 @@ Object.defineProperty(ClockGen.prototype, 'tempo', {
 	},
 	set: function(value) {
 		this._tempo = value;
-		// this._inc = value * 64 / (30 * CONTROL_RATE);
-		this._inc = value / (30 * SAMPLE_RATE);
+		// this._inc = value / (30 * CONTROL_RATE);
+		this._inc = 64 * value / (30 * SAMPLE_RATE);
 	}
 });
 
 ClockGen.prototype.tic = function () {
 	this._pos += this._inc;
 	if (this._pos >= 1) {
-		this._pos--;
+		this._pos -= 1;
 		this.out.emit();
 	}
 };

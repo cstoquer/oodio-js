@@ -21,9 +21,6 @@
 createSynth();*/
 
 function SimpleSynth() {
-	var TEMPO = 180;
-
-	this.clk    = new ClockGen({ tempo: TEMPO });
 	this.seq    = new SeqNote({ steps: [69, 57, 60, 64, 48, 57, 52, 62] });
 	this.glide  = new FastFilter({ freq: 0.004 });
 	this.lfo    = new TriOsc({ freq: 0.03, width: 0.9 });
@@ -37,11 +34,6 @@ function SimpleSynth() {
 
 	this.gain = [0.0]; // TODO: add a gain module
 
-
-	this.clk.out.connect(this.seq.clk);
-	// this.clk.out.connect(this.env.trigger);
-	this.env.trigger.connect(this.clk.out);
-
 	this.glide.input   = this.seq.out;
 	this.oscMix.input1 = this.osc1.out;
 	this.oscMix.input2 = this.osc2.out;
@@ -54,8 +46,6 @@ function SimpleSynth() {
 SimpleSynth.prototype.description_rate = 'A';
 
 SimpleSynth.prototype.tic = function () {
-	this.clk.tic();
-	// this.seq.tic();
 	this.glide.tic();
 	var f = this.glide.out[0];
 
@@ -81,8 +71,13 @@ SimpleSynth.prototype.tic = function () {
 	this.vrb.tic();
 };
 
+var clock = moduleManager.add(new ClockGen({ tempo: 180 }));
 var synth = moduleManager.add(new SimpleSynth());
 var out   = moduleManager.add(new Output());
+
+clock.out.connect(synth.seq.clk);
+// clock.out.connect(synth.env.trigger);
+synth.env.trigger.connect(clock.out);
 
 out.inputL = synth.vrb.outL;
 out.inputR = synth.vrb.outR;
