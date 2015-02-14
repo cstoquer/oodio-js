@@ -12,11 +12,11 @@ TestModule.prototype.description_moduleName = 'TestModule';
 TestModule.prototype.description_moduleSize = 3;
 TestModule.prototype.description_rate       = 'A';
 TestModule.prototype.description_inputs     = {
-	a0_00:  { rate: 'E', x:0,  y:0 }, a1_00:  { rate: 'E', x:0,  y:1 }, a2_00:  { rate: 'E', x:0,  y:2 },
-	a0_01:  { rate: 'E', x:1,  y:0 }, a1_01:  { rate: 'E', x:1,  y:1 }, a2_01:  { rate: 'E', x:1,  y:2 },
-	a0_02:  { rate: 'E', x:2,  y:0 }, a1_02:  { rate: 'E', x:2,  y:1 }, a2_02:  { rate: 'E', x:2,  y:2 },
-	a0_03:  { rate: 'E', x:3,  y:0 }, a1_03:  { rate: 'E', x:3,  y:1 }, a2_03:  { rate: 'E', x:3,  y:2 },
-	a0_04:  { rate: 'E', x:4,  y:0 }, a1_04:  { rate: 'E', x:4,  y:1 }, a2_04:  { rate: 'E', x:4,  y:2 },
+	/*a0_00:  { rate: 'E', x:0,  y:0 },*/ a1_00:  { rate: 'E', x:0,  y:1 }, a2_00:  { rate: 'E', x:0,  y:2 },
+	/*a0_01:  { rate: 'E', x:1,  y:0 },*/ a1_01:  { rate: 'E', x:1,  y:1 }, a2_01:  { rate: 'E', x:1,  y:2 },
+	/*a0_02:  { rate: 'E', x:2,  y:0 },*/ a1_02:  { rate: 'E', x:2,  y:1 }, a2_02:  { rate: 'E', x:2,  y:2 },
+	/*a0_03:  { rate: 'E', x:3,  y:0 },*/ a1_03:  { rate: 'E', x:3,  y:1 }, a2_03:  { rate: 'E', x:3,  y:2 },
+	/*a0_04:  { rate: 'E', x:4,  y:0 },*/ a1_04:  { rate: 'E', x:4,  y:1 }, a2_04:  { rate: 'E', x:4,  y:2 },
 	a0_05:  { rate: 'E', x:5,  y:0 }, a1_05:  { rate: 'E', x:5,  y:1 }, a2_05:  { rate: 'E', x:5,  y:2 },
 	a0_06:  { rate: 'E', x:6,  y:0 }, a1_06:  { rate: 'E', x:6,  y:1 }, a2_06:  { rate: 'E', x:6,  y:2 },
 	a0_07:  { rate: 'E', x:7,  y:0 }, a1_07:  { rate: 'E', x:7,  y:1 }, a2_07:  { rate: 'E', x:7,  y:2 },
