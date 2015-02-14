@@ -7,8 +7,6 @@
 function ClockGen(params) {
 	Module.call(this, params);
 
-	// this.out    = new EventOutConnector(this);
-
 	this._pos   = 0.0;
 	this._inc   = 0.0;
 	this._tempo = params.tempo || 130;
@@ -26,7 +24,8 @@ ClockGen.prototype.description_outputs    = {
 	out: { rate: 'E', type: null }
 };
 ClockGen.prototype.description_params     = {
-	tempo: {} // TODO
+	tempo: {}, // TODO
+	swing: {}  // TODO
 };
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
@@ -34,10 +33,9 @@ Object.defineProperty(ClockGen.prototype, 'tempo', {
 	get: function() {
 		return this._tempo;
 	},
-	set: function(value) {
-		this._tempo = value;
-		// this._inc = value / (30 * CONTROL_RATE);
-		this._inc = 64 * value / (30 * SAMPLE_RATE);
+	set: function(tempo) {
+		this._tempo = tempo;
+		this._inc   = tempo / (30 * CONTROL_RATE);
 	}
 });
 
