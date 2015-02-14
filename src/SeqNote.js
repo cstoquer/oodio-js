@@ -8,7 +8,7 @@ function SeqNote(params) {
 	Module.call(this, params);
 
 	this.out     = [0.0];
-	this.clk     = new EventInConnector(this, '_clk');
+	// this.clk     = new EventInConnector(this, '_clk');
 
 	this._pos    = 0;
 	this._steps  = [];
@@ -19,17 +19,17 @@ function SeqNote(params) {
 inherit(SeqNote, Module);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-SeqNote.prototype.description_moduleName = 'Note Sequencer';
+SeqNote.prototype.description_moduleName = 'SeqNote';
 SeqNote.prototype.description_moduleSize = 2;
 SeqNote.prototype.description_rate       = 'E';
 SeqNote.prototype.description_inputs     = {
-	'clk': { rate: 'E' } // TODO: positions
+	clk: { rate: 'E', func: '_clk' } // TODO: positions
 };
 SeqNote.prototype.description_outputs    = {
-	'out': { rate: 'A', type: 'freq' }
+	out: { rate: 'A', type: 'freq' }
 };
 SeqNote.prototype.description_params     = {
-	'setNotes': {} // TODO
+	setNotes: {} // TODO
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄

@@ -7,7 +7,7 @@
 function ClockGen(params) {
 	Module.call(this, params);
 
-	this.out    = new EventOutConnector(this);
+	// this.out    = new EventOutConnector(this);
 
 	this._pos   = 0.0;
 	this._inc   = 0.0;
@@ -18,15 +18,15 @@ function ClockGen(params) {
 inherit(ClockGen, Module);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-ClockGen.prototype.description_moduleName = 'Clock Generator';
+ClockGen.prototype.description_moduleName = 'ClockGen';
 ClockGen.prototype.description_moduleSize = 2;
-ClockGen.prototype.description_rate       = 'E';
+ClockGen.prototype.description_rate       = 'K';
 ClockGen.prototype.description_inputs     = {};
 ClockGen.prototype.description_outputs    = {
-	'out': { rate: 'E', type: null }
+	out: { rate: 'E', type: null }
 };
 ClockGen.prototype.description_params     = {
-	'tempo': {} // TODO
+	tempo: {} // TODO
 };
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 

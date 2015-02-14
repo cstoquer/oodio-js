@@ -14,7 +14,7 @@ function Oscillator(params) {
 inherit(Oscillator, Module);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-Oscillator.prototype.description_moduleName = 'Ramp Oscillator';
+Oscillator.prototype.description_moduleName = 'OscSaw';
 Oscillator.prototype.description_moduleSize = 2;
 Oscillator.prototype.description_rate       = 'A';
 Oscillator.prototype.description_inputs     = {};

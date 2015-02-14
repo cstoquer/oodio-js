@@ -11,7 +11,7 @@ function TriOsc(params) {
 inherit(TriOsc, Oscillator);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-TriOsc.prototype.description_moduleName = 'Triangle Oscillator';
+TriOsc.prototype.description_moduleName = 'OscTri';
 TriOsc.prototype.description_moduleSize = 2;
 TriOsc.prototype.description_inputs     = {};
 TriOsc.prototype.description_outputs    = {};
