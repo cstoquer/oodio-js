@@ -2,24 +2,6 @@
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 // create synthesizer
 
-
-/*function createSynth() {
-	var osc = new PulseOsc({ freq: 110.0 });
-	audioNodes.push(osc);
-
-	var lfo = new TriOsc({ freq: 1.0 });
-	audioNodes.push(lfo); // TODO: push this in controlNodes
-
-	var flt = new RCFilter();
-	flt.input = osc.out;
-	flt.cut   = lfo.out;
-	audioNodes.push(flt);
-
-	mainNode = flt;
-}
-
-createSynth();*/
-
 function SimpleSynth() {
 	this.seq    = new SeqNote({ steps: [69, 57, 60, 64, 48, 57, 52, 62] });
 	this.glide  = new FastFilter({ freq: 0.004 });
@@ -41,7 +23,6 @@ function SimpleSynth() {
 	this.fltr.$out.connect(this.gain.$input);
 	this.vrb.$inputR.connect(this.gain.$out);
 	this.vrb.$inputL.connect(this.gain.$out);
-	// this.fltr.cut   = this.env.env;
 }
 SimpleSynth.prototype.description_rate = 'A';
 
@@ -58,14 +39,11 @@ SimpleSynth.prototype.tic = function () {
 	this.lfo.tic();
 
 	var w = map(this.lfo.out[0], -1, 1, 0, 0.5); // TODO: add a level converter module
-	this.osc1.width = w;
-	this.osc2.width = w;
+	this.osc1.width[0] = w;
+	this.osc2.width[0] = w;
 
 	this.oscMix.tic();
 	this.env.tic();
-
-	// this.fltr.cut[0] = 0.2 * this.env.out[0];
-
 	this.fltr.tic();
 	this.gain.tic();
 	this.vrb.tic();
