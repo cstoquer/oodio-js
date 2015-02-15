@@ -12,17 +12,12 @@ function EventOutConnector(module, id, connectorDescription) {
 inherit(EventOutConnector, Connector);
 EventOutConnector.prototype.connectorClassName = 'eventOut';
 
-/*EventOutConnector.prototype.connect = function (mod, func) {
-	this._mod.push(mod);
-	this._func.push(func);
-	this._length++;
-};*/
-
 EventOutConnector.prototype.connect = function (connector) {
+	Connector.prototype.connect.call(this, connector);
 	// TODO: check connector type
 
 	this._mod.push(connector.module);
-	this._func.push(connector.functionName);
+	this._func.push(connector.id);
 	this._length++;
 };
 

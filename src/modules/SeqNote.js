@@ -20,7 +20,7 @@ SeqNote.prototype.description_moduleName = 'SeqNote';
 SeqNote.prototype.description_moduleSize = 2;
 SeqNote.prototype.description_rate       = 'E';
 SeqNote.prototype.description_inputs     = {
-	clk: { rate: 'E', func: '_clk' } // TODO: positions
+	clk: { rate: 'E' } // TODO: positions
 };
 SeqNote.prototype.description_outputs    = {
 	out: { rate: 'A', type: 'freq' }
@@ -30,7 +30,7 @@ SeqNote.prototype.description_params     = {
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-SeqNote.prototype._clk = function () {
+SeqNote.prototype.clk = function () {
 	this._pos++;
 	if (this._pos >= this._length) this._pos = 0;
 	this.out[0] = this._steps[this._pos];

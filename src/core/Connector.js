@@ -21,5 +21,5 @@ function Connector(module, id, connectorDescription) {
 }
 
 Connector.prototype.connect = function (connector) {
-	console.error('This is abstract connector\'s connect function.');
+	// TODO: save connection
 };

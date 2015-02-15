@@ -34,10 +34,10 @@ function SimpleSynth() {
 
 	this.gain = [0.0]; // TODO: add a gain module
 
-	this.glide.input   = this.seq.out;
-	this.oscMix.input1 = this.osc1.out;
-	this.oscMix.input2 = this.osc2.out;
-	this.env.input     = this.oscMix.out;
+	this.glide.$input.connect(this.seq.$out);
+	this.oscMix.$input1.connect(this.osc1.$out);
+	this.oscMix.$input2.connect(this.osc2.$out);
+	this.oscMix.$out.connect(this.env.$input);
 	// this.fltr.cut   = this.env.env;
 	this.fltr.input    = this.env.out;
 	this.vrb.inputR    = this.gain;
@@ -75,12 +75,12 @@ var clock = moduleManager.add(new ClockGen({ tempo: 180 }));
 var synth = moduleManager.add(new SimpleSynth());
 var out   = moduleManager.add(new Output());
 
-clock.out.connect(synth.seq.clk);
-// clock.out.connect(synth.env.trigger);
-synth.env.trigger.connect(clock.out);
+clock.$out.connect(synth.seq.$clk);
+// clock.$out.connect(synth.env.$trigger);
+synth.env.$trigger.connect(clock.$out);
 
-out.inputL = synth.vrb.outL;
-out.inputR = synth.vrb.outR;
+out.$inputL.connect(synth.vrb.$outL);
+out.$inputR.connect(synth.vrb.$outR);
 
 // new TestModule();
 

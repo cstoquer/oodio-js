@@ -9,8 +9,9 @@ inherit(AudioInConnector, Connector);
 AudioInConnector.prototype.connectorClassName = 'audioIn';
 
 AudioInConnector.prototype.connect = function (connector) {
+	Connector.prototype.connect.call(this, connector);
 	// TODO: check connector type
 	// TODO: enable to be connected to another inEvent for daisy chain
-	this.module[id] = connector.module[connector.id];
+	this.module[this.id] = connector.module[connector.id];
 };
 
