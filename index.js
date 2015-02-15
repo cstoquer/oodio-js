@@ -28,20 +28,20 @@ function SimpleSynth() {
 	this.osc2   = new TriOsc({ freq: 110.0 });
 	this.oscMix = new Mix1_1A({ volume: 1.0 });
 	this.env    = new DecayEnvelope({ decay: 0.4, curvature: 0.1 });
-	// this.noiz  = new NesPseudoNoise({ freq: 1600.0 });
 	this.fltr   = new RCFilter({ cut: 0.5, res: 0.4 });
 	this.vrb    = new FreeVerb({ wet: 0.01, dry: 0.9, size: 0.6, damp: 0.3, width: 1.0 });
-
-	this.gain = [0.0]; // TODO: add a gain module
+	this.gain   = new Gain({ gain: 0.3 });
+	// this.noiz  = new NesPseudoNoise({ freq: 1600.0 });
 
 	this.glide.$input.connect(this.seq.$out);
 	this.oscMix.$input1.connect(this.osc1.$out);
 	this.oscMix.$input2.connect(this.osc2.$out);
 	this.oscMix.$out.connect(this.env.$input);
+	this.fltr.$input.connect(this.env.$out);
+	this.fltr.$out.connect(this.gain.$input);
+	this.vrb.$inputR.connect(this.gain.$out);
+	this.vrb.$inputL.connect(this.gain.$out);
 	// this.fltr.cut   = this.env.env;
-	this.fltr.input    = this.env.out;
-	this.vrb.inputR    = this.gain;
-	this.vrb.inputL    = this.gain;
 }
 SimpleSynth.prototype.description_rate = 'A';
 
@@ -67,7 +67,7 @@ SimpleSynth.prototype.tic = function () {
 	// this.fltr.cut[0] = 0.2 * this.env.out[0];
 
 	this.fltr.tic();
-	this.gain[0] = this.fltr.out[0] * 0.3;
+	this.gain.tic();
 	this.vrb.tic();
 };
 
