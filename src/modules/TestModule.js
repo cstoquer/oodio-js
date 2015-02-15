@@ -1,9 +1,6 @@
 
 function TestModule(params) {
 	Module.call(this, params);
-
-	this.input = ROOT.UNPLUGGED;
-	this.out   = [0.0];
 }
 inherit(TestModule, Module);
 

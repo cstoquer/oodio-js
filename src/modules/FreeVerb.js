@@ -162,11 +162,6 @@ function FreeVerb(params) {
 	Module.call(this, params);
 	params = params || {};
 
-	this.inputL = ROOT.UNPLUGGED;
-	this.inputR = ROOT.UNPLUGGED;
-	this.outR   = [0.0];
-	this.outL   = [0.0];
-
 	this._gain      = 0;
 	this._roomSize  = 0;
 	this._roomSize1 = 0;
@@ -226,8 +221,14 @@ inherit(FreeVerb, Module);
 FreeVerb.prototype.description_moduleName = 'FreeVerb';
 FreeVerb.prototype.description_moduleSize = 2;
 FreeVerb.prototype.description_rate       = 'A';
-FreeVerb.prototype.description_inputs     = {};
-FreeVerb.prototype.description_outputs    = {};
+FreeVerb.prototype.description_inputs     = {
+	inputL: { rate: 'A', x: 14, y: 0 },
+	inputR: { rate: 'A', x: 16, y: 0 }
+};
+FreeVerb.prototype.description_outputs    = {
+	outL:   { rate: 'A', x: 14, y: 1 },
+	outR:   { rate: 'A', x: 16, y: 1 }
+};
 FreeVerb.prototype.description_params     = {};
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 

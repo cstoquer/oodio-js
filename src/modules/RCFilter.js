@@ -7,8 +7,6 @@
 
 function RCFilter(params) {
 	Module.call(this, params);
-	this.input = ROOT.UNPLUGGED;
-	this.out   = [0.0];
 	this.cut   = params.cut === undefined ? [0.5] : [params.cut];
 	this.res   = params.res === undefined ? [0.4] : [params.res];
 
@@ -18,10 +16,14 @@ inherit(RCFilter, Module);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 RCFilter.prototype.description_moduleName = 'RCFilter';
-RCFilter.prototype.description_moduleSize = 2;
+RCFilter.prototype.description_moduleSize = 1;
 RCFilter.prototype.description_rate       = 'A';
-RCFilter.prototype.description_inputs     = {};
-RCFilter.prototype.description_outputs    = {};
+RCFilter.prototype.description_inputs     = {
+	input: { rate: 'A', x: 12, y: 0 }
+};
+RCFilter.prototype.description_outputs    = {
+	out:   { rate: 'A', x: 16, y: 0 }
+};
 RCFilter.prototype.description_params     = {};
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 

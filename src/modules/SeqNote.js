@@ -7,9 +7,6 @@
 function SeqNote(params) {
 	Module.call(this, params);
 
-	this.out     = [0.0];
-	// this.clk     = new EventInConnector(this, '_clk');
-
 	this._pos    = 0;
 	this._steps  = [];
 	this._length = 8;

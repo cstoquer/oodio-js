@@ -7,9 +7,6 @@
 
 function Clipper(params) {
 	Module.call(this, params);
-
-	this.input = ROOT.UNPLUGGED;
-	this.out   = [0.0];
 }
 inherit(Clipper, Module);
 
@@ -17,8 +14,12 @@ inherit(Clipper, Module);
 Clipper.prototype.description_moduleName = 'Clipper';
 Clipper.prototype.description_moduleSize = 2;
 Clipper.prototype.description_rate       = 'A';
-Clipper.prototype.description_inputs     = {};
-Clipper.prototype.description_outputs    = {};
+Clipper.prototype.description_inputs     = {
+	input: { rate: 'A', x: 14, y: 1 }
+};
+Clipper.prototype.description_outputs    = {
+	out:   { rate: 'A', x: 16, y: 1 }
+};
 Clipper.prototype.description_params     = {};
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
