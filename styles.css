@@ -7,7 +7,7 @@ body {
 }
 
 .module {
-	position:   relative;
+	position:   absolute;
 	width:      254px;
 	height:     13px;
 	border:     1px;

@@ -33,22 +33,30 @@ ModuleManager.prototype.add = function (module, x, y) {
 
 	// move y cursor to next available position
 	var index = 0;
+	var pos = y;
 	for (; index < row.length; index++) {
 		var m = row[index];
-		if (m.y + m.description_moduleSize >= y) break;
+		if (m.y < y && m.y + m.description_moduleSize >= y) {
+			pos = m.y + m.description_moduleSize;
+			index++;
+			break;
+		} else if (m.y >= y) {
+			break;
+		}
 	}
 
+	// insert module
 	module.setPosition(x, pos);
+	row.splice(index, 0, module);
+	pos += module.description_moduleSize;
 
-	// move modules
-	for (var i = index; i < row.length; i++) {
+	// move all modules after if needed
+	for (var i = index + 1; i < row.length; i++) {
 		var m = row[i];
 		if (m.y >= pos) break;
 		m.setPosition(m.x, pos);
 		pos += m.description_moduleSize;
 	}
-
-	row.splice(index, 0, module);	
 
 	return module;
 };

@@ -16,8 +16,8 @@ function Connector(module, id, connectorDescription) {
 		return;
 	}
 
-	dom.style.left = (this.x * 15 + 1) + 'px';
-	dom.style.top  = (this.y * 15 + 1) + 'px';
+	dom.style.left = (this.x * MODULE_HEIGHT + 1) + 'px';
+	dom.style.top  = (this.y * MODULE_HEIGHT + 1) + 'px';
 }
 
 Connector.prototype.connect = function (connector) {
