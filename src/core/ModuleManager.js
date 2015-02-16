@@ -10,10 +10,12 @@ function ModuleManager() {
 	this.KR = [];
 
 	this.frame = 64;
+
+	this.grid = [[]];
 }
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-ModuleManager.prototype.add = function (module, params) {
+ModuleManager.prototype.add = function (module, x, y) {
 	var id = this._idCount++;
 	module.id = id;
 	this.modules[id] = module;
@@ -21,7 +23,32 @@ ModuleManager.prototype.add = function (module, params) {
 	if      (module.description_rate === 'A') this.AR.push(module);
 	else if (module.description_rate === 'K') this.KR.push(module);
 
-	// TODO: module position inside grid
+	// set module position inside grid
+	x = x || 0;
+	y = y || 0;
+
+	if (!this.grid[x]) this.grid[x] = [];
+	var row = this.grid[x];
+	var size = module.description_moduleSize;
+
+	// move y cursor to next available position
+	var index = 0;
+	for (; index < row.length; index++) {
+		var m = row[index];
+		if (m.y + m.description_moduleSize >= y) break;
+	}
+
+	module.setPosition(x, pos);
+
+	// move modules
+	for (var i = index; i < row.length; i++) {
+		var m = row[i];
+		if (m.y >= pos) break;
+		m.setPosition(m.x, pos);
+		pos += m.description_moduleSize;
+	}
+
+	row.splice(index, 0, module);	
 
 	return module;
 };

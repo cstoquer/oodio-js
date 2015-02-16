@@ -44,3 +44,11 @@ Module.prototype.description_outputs    = {};
 Module.prototype.description_params     = {};
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
+
+Module.prototype.setPosition = function (x, y) {
+	var style = this._dom.style;
+	this.x = x;
+	this.y = y;
+	style.top  = (15  * x) + 'px';
+	style.left = (254 * y) + 'px';
+}
