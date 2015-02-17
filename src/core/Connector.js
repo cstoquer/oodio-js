@@ -23,3 +23,7 @@ function Connector(module, id, connectorDescription) {
 Connector.prototype.connect = function (connector) {
 	// TODO: save connection
 };
+
+Connector.prototype.disconnect = function () {
+	// TODO: remove connection from this connector and connected ones
+};

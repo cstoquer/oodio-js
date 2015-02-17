@@ -23,6 +23,13 @@ ModuleManager.prototype.add = function (module, x, y) {
 	if      (module.description_rate === 'A') this.AR.push(module);
 	else if (module.description_rate === 'K') this.KR.push(module);
 
+	this._addModuleInGrid(module, x, y);
+
+	return module;
+};
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+ModuleManager.prototype._addModuleInGrid = function (module, x, y) {
 	// set module position inside grid
 	x = x || 0;
 	y = y || 0;
@@ -57,8 +64,6 @@ ModuleManager.prototype.add = function (module, x, y) {
 		m.setPosition(m.x, pos);
 		pos += m.description_moduleSize;
 	}
-
-	return module;
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
@@ -76,9 +81,27 @@ ModuleManager.prototype.remove = function (id) {
 	if      (module.description_rate === 'A') removeFromArray(this.AR);
 	else if (module.description_rate === 'K') removeFromArray(this.KR);
 
-	// remove UI object from grid
+	// remove UI object from grid and html
 	removeFromArray(this.grid[module.x]);
 	module.remove();
+
+	// TODO: disconnect module connector
+};
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+ModuleManager.prototype.move = function (id, x, y) {
+	var module = this.modules[id];
+	if (!module) return console.error('Invalid module id.');
+
+	var row = this.grid[module.x]
+
+	var index = row.indexOf(module);
+	if (index === -1) return console.error('Module not found in grid.');
+	row.splice(index, 1);
+
+	this._addModuleInGrid(module, x, y);
+
+	// TODO: update cables
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
