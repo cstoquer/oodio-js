@@ -50,7 +50,7 @@ ModuleManager.prototype.add = function (module, x, y) {
 	row.splice(index, 0, module);
 	pos += module.description_moduleSize;
 
-	// move all modules after if needed
+	// move all modules below if needed
 	for (var i = index + 1; i < row.length; i++) {
 		var m = row[i];
 		if (m.y >= pos) break;
@@ -63,7 +63,7 @@ ModuleManager.prototype.add = function (module, x, y) {
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ModuleManager.prototype.remove = function (id) {
-	var module = this.modules.id;
+	var module = this.modules[id];
 	if (!module) return console.error('Invalid module id.');
 	delete this.modules[id];
 
@@ -75,6 +75,10 @@ ModuleManager.prototype.remove = function (id) {
 
 	if      (module.description_rate === 'A') removeFromArray(this.AR);
 	else if (module.description_rate === 'K') removeFromArray(this.KR);
+
+	// remove UI object from grid
+	removeFromArray(this.grid[module.x]);
+	module.remove();
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄

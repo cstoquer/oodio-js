@@ -17,10 +17,10 @@ Gain.prototype.description_moduleName = 'Gain';
 Gain.prototype.description_moduleSize = 1;
 Gain.prototype.description_rate       = 'A';
 Gain.prototype.description_inputs     = {
-	input: { rate: 'A', x: 14, y: 1 }
+	input: { rate: 'A', x: 14, y: 0 }
 };
 Gain.prototype.description_outputs    = {
-	out:   { rate: 'A', x: 16, y: 1 }
+	out:   { rate: 'A', x: 16, y: 0 }
 };
 Gain.prototype.description_params     = {
 	gain:  {} // TODO

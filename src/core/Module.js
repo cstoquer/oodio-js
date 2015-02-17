@@ -4,7 +4,7 @@
  */
 
 function Module(params) {
-	var dom = createDom('module x' + this.description_moduleSize);
+	var dom = createDom('module x' + this.description_moduleSize, null);
 	dom.textContent = this.description_moduleName;
 	this._dom = dom;
 
@@ -51,4 +51,8 @@ Module.prototype.setPosition = function (x, y) {
 	this.y = y;
 	style.left = (MODULE_WIDTH  * x) + 'px';
 	style.top  = (MODULE_HEIGHT * y) + 'px';
+}
+
+Module.prototype.remove = function () {
+	removeDom(this._dom, null);
 }
