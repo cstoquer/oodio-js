@@ -5,6 +5,7 @@
  * @author Cedric Stoquer
  */
 function SeqNote(params) {
+	params = params || {};
 	Module.call(this, params);
 
 	this._pos    = 0;

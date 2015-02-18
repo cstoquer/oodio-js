@@ -15,6 +15,14 @@ body {
 	border-image:         url("img/mod-bg.png") 1 1 1 1 fill;
 }
 
+.dummy {
+	position:     absolute;
+	width:        248px;
+	height:       7px;
+	border:       4px;
+	border-image: url("img/mod-dummy.png") 4 4 round;
+}
+
 .x1 { height: 13px; }
 .x2 { height: 28px; }
 .x3 { height: 43px; }

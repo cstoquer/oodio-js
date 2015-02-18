@@ -4,6 +4,8 @@
  */
 
 function Module(params) {
+	var t = this;
+
 	var dom = createDom('module x' + this.description_moduleSize, null);
 	dom.textContent = this.description_moduleName;
 	this._dom = dom;
@@ -33,6 +35,12 @@ function Module(params) {
 			default: break;
 		}
 	}
+
+	dom.addEventListener('mousedown', function mouseStart(e) {
+		moduleManager.startDrag(t, e);
+	});
+	// dom.addEventListener('mousemove', function mouseMove(e) {});
+	// dom.addEventListener('mouseup',   function mouseEnd(e) {});
 }
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
