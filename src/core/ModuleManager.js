@@ -68,8 +68,6 @@ ModuleManager.prototype._addModuleInGrid = function (module, x, y) {
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ModuleManager.prototype.remove = function (module) {
-	// var module = this.modules[id];
-	// if (!module) return console.error('Invalid module id.');
 	delete this.modules[module.id];
 
 	function removeFromArray(array) {
@@ -90,9 +88,6 @@ ModuleManager.prototype.remove = function (module) {
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ModuleManager.prototype.move = function (module, x, y) {
-	// var module = this.modules[id];
-	// if (!module) return console.error('Invalid module id.');
-
 	var row = this.grid[module.x]
 
 	var index = row.indexOf(module);
@@ -108,19 +103,22 @@ ModuleManager.prototype.move = function (module, x, y) {
 ModuleManager.prototype.startDrag = function (module, e) {
 	var t = this;
 	var d = document;
+	var x = module.x * MODULE_WIDTH;
+	var y = module.y * MODULE_HEIGHT;
+	var startX = ~~e.clientX - x;
+	var startY = ~~e.clientY - y;
 
 	var dummy = createDom('dummy', null);
 	dummy.style.height = (module.description_moduleSize * MODULE_HEIGHT - 8) + 'px';
-	dummy.style.left   = ~~e.clientX + 'px';
-	dummy.style.top    = ~~e.clientY + 'px';
+	dummy.style.left   = x + 'px';
+	dummy.style.top    = y + 'px';
 
-	// TODO: create dummy module
 	// TODO: allow draging several selected modules at once
 
 	function dragMove(e) {
 		e.preventDefault();
-		dummy.style.left = ~~e.clientX + 'px';
-		dummy.style.top  = ~~e.clientY + 'px';
+		dummy.style.left = ~~e.clientX - startX + 'px';
+		dummy.style.top  = ~~e.clientY - startY + 'px';
 	}
 
 	function dragEnd(e) {
@@ -128,11 +126,10 @@ ModuleManager.prototype.startDrag = function (module, e) {
 		d.removeEventListener('mouseup', dragEnd);
 		d.removeEventListener('mousemove', dragMove);
 		removeDom(dummy, null);
-
-		var x = ~~Math.round(e.clientX / MODULE_WIDTH);
-		var y = ~~Math.round(e.clientY / MODULE_HEIGHT);
-
-		t.move(module, x, y);
+		t.move(module,
+			Math.max(0, ~~Math.round((e.clientX - startX) / MODULE_WIDTH)),
+			Math.max(0, ~~Math.round((e.clientY - startY) / MODULE_HEIGHT))
+		);
 	}
 
 	d.addEventListener('mousemove', dragMove, false);
