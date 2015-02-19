@@ -6,31 +6,31 @@
 function Module(params) {
 	var t = this;
 
-	var dom = createDom('module x' + this.description_moduleSize, null);
-	dom.textContent = this.description_moduleName;
-	this._dom = dom;
+	var dom = createDom('module x' + t.description_moduleSize, null);
+	dom.textContent = t.description_moduleName;
+	t._dom = dom;
 
-	for (var id in this.description_inputs) {
-		var input = this.description_inputs[id];
+	for (var id in t.description_inputs) {
+		var input = t.description_inputs[id];
 		switch (input.rate) {
-			case 'E': this['$' + id] = new EventInConnector(this, id, input); break;
+			case 'E': t['$' + id] = new EventInConnector(t, id, input); break;
 			case 'K': 
 			case 'A':
-				this[id] = ROOT.UNPLUGGED;
-				this['$' + id] = new AudioInConnector(this, id, input);
+				t[id] = ROOT.UNPLUGGED;
+				t['$' + id] = new AudioInConnector(t, id, input);
 				break;
 			default: break;
 		}
 	}
 
-	for (var id in this.description_outputs) {
-		var output = this.description_outputs[id];
+	for (var id in t.description_outputs) {
+		var output = t.description_outputs[id];
 		switch (output.rate) {
-			case 'E': this['$' + id] = this[id] = new EventOutConnector(this, id, output); break;
+			case 'E': t['$' + id] = t[id] = new EventOutConnector(t, id, output); break;
 			case 'K':
 			case 'A':
-				this[id] = [0.0];
-				this['$' + id] = new AudioOutConnector(this, id, output);
+				t[id] = [0.0];
+				t['$' + id] = new AudioOutConnector(t, id, output);
 				break;
 			default: break;
 		}

@@ -134,6 +134,22 @@ ModuleManager.prototype.startDrag = function (module, e) {
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+ModuleManager.prototype.startConnection = function (connector, e) {
+	var t = this;
+	var d = document;
+	// TODO
+
+	function moveEnd(e) {
+		e.preventDefault();
+		d.removeEventListener('mouseup', moveEnd);
+		var dom = document.elementFromPoint(e.clientX, e.clientY);
+		console.log('>>>>>>>>>', dom);
+	}
+
+	d.addEventListener('mouseup', moveEnd, false);
+};
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ModuleManager.prototype.processAudio = function (outBufferL, outBufferR) {
 	for (var i = 0; i < BUFFER_LENGTH; i++) {
 		ROOT.MAIN_OUT_L[0] = 0.0;
