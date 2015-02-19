@@ -89,11 +89,9 @@ ModuleManager.prototype.remove = function (module) {
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ModuleManager.prototype.move = function (module, x, y) {
 	var row = this.grid[module.x]
-
 	var index = row.indexOf(module);
 	if (index === -1) return console.error('Module not found in grid.');
 	row.splice(index, 1);
-
 	this._addModuleInGrid(module, x, y);
 
 	// TODO: update cables
@@ -107,7 +105,6 @@ ModuleManager.prototype.startDrag = function (module, e) {
 	var y = module.y * MODULE_HEIGHT;
 	var startX = ~~e.clientX - x;
 	var startY = ~~e.clientY - y;
-
 	var dummy = createDom('dummy', null);
 	dummy.style.height = (module.description_moduleSize * MODULE_HEIGHT - 8) + 'px';
 	dummy.style.left   = x + 'px';
@@ -126,10 +123,10 @@ ModuleManager.prototype.startDrag = function (module, e) {
 		d.removeEventListener('mouseup', dragEnd);
 		d.removeEventListener('mousemove', dragMove);
 		removeDom(dummy, null);
-		t.move(module,
-			Math.max(0, ~~Math.round((e.clientX - startX) / MODULE_WIDTH)),
-			Math.max(0, ~~Math.round((e.clientY - startY) / MODULE_HEIGHT))
-		);
+		var x = Math.max(0, ~~Math.round((e.clientX - startX) / MODULE_WIDTH));
+		var y = Math.max(0, ~~Math.round((e.clientY - startY) / MODULE_HEIGHT));
+		if (x === module.x && y === module.y) return;
+		t.move(module, x, y);
 	}
 
 	d.addEventListener('mousemove', dragMove, false);
