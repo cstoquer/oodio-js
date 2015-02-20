@@ -137,18 +137,19 @@ ModuleManager.prototype.startDrag = function (module, e) {
 ModuleManager.prototype.startConnection = function (connector, e) {
 	var t = this;
 	var d = document;
-	var canvas = document.getElementById("cables");
-	var ctx = canvas.getContext('2d');
-	// TODO
+	
+	var startX = connector.module.x * MODULE_WIDTH  + connector.x * MODULE_HEIGHT + 8;
+	var startY = connector.module.y * MODULE_HEIGHT + connector.y * MODULE_HEIGHT + 8;
 
-	var startX = ~~e.clientX;
-	var startY = ~~e.clientY;
+	// TODO
 
 	function move(e) {
 		// TODO
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		ctx.beginPath();
 		ctx.moveTo(startX, startY);
+		// ctx.quadraticCurveTo(cx, cy, x, y);
+		// ctx.bezierCurveTo(c1x, c1y, c2x, c2y, x, y);
 		ctx.lineTo(~~e.clientX, ~~e.clientY);
 		ctx.stroke();
 	}
@@ -159,6 +160,9 @@ ModuleManager.prototype.startConnection = function (connector, e) {
 		d.removeEventListener('mouseup', moveEnd);
 		var dom = document.elementFromPoint(e.clientX, e.clientY);
 		if (!dom.connector) return;
+
+		// TODO: redraw cables
+
 		console.log(connector.module.__proto__.constructor.name+':'+connector.id+' >>>> '+dom.connector.module.__proto__.constructor.name+':'+dom.connector.id);
 	}
 
