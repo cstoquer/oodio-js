@@ -143,7 +143,8 @@ ModuleManager.prototype.startConnection = function (connector, e) {
 		e.preventDefault();
 		d.removeEventListener('mouseup', moveEnd);
 		var dom = document.elementFromPoint(e.clientX, e.clientY);
-		console.log('>>>>>>>>>', dom);
+		if (!dom.connector) return;
+		console.log('>>>>>>>>>', dom.connector);
 	}
 
 	d.addEventListener('mouseup', moveEnd, false);

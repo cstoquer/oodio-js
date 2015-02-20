@@ -20,7 +20,10 @@ function Connector(module, id, connectorDescription) {
 	dom.style.left = (t.x * MODULE_HEIGHT + 1) + 'px';
 	dom.style.top  = (t.y * MODULE_HEIGHT + 1) + 'px';
 
-	dom.addEventListener('mousedown', function mouseStart(e) {
+	var overlay = createDom('connectorOverlay', dom);
+	overlay.connector = t;
+
+	overlay.addEventListener('mousedown', function mouseStart(e) {
 		e.stopPropagation();
 		e.preventDefault();
 		moduleManager.startConnection(t, e);

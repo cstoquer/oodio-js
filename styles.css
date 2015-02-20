@@ -73,6 +73,12 @@ body {
 	height: 11px;
 }
 
+.connectorOverlay {
+	z-index: 4;
+	width:  11px;
+	height: 11px;
+}
+
 .eventOut   { background-image: url("img/out-Y.png"); }
 .eventIn    { background-image: url("img/in-Y.png");  }
 .audioOut   { background-image: url("img/out-R.png"); }
