@@ -36,7 +36,10 @@ function Module(params) {
 		}
 	}
 
-	dom.addEventListener('mousedown', function mouseStart(e) {
+	var overlay = createDom('moduleOverlay x' + t.description_moduleSize, dom);
+	overlay.module = t;
+
+	overlay.addEventListener('mousedown', function mouseStart(e) {
 		moduleManager.startDrag(t, e);
 	});
 	// dom.addEventListener('mousemove', function mouseMove(e) {});

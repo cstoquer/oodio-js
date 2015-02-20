@@ -137,16 +137,32 @@ ModuleManager.prototype.startDrag = function (module, e) {
 ModuleManager.prototype.startConnection = function (connector, e) {
 	var t = this;
 	var d = document;
+	var canvas = document.getElementById("cables");
+	var ctx = canvas.getContext('2d');
 	// TODO
+
+	var startX = ~~e.clientX;
+	var startY = ~~e.clientY;
+
+	function move(e) {
+		// TODO
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.beginPath();
+		ctx.moveTo(startX, startY);
+		ctx.lineTo(~~e.clientX, ~~e.clientY);
+		ctx.stroke();
+	}
 
 	function moveEnd(e) {
 		e.preventDefault();
+		d.removeEventListener('mousemove', move);
 		d.removeEventListener('mouseup', moveEnd);
 		var dom = document.elementFromPoint(e.clientX, e.clientY);
 		if (!dom.connector) return;
-		console.log('>>>>>>>>>', dom.connector);
+		console.log(connector.module.__proto__.constructor.name+':'+connector.id+' >>>> '+dom.connector.module.__proto__.constructor.name+':'+dom.connector.id);
 	}
 
+	d.addEventListener('mousemove', move, false);
 	d.addEventListener('mouseup', moveEnd, false);
 };
 

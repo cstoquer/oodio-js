@@ -6,6 +6,13 @@ body {
 	background-image: url("img/background.png");
 }
 
+.cables {
+	position: absolute;
+	top:      0;
+	left:     0;
+	z-index:  2;
+}
+
 .module {
 	position:   absolute;
 	width:      254px;
@@ -15,12 +22,22 @@ body {
 	border-image:         url("img/mod-bg.png") 1 1 1 1 fill;
 }
 
+.moduleOverlay {
+	position: absolute;
+	top:      0;
+	left:     0;
+	width:    254px;
+	height:   13px;
+	z-index:  3;
+}
+
 .dummy {
 	position:     absolute;
 	width:        248px;
 	height:       7px;
 	border:       4px;
 	border-image: url("img/mod-dummy.png") 4 4 round;
+	z-index:      5;
 }
 
 .x1 { height: 13px; }
@@ -68,15 +85,16 @@ body {
 
 .connector {
 	position: absolute;
-	display: inline-block;
-	width:  11px;
-	height: 11px;
+	display:  inline-block;
+	width:    11px;
+	height:   11px;
 }
 
 .connectorOverlay {
-	z-index: 4;
-	width:  11px;
-	height: 11px;
+	position: fixed;
+	z-index:  4;
+	width:    11px;
+	height:   11px;
 }
 
 .eventOut   { background-image: url("img/out-Y.png"); }
