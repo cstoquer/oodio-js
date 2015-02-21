@@ -7,8 +7,13 @@ var ROOT = {
 var canvas = document.getElementById('cableCanvas');
 canvas.height = window.innerHeight; 
 canvas.width  = window.innerWidth;
-canvas.style.width  = canvas.width + 'px';
+canvas.style.width  = canvas.width  + 'px';
 canvas.style.height = canvas.height + 'px';
 var ctx = canvas.getContext('2d');
-ctx.lineWidth = 4;
-ctx.lineCap   = 'round';
+
+ctx.lineCap       = 'round';
+ctx.shadowColor   = '#000';
+ctx.shadowBlur    = 4;
+ctx.lineWidth     = 3;
+ctx.shadowOffsetX = 2; 
+ctx.shadowOffsetY = 2;

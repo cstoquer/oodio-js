@@ -6,7 +6,7 @@
 function Cable(a, b, c) {
 	this.endPointA = a;
 	this.endPointB = b;
-	this.color     = c;
+	this.color     = c || '#ED4A4A';
 	this.id        = a.module.id + ':' + a.id + '--' + b.module.id + ':' + b.id;
 
 	this.x = 0; // start point x
@@ -28,14 +28,12 @@ function Cable(a, b, c) {
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 Cable.prototype.draw = function () {
 	var t = this;
-	// TODO: change color
 
+	ctx.strokeStyle = t.color;
 	ctx.beginPath();
 	ctx.moveTo(t.x, t.y);
 	ctx.bezierCurveTo(t.a, t.b, t.c, t.d, t.w, t.h);
 	ctx.stroke();
-
-	// TODO: add shadow on cable rendering
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
