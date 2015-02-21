@@ -7,6 +7,7 @@ function Cable(a, b, c) {
 	this.endPointA = a;
 	this.endPointB = b;
 	this.color     = c;
+	this.id        = a.module.id + ':' + a.id + '--' + b.module.id + ':' + b.id;
 
 	this.x = 0; // start point x
 	this.y = 0; // start point y
@@ -18,6 +19,9 @@ function Cable(a, b, c) {
 	this.h = 0; // end point y
 
 	this.update();
+
+	a.module.addCable(this);
+	b.module.addCable(this);
 }
 
 

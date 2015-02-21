@@ -176,13 +176,13 @@ ModuleManager.prototype.startConnection = function (connector, e) {
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ModuleManager.prototype.addCable = function (connectorA, connectorB, color) {
-	var id = connectorA.module.id + ':' + connectorA.id + '--' + connectorB.module.id + ':' + connectorB.id;
-	this.cables[id] = new Cable(connectorA, connectorB, color);
+	var cable = new Cable(connectorA, connectorB, color);
+	this.cables[cable.id] = cable;
 	this.drawCables();
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-ModuleManager.prototype.removeCable = function (connector) {
+ModuleManager.prototype.removeCable = function (connectorA, connectorB) {
 	// TODO
 };
 

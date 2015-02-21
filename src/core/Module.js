@@ -5,6 +5,7 @@
 
 function Module(params) {
 	var t = this;
+	t.cables = {};
 
 	var dom = createDom('module x' + t.description_moduleSize, null);
 	dom.textContent = t.description_moduleName;
@@ -62,8 +63,19 @@ Module.prototype.setPosition = function (x, y) {
 	this.y = y;
 	style.left = (MODULE_WIDTH  * x) + 'px';
 	style.top  = (MODULE_HEIGHT * y) + 'px';
-}
+
+	for (id in this.cables) this.cables[id].update();
+};
 
 Module.prototype.remove = function () {
 	removeDom(this._dom, null);
-}
+};
+
+
+Module.prototype.addCable = function (cable) {
+	this.cables[cable.id] = cable;
+};
+
+Module.prototype.removeCable = function (cable) {
+	delete this.cables[cable.id];
+};

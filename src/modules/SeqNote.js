@@ -21,10 +21,10 @@ SeqNote.prototype.description_moduleName = 'SeqNote';
 SeqNote.prototype.description_moduleSize = 2;
 SeqNote.prototype.description_rate       = 'E';
 SeqNote.prototype.description_inputs     = {
-	clk: { rate: 'E' } // TODO: positions
+	clk: { rate: 'E', x: 6, y: 0 } // TODO: positions
 };
 SeqNote.prototype.description_outputs    = {
-	out: { rate: 'A', type: 'freq' }
+	out: { rate: 'A', x: 8, y: 0, type: 'freq' }
 };
 SeqNote.prototype.description_params     = {
 	setNotes: {} // TODO
