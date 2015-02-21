@@ -30,8 +30,10 @@ function Connector(module, id, connectorDescription) {
 	});
 }
 
+Connector.prototype.color = ROOT.COLOR.NONE;
+
 Connector.prototype.connect = function (connector) {
-	moduleManager.addCable(this, connector);
+	moduleManager.addCable(this, connector, this.color);
 };
 
 Connector.prototype.disconnect = function () {

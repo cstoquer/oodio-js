@@ -7,6 +7,7 @@ function AudioInConnector(module, id, connectorDescription) {
 }
 inherit(AudioInConnector, Connector);
 AudioInConnector.prototype.connectorClassName = 'audioIn';
+AudioInConnector.prototype.color = ROOT.COLOR.AUDIO;
 
 AudioInConnector.prototype.connect = function (connector) {
 	Connector.prototype.connect.call(this, connector);

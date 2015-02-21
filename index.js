@@ -62,7 +62,7 @@ out.$inputR.connect(synth.vrb.$outR);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 // create context, generator and start audio processing
 
-/*var perf = (new Performance()).start();
+var perf = (new Performance()).start();
 var audioContext = new webkitAudioContext();
 var mainVolume = audioContext.createGain();
 var generator  = audioContext.createScriptProcessor(BUFFER_LENGTH, 1, 2);
@@ -77,5 +77,5 @@ generator.onaudioprocess = function (e) {
 		e.outputBuffer.getChannelData(1)
 	);
 	perf.sample(startTime);
-};*/
+};
 

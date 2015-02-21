@@ -11,6 +11,7 @@ function EventOutConnector(module, id, connectorDescription) {
 }
 inherit(EventOutConnector, Connector);
 EventOutConnector.prototype.connectorClassName = 'eventOut';
+EventOutConnector.prototype.color = ROOT.COLOR.EVENT;
 
 EventOutConnector.prototype.connect = function (connector) {
 	Connector.prototype.connect.call(this, connector);

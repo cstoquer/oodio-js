@@ -7,6 +7,7 @@ function EventInConnector(module, id, connectorDescription) {
 }
 inherit(EventInConnector, Connector);
 EventInConnector.prototype.connectorClassName = 'eventIn';
+EventInConnector.prototype.color = ROOT.COLOR.EVENT;
 
 EventInConnector.prototype.connect = function (connector) {
 	// Connector.prototype.connect.call(this, connector);

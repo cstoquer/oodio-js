@@ -6,7 +6,7 @@
 function Cable(a, b, c) {
 	this.endPointA = a;
 	this.endPointB = b;
-	this.color     = c || '#ED4A4A';
+	this.color     = c || ROOT.COLOR.A;
 	this.id        = a.module.id + ':' + a.id + '--' + b.module.id + ':' + b.id;
 
 	this.x = 0; // start point x
@@ -40,10 +40,10 @@ Cable.prototype.draw = function () {
 Cable.prototype.update = function () {
 	var t = this;
 
-	t.x = t.endPointA.module.x * MODULE_WIDTH  + t.endPointA.x * MODULE_HEIGHT + 8;
-	t.y = t.endPointA.module.y * MODULE_HEIGHT + t.endPointA.y * MODULE_HEIGHT + 8;
-	t.w = t.endPointB.module.x * MODULE_WIDTH  + t.endPointB.x * MODULE_HEIGHT + 8;
-	t.h = t.endPointB.module.y * MODULE_HEIGHT + t.endPointB.y * MODULE_HEIGHT + 8;
+	t.x = t.endPointA.module.x * MODULE_WIDTH  + t.endPointA.x * MODULE_HEIGHT + 7;
+	t.y = t.endPointA.module.y * MODULE_HEIGHT + t.endPointA.y * MODULE_HEIGHT + 7;
+	t.w = t.endPointB.module.x * MODULE_WIDTH  + t.endPointB.x * MODULE_HEIGHT + 7;
+	t.h = t.endPointB.module.y * MODULE_HEIGHT + t.endPointB.y * MODULE_HEIGHT + 7;
 
 	// TODO: better approach to choose control points
 	var w = t.w - t.x;
