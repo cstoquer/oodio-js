@@ -31,7 +31,7 @@ function Connector(module, id, connectorDescription) {
 }
 
 Connector.prototype.connect = function (connector) {
-	// TODO: save connection
+	moduleManager.addCable(this, connector);
 };
 
 Connector.prototype.disconnect = function () {

@@ -9,7 +9,7 @@ inherit(EventInConnector, Connector);
 EventInConnector.prototype.connectorClassName = 'eventIn';
 
 EventInConnector.prototype.connect = function (connector) {
-	Connector.prototype.connect.call(this, connector);
+	// Connector.prototype.connect.call(this, connector);
 	// TODO: check connector type
 	// TODO: enable to be connected to another inEvent for daisy chain
 	connector.connect(this);

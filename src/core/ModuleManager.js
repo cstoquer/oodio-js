@@ -5,6 +5,7 @@
 function ModuleManager() {
 	this._idCount = 0;
 	this.modules = {};
+	this.cables  = {};
 
 	this.AR = [];
 	this.KR = [];
@@ -127,6 +128,7 @@ ModuleManager.prototype.startDrag = function (module, e) {
 		var y = Math.max(0, ~~Math.round((e.clientY - startY) / MODULE_HEIGHT));
 		if (x === module.x && y === module.y) return;
 		t.move(module, x, y);
+		t.drawCables();
 	}
 
 	d.addEventListener('mousemove', dragMove, false);
@@ -145,13 +147,13 @@ ModuleManager.prototype.startConnection = function (connector, e) {
 
 	function move(e) {
 		// TODO
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		ctx.beginPath();
-		ctx.moveTo(startX, startY);
+		// ctx.clearRect(0, 0, canvas.width, canvas.height);
+		// ctx.beginPath();
+		// ctx.moveTo(startX, startY);
 		// ctx.quadraticCurveTo(cx, cy, x, y);
 		// ctx.bezierCurveTo(c1x, c1y, c2x, c2y, x, y);
-		ctx.lineTo(~~e.clientX, ~~e.clientY);
-		ctx.stroke();
+		// ctx.lineTo(~~e.clientX, ~~e.clientY);
+		// ctx.stroke();
 	}
 
 	function moveEnd(e) {
@@ -161,6 +163,8 @@ ModuleManager.prototype.startConnection = function (connector, e) {
 		var dom = document.elementFromPoint(e.clientX, e.clientY);
 		if (!dom.connector) return;
 
+		// TODO: create connection
+
 		// TODO: redraw cables
 
 		console.log(connector.module.__proto__.constructor.name+':'+connector.id+' >>>> '+dom.connector.module.__proto__.constructor.name+':'+dom.connector.id);
@@ -168,6 +172,25 @@ ModuleManager.prototype.startConnection = function (connector, e) {
 
 	d.addEventListener('mousemove', move, false);
 	d.addEventListener('mouseup', moveEnd, false);
+};
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+ModuleManager.prototype.addCable = function (connectorA, connectorB, color) {
+	var id = connectorA.module.id + ':' + connectorA.id + '--' + connectorB.module.id + ':' + connectorB.id;
+	this.cables[id] = new Cable(connectorA, connectorB, color);
+	this.drawCables();
+};
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+ModuleManager.prototype.removeCable = function (connector) {
+	// TODO
+};
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+ModuleManager.prototype.drawCables = function () {
+	var t = this;
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	for (var id in t.cables) t.cables[id].draw();
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
