@@ -43,8 +43,6 @@ function Module(params) {
 	overlay.addEventListener('mousedown', function mouseStart(e) {
 		moduleManager.startDrag(t, e);
 	});
-	// dom.addEventListener('mousemove', function mouseMove(e) {});
-	// dom.addEventListener('mouseup',   function mouseEnd(e) {});
 }
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄

@@ -45,12 +45,11 @@ Cable.prototype.update = function () {
 	t.w = t.endPointB.module.x * MODULE_WIDTH  + t.endPointB.x * MODULE_HEIGHT + 7;
 	t.h = t.endPointB.module.y * MODULE_HEIGHT + t.endPointB.y * MODULE_HEIGHT + 7;
 
-	// TODO: better approach to choose control points
-	var w = t.w - t.x;
-	var h = t.h - t.y;
+	var w = (t.w - t.x) / 2;
+	var h = (t.h - t.y) / 2;
 
-	t.a = ~~(t.x + w * Math.random());
-	t.b = ~~(t.y + h * Math.random());
-	t.c = ~~(t.x + w * Math.random());
-	t.d = ~~(t.y + h * Math.random());
+	t.a = ~~(t.x + w *  Math.random()      + 10 * Math.random() - 5);
+	t.b = ~~(t.y + h *  Math.random()      + 10 * Math.random() - 5);
+	t.c = ~~(t.x + w * (Math.random() + 1) + 10 * Math.random() - 5);
+	t.d = ~~(t.y + h * (Math.random() + 1) + 10 * Math.random() - 5);
 };
