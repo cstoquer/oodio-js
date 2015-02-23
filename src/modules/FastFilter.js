@@ -6,6 +6,7 @@
  */
 function FastFilter(params) {
 	Module.call(this, params);
+	params = params || {};
 	this.freq  = params.freq === undefined ? [0.1] : [params.freq];
 }
 inherit(FastFilter, Module);
@@ -21,6 +22,7 @@ FastFilter.prototype.description_outputs    = {
 	out:   { rate: 'A', x: 16, y: 1 }
 };
 FastFilter.prototype.description_params     = {};
+library.register(FastFilter);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 FastFilter.prototype.tic = function () {

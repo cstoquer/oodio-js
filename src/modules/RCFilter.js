@@ -7,6 +7,7 @@
 
 function RCFilter(params) {
 	Module.call(this, params);
+	params = params || {};
 	this.cut   = params.cut === undefined ? [0.5] : [params.cut];
 	this.res   = params.res === undefined ? [0.4] : [params.res];
 
@@ -25,6 +26,7 @@ RCFilter.prototype.description_outputs    = {
 	out:   { rate: 'A', x: 16, y: 0 }
 };
 RCFilter.prototype.description_params     = {};
+library.register(RCFilter);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 RCFilter.prototype.tic = function () {

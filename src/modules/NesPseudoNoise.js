@@ -19,6 +19,7 @@ NesPseudoNoise.prototype.description_outputs    = {
 	out: { rate: 'A', x: 16, y: 0 }
 };
 NesPseudoNoise.prototype.description_params     = {};
+library.register(NesPseudoNoise);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 NesPseudoNoise.prototype.tic = function () {

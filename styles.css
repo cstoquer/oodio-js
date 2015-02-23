@@ -19,6 +19,13 @@ body {
 	border-image: url("img/mod-bg.png") 1 1 1 1 fill;
 }
 
+.library {
+	position: absolute;
+	z-index:  8;
+	right:    0;
+	top:      15px;
+}
+
 .cables {
 	position: absolute;
 	top:      0;

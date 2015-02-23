@@ -22,6 +22,7 @@ Oscillator.prototype.description_outputs    = {
 	out: { rate: 'A', x: 16, y: 0 }
 };
 Oscillator.prototype.description_params     = {};
+library.register(Oscillator);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 Object.defineProperty(Oscillator.prototype, 'freq', {

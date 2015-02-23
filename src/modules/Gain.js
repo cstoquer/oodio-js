@@ -25,6 +25,7 @@ Gain.prototype.description_outputs    = {
 Gain.prototype.description_params     = {
 	gain:  {} // TODO
 };
+library.register(Gain);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 Gain.prototype.tic = function () {

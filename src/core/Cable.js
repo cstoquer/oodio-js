@@ -29,7 +29,6 @@ Cable.prototype.getId = function (a, b) {
 	return a.module.id + ':' + a.id + '--' + b.module.id + ':' + b.id;
 };
 
-
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 Cable.prototype.draw = function () {
 	var t = this;

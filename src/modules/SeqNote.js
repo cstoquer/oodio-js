@@ -29,7 +29,7 @@ SeqNote.prototype.description_outputs    = {
 SeqNote.prototype.description_params     = {
 	setNotes: {} // TODO
 };
-
+library.register(SeqNote);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 SeqNote.prototype.clk = function () {
 	this._pos++;

@@ -19,6 +19,7 @@ Output.prototype.description_inputs     = {
 };
 Output.prototype.description_outputs    = {};
 Output.prototype.description_params     = {};
+library.register(Output);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 Output.prototype.tic = function () {

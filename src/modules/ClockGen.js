@@ -28,6 +28,7 @@ ClockGen.prototype.description_params     = {
 	tempo: {}, // TODO
 	swing: {}  // TODO
 };
+library.register(ClockGen);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 Object.defineProperty(ClockGen.prototype, 'tempo', {

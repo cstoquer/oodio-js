@@ -23,6 +23,7 @@ TriOsc.prototype.description_outputs    = {
 	out:   { rate: 'A', x: 16, y: 0 }
 };
 TriOsc.prototype.description_params     = {};
+library.register(TriOsc);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 TriOsc.prototype.tic = function () {

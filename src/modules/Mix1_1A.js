@@ -24,6 +24,7 @@ Mix1_1A.prototype.description_outputs    = {
 	out:    { rate: 'A', x: 16, y: 1 }
 };
 Mix1_1A.prototype.description_params     = {};
+library.register(Mix1_1A);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 Mix1_1A.prototype.tic = function () {

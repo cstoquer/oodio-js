@@ -94,8 +94,6 @@ ModuleManager.prototype.move = function (module, x, y) {
 	if (index === -1) return console.error('Module not found in grid.');
 	row.splice(index, 1);
 	this._addModuleInGrid(module, x, y);
-
-	// TODO: update cables
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
@@ -147,8 +145,6 @@ ModuleManager.prototype.startConnection = function (connector, e) {
 
 	var startX = connector.module.x * MODULE_WIDTH  + connector.x * MODULE_HEIGHT + 8;
 	var startY = connector.module.y * MODULE_HEIGHT + connector.y * MODULE_HEIGHT + 8;
-
-	// TODO
 
 	drag = false;
 

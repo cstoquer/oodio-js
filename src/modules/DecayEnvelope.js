@@ -37,6 +37,7 @@ DecayEnvelope.prototype.description_params     = {
 	decay:     {},
 	curvature: {}
 };
+library.register(DecayEnvelope);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 Object.defineProperty(DecayEnvelope.prototype, 'curvature', {

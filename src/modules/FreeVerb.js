@@ -230,6 +230,7 @@ FreeVerb.prototype.description_outputs    = {
 	outR:   { rate: 'A', x: 16, y: 1 }
 };
 FreeVerb.prototype.description_params     = {};
+library.register(FreeVerb);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 FreeVerb.prototype.update = function () {

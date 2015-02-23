@@ -23,6 +23,7 @@ PulseOsc.prototype.description_outputs    = {
 	out: { rate: 'A', x: 16, y: 0 }
 };
 PulseOsc.prototype.description_params     = {};
+library.register(PulseOsc);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 PulseOsc.prototype.tic = function () {
