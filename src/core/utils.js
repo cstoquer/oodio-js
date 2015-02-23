@@ -33,3 +33,15 @@ function map(value, iMin, iMax, oMin, oMax) {
 function noteToFreq(midiNoteNumber) {
 	return 440 * Math.pow(2, (midiNoteNumber - 69) / 12);
 }
+
+noteToFreqMap = [];
+for (var i = 0; i < 128; i++) noteToFreqMap.push(noteToFreq(i));
+Object.freeze(noteToFreqMap);
+
+function noteToFreqLin(note) {
+	var c = ~~note;
+	var d = note - c;
+	var f1 = noteToFreqMap[c];
+	var f2 = noteToFreqMap[c + 1];
+	return f1 + d * (f2 - f1);
+}

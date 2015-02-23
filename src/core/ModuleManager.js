@@ -104,8 +104,8 @@ ModuleManager.prototype.startDrag = function (module, e) {
 	var d = document;
 	var x = module.x * MODULE_WIDTH;
 	var y = module.y * MODULE_HEIGHT;
-	var startX = ~~e.clientX - x;
-	var startY = ~~e.clientY - y;
+	var startX = e.clientX - x;
+	var startY = e.clientY - y;
 	var dummy = createDom('dummy', null);
 	dummy.style.height = (module.description_moduleSize * MODULE_HEIGHT - 8) + 'px';
 	dummy.style.left   = x + 'px';
@@ -115,8 +115,8 @@ ModuleManager.prototype.startDrag = function (module, e) {
 
 	function dragMove(e) {
 		e.preventDefault();
-		dummy.style.left = ~~e.clientX - startX + 'px';
-		dummy.style.top  = ~~e.clientY - startY + 'px';
+		dummy.style.left = e.clientX - startX + 'px';
+		dummy.style.top  = e.clientY - startY + 'px';
 	}
 
 	function dragEnd(e) {
@@ -135,31 +135,53 @@ ModuleManager.prototype.startDrag = function (module, e) {
 	d.addEventListener('mouseup', dragEnd, false);
 };
 
+var connectorMenu = document.getElementById('connectorMenu');
+
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ModuleManager.prototype.startConnection = function (connector, e) {
 	var t = this;
 	var d = document;
 	
+	var mouseX = e.clientX;
+	var mouseY = e.clientY;
+
 	var startX = connector.module.x * MODULE_WIDTH  + connector.x * MODULE_HEIGHT + 8;
 	var startY = connector.module.y * MODULE_HEIGHT + connector.y * MODULE_HEIGHT + 8;
 
 	// TODO
 
+	drag = false;
+
 	function move(e) {
-		// TODO
-		// ctx.clearRect(0, 0, canvas.width, canvas.height);
-		// ctx.beginPath();
-		// ctx.moveTo(startX, startY);
-		// ctx.quadraticCurveTo(cx, cy, x, y);
-		// ctx.bezierCurveTo(c1x, c1y, c2x, c2y, x, y);
-		// ctx.lineTo(~~e.clientX, ~~e.clientY);
-		// ctx.stroke();
+		e.preventDefault();
+		if (Math.abs(e.clientX - mouseX) < 4 || Math.abs(e.clientY - mouseY) < 4) return;
+		drag = true;
+		d.removeEventListener('mousemove', move);
 	}
 
 	function moveEnd(e) {
 		e.preventDefault();
-		d.removeEventListener('mousemove', move);
 		d.removeEventListener('mouseup', moveEnd);
+
+		if (!drag) {
+			// TODO: open menu with disconnection option
+			connectorMenu.style.left = Math.max(0, e.clientX - 10) + 'px';
+			connectorMenu.style.top  = Math.max(0, e.clientY - 10) + 'px';
+			connectorMenu.style.display = 'block';
+
+			function menuOut() {
+				connectorMenu.style.display = 'none';
+				connectorMenu.removeEventListener('mouseout', menuOut);
+			}
+
+			connectorMenu.addEventListener('mouseout', menuOut);
+
+			// connector.disconnect();
+			return;
+		}
+
+		d.removeEventListener('mousemove', move);
+
 		var dom = document.elementFromPoint(e.clientX, e.clientY);
 		if (!dom.connector) return;
 
