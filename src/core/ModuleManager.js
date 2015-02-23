@@ -154,7 +154,7 @@ ModuleManager.prototype.startConnection = function (connector, e) {
 
 	function move(e) {
 		e.preventDefault();
-		if (Math.abs(e.clientX - mouseX) < 4 || Math.abs(e.clientY - mouseY) < 4) return;
+		if (Math.abs(e.clientX - mouseX) < 4 && Math.abs(e.clientY - mouseY) < 4) return;
 		drag = true;
 		d.removeEventListener('mousemove', move);
 	}
@@ -181,11 +181,15 @@ ModuleManager.prototype.startConnection = function (connector, e) {
 		d.removeEventListener('mousemove', move);
 
 		var dom = document.elementFromPoint(e.clientX, e.clientY);
-		if (!dom.connector) return;
-		if (dom.connector === connector) return;
-		// TODO: various things has to be checked before making connection:
-		//        * no connection already exist between these connectors
-		//        * check connector type
+		var c = dom.connector;
+		if (!c) return;
+		if (c === connector) return;
+
+		// check that connection don't already exist
+		var forwardId  = Cable.prototype.getId(c, connector);
+		var backwardId = Cable.prototype.getId(connector, c);
+		if (t.cables[forwardId] || t.cables[backwardId]) return;
+
 		connector.connect(dom.connector);
 	}
 

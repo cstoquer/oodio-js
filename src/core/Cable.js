@@ -7,7 +7,7 @@ function Cable(a, b, c) {
 	this.endPointA = a;
 	this.endPointB = b;
 	this.color     = c || ROOT.COLOR.A;
-	this.id        = a.module.id + ':' + a.id + '--' + b.module.id + ':' + b.id;
+	this.id        = this.getId(a, b);
 
 	this.x = 0; // start point x
 	this.y = 0; // start point y
@@ -23,6 +23,11 @@ function Cable(a, b, c) {
 	a.module.addCable(this);
 	b.module.addCable(this);
 }
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+Cable.prototype.getId = function (a, b) {
+	return a.module.id + ':' + a.id + '--' + b.module.id + ':' + b.id;
+};
 
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
