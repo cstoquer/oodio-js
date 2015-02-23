@@ -6,6 +6,7 @@
  */
 function ClockGen(params) {
 	Module.call(this, params);
+	params = params || {};
 
 	this._pos   = 0.0;
 	this._inc   = 0.0;

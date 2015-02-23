@@ -6,6 +6,7 @@
  */
 function DecayEnvelope(params) {
 	Module.call(this, params);
+	params = params || {};
 
 	this._decay     = params.decay     === undefined ? 0.5 : params.decay;
 	this._curvature = params.curvature === undefined ? 0.5 : map(params.curvature, 0, 1, 0.3, 0.7);

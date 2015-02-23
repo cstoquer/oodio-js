@@ -175,8 +175,6 @@ ModuleManager.prototype.startConnection = function (connector, e) {
 			}
 
 			connectorMenu.addEventListener('mouseout', menuOut);
-
-			// connector.disconnect();
 			return;
 		}
 
@@ -184,12 +182,11 @@ ModuleManager.prototype.startConnection = function (connector, e) {
 
 		var dom = document.elementFromPoint(e.clientX, e.clientY);
 		if (!dom.connector) return;
-
-		// TODO: create connection
-
-		// TODO: redraw cables
-
-		console.log(connector.module.__proto__.constructor.name+':'+connector.id+' >>>> '+dom.connector.module.__proto__.constructor.name+':'+dom.connector.id);
+		if (dom.connector === connector) return;
+		// TODO: various things has to be checked before making connection:
+		//        * no connection already exist between these connectors
+		//        * check connector type
+		connector.connect(dom.connector);
 	}
 
 	d.addEventListener('mousemove', move, false);

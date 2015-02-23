@@ -6,6 +6,7 @@
  */
 function Oscillator(params) {
 	Module.call(this, params);
+	params = params || {};
 	this._pos  = 0.0;
 	this._freq = params.freq  === undefined ? 440.0 : params.freq;
 	this._pinc = this._freq / SAMPLE_RATE;

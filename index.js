@@ -2,7 +2,7 @@
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 // create synthesizer
 
-function SimpleSynth(params) {
+/*function SimpleSynth(params) {
 	Module.call(this, params);
 	this.seq    = moduleManager.add(new SeqNote({ steps: [69, 57, 60, 64, 48, 57, 52, 62] }));
 	this.glide  = moduleManager.add(new FastFilter({ freq: 0.004 }));
@@ -55,14 +55,14 @@ clock.$out.connect(synth.seq.$clk);
 synth.env.$trigger.connect(clock.$out);
 
 out.$inputL.connect(synth.vrb.$outL);
-out.$inputR.connect(synth.vrb.$outR);
+out.$inputR.connect(synth.vrb.$outR);*/
 
 // new TestModule();
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 // create context, generator and start audio processing
 
-/*var perf = (new Performance()).start();
+var perf = (new Performance()).start();
 var audioContext = new webkitAudioContext();
 var mainVolume = audioContext.createGain();
 var generator  = audioContext.createScriptProcessor(BUFFER_LENGTH, 1, 2);
@@ -77,5 +77,5 @@ generator.onaudioprocess = function (e) {
 		e.outputBuffer.getChannelData(1)
 	);
 	perf.sample(startTime);
-};*/
+};
 
