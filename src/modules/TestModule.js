@@ -6,7 +6,7 @@ inherit(TestModule, Module);
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 TestModule.prototype.description_moduleName = 'TestModule';
-TestModule.prototype.description_moduleSize = 3;
+TestModule.prototype.description_moduleSize = 7;
 TestModule.prototype.description_rate       = 'E';
 TestModule.prototype.description_inputs     = {
 	/*a0_00:  { rate: 'E', x:0,  y:0 },*/ a1_00:  { rate: 'E', x:0,  y:1 }, a2_00:  { rate: 'E', x:0,  y:2 },
@@ -28,7 +28,16 @@ TestModule.prototype.description_inputs     = {
 	a0_16:  { rate: 'E', x:16, y:0 }, a1_16:  { rate: 'E', x:16, y:1 }, a2_16:  { rate: 'E', x:16, y:2 },
 };
 TestModule.prototype.description_outputs    = {};
-TestModule.prototype.description_params     = {};
+TestModule.prototype.description_params     = {
+	a: { type: 'knob', x: 2, y: 3 },
+	b: { type: 'knob', x: 4, y: 3 },
+	c: { type: 'knob', x: 6, y: 3 },
+	d: { type: 'knob', x: 8, y: 3 },
+	f: { type: 'knob', x: 2, y: 5 },
+	g: { type: 'knob', x: 4, y: 5 },
+	h: { type: 'knob', x: 6, y: 5 },
+	i: { type: 'knob', x: 8, y: 5 }
+};
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 TestModule.prototype.tic = function () {}

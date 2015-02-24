@@ -128,11 +128,15 @@ body {
 	position: absolute;
 	width:    23px;
 	height:   23px;
-	background-image: url("img/pot.png");
+	background-image: url("img/knob.png");
+}
+
+.knobMark {
+	background-image: url("img/knobMark.png");
 }
 
 .knobOverlay {
-	position: fixed;
+	position: absolute;
 	z-index:  4;
 	width:    23px;
 	height:   23px;

@@ -4,18 +4,18 @@
  */
 function Knob(module, id, description) {
 	var t = this;
-	t.x = description.x;
-	t.y = description.y;
 
+	t.x      = description.x;
+	t.y      = description.y;
 	t.module = module;
 	t.id     = id;
+	t.value  = 0
 
 	var dom = t._dom = createDom('knob', module._dom);
-
 	dom.style.left = (t.x * MODULE_HEIGHT + 2) + 'px';
 	dom.style.top  = (t.y * MODULE_HEIGHT + 2) + 'px';
-
-	var overlay = createDom('knobOverlay', dom);
+	var mark    = createDom('knob knobMark', dom);
+	var overlay = createDom('knobOverlay',   dom);
 	overlay.connector = t;
 
 	overlay.addEventListener('mousedown', function mouseStart(e) {
@@ -24,19 +24,20 @@ function Knob(module, id, description) {
 
 		// var startX = e.clientX;
 		var startY = e.clientY;
+		var startV = t.value;
 
 		function mouseMove(e) {
 			e.preventDefault();
-			var delta = Math.max(0, Math.min(128, startY - e.clientY));
-			// dom.style.transform = 'rotate(' + delta + 'deg)';
-			console.log('MOUSE MOVE', delta)
+			var delta = Math.max(-68, Math.min(68, startV + startY - e.clientY));
+			mark.style.transform = 'rotate(' + (delta * 2) + 'deg)';
+			t.value = delta;
+			// TODO
 		}
 
 		function mouseUp(e) {
 			e.preventDefault();
 			document.removeEventListener('mousemove', mouseMove);
 			document.removeEventListener('mouseup', mouseUp);
-			console.log('END')
 		}
 
 		document.addEventListener('mousemove', mouseMove, false);
