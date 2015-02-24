@@ -122,3 +122,18 @@ body {
 .audioIn    { background-image: url("img/in-R.png");  }
 .controlOut { background-image: url("img/out-B.png"); }
 .controlIn  { background-image: url("img/in-Y.png");  }
+
+
+.knob {
+	position: absolute;
+	width:    23px;
+	height:   23px;
+	background-image: url("img/pot.png");
+}
+
+.knobOverlay {
+	position: fixed;
+	z-index:  4;
+	width:    23px;
+	height:   23px;
+}

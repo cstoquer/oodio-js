@@ -23,7 +23,9 @@ Mix1_1A.prototype.description_inputs     = {
 Mix1_1A.prototype.description_outputs    = {
 	out:    { rate: 'A', x: 16, y: 1 }
 };
-Mix1_1A.prototype.description_params     = {};
+Mix1_1A.prototype.description_params     = {
+	volume: { type: 'knob', x: 7, y: 0 }
+};
 library.register(Mix1_1A);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 

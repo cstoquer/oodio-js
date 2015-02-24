@@ -15,12 +15,8 @@ function Module(params) {
 		var input = t.description_inputs[id];
 		switch (input.rate) {
 			case 'E': t['$' + id] = new EventInConnector(t, id, input); break;
-			case 'K': 
-			case 'A':
-				t[id] = ROOT.UNPLUGGED;
-				t['$' + id] = new AudioInConnector(t, id, input);
-				break;
-			default: break;
+			case 'K': // TODO
+			case 'A': t[id] = ROOT.UNPLUGGED; t['$' + id] = new AudioInConnector(t, id, input); break;
 		}
 	}
 
@@ -28,12 +24,15 @@ function Module(params) {
 		var output = t.description_outputs[id];
 		switch (output.rate) {
 			case 'E': t['$' + id] = t[id] = new EventOutConnector(t, id, output); break;
-			case 'K':
-			case 'A':
-				t[id] = [0.0];
-				t['$' + id] = new AudioOutConnector(t, id, output);
-				break;
-			default: break;
+			case 'K': // TODO
+			case 'A': t[id] = [0.0]; t['$' + id] = new AudioOutConnector(t, id, output); break;
+		}
+	}
+
+	for (var id in t.description_params) {
+		var param = t.description_params[id];
+		switch (param.type) {
+			case 'knob': t['$$' + id] = new Knob(t, id, param); break;
 		}
 	}
 

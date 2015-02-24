@@ -13,12 +13,12 @@ function Connector(module, id, connectorDescription) {
 	var dom = t._dom = createDom('connector ' + t.connectorClassName, module._dom);
 
 	if (t.x === undefined) {
+		// TODO: remove this
 		dom.style.position = 'relative'
-		return;
+	} else {
+		dom.style.left = (t.x * MODULE_HEIGHT + 1) + 'px';
+		dom.style.top  = (t.y * MODULE_HEIGHT + 1) + 'px';
 	}
-
-	dom.style.left = (t.x * MODULE_HEIGHT + 1) + 'px';
-	dom.style.top  = (t.y * MODULE_HEIGHT + 1) + 'px';
 
 	var overlay = createDom('connectorOverlay', dom);
 	overlay.connector = t;
