@@ -21,7 +21,30 @@ function Knob(module, id, description) {
 	overlay.addEventListener('mousedown', function mouseStart(e) {
 		e.stopPropagation();
 		e.preventDefault();
-		// TODO
-		console.log('>>>>>> KNOB')
+
+		// var startX = e.clientX;
+		var startY = e.clientY;
+
+		function mouseMove(e) {
+			e.preventDefault();
+			var delta = Math.max(0, Math.min(128, startY - e.clientY));
+			// dom.style.transform = 'rotate(' + delta + 'deg)';
+			console.log('MOUSE MOVE', delta)
+		}
+
+		function mouseUp(e) {
+			e.preventDefault();
+			document.removeEventListener('mousemove', mouseMove);
+			document.removeEventListener('mouseup', mouseUp);
+			console.log('END')
+		}
+
+		document.addEventListener('mousemove', mouseMove, false);
+		document.addEventListener('mouseup', mouseUp, false);
 	});
 }
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+Knob.prototype.getValue = function () {
+	return this.module[this.id];
+};
