@@ -56,7 +56,7 @@ Module.prototype.description_outputs    = {};
 Module.prototype.description_params     = {};
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
-
+/** Set module position in UI surface */
 Module.prototype.setPosition = function (x, y) {
 	var style = this._dom.style;
 	this.x = x;
@@ -67,10 +67,10 @@ Module.prototype.setPosition = function (x, y) {
 	for (id in this.cables) this.cables[id].update();
 };
 
+/** Remove module */
 Module.prototype.remove = function () {
 	removeDom(this._dom, null);
 };
-
 
 Module.prototype.addCable = function (cable) {
 	this.cables[cable.id] = cable;
@@ -78,4 +78,13 @@ Module.prototype.addCable = function (cable) {
 
 Module.prototype.removeCable = function (cable) {
 	delete this.cables[cable.id];
+};
+
+/** Get module state for patch saving */
+Module.prototype.getState = function () {
+	var state = {};
+	for (var id in this.description_params) {
+		state[id] = this[id];
+	}
+	return state;
 };

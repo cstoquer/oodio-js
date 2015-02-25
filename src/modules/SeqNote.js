@@ -5,14 +5,11 @@
  * @author Cedric Stoquer
  */
 function SeqNote(params) {
-	params = params || {};
-	Module.call(this, params);
-
 	this._pos    = 0;
 	this._steps  = [];
-	this._length = 8;
+	this._length = 0;
 
-	params.steps && this.setNotes(params.steps);
+	Module.call(this, params);
 }
 inherit(SeqNote, Module);
 
@@ -27,7 +24,7 @@ SeqNote.prototype.description_outputs    = {
 	out: { rate: 'A', x: 8, y: 0, type: 'freq' }
 };
 SeqNote.prototype.description_params     = {
-	setNotes: {} // TODO
+	notes: { init: [69, 69, 69, 69, 69, 69, 69, 69] }
 };
 library.register(SeqNote);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
@@ -37,10 +34,17 @@ SeqNote.prototype.clk = function () {
 	this.out[0] = this._steps[this._pos];
 };
 
-SeqNote.prototype.setNotes = function (steps) {
-	this._steps = [];
-	var len = this._length = steps.length;
-	for (var i = 0; i < len; i++) {
-		this._steps.push(noteToFreq(steps[i]));
+Object.defineProperty(SeqNote.prototype, 'notes', {
+	get: function() {
+		return this._steps;
+	},
+	set: function(notes) {
+		if (!Array.isArray(notes)) return console.error('SeqNote.notes must be an array');
+		this._steps = [];
+		var len = this._length = notes.length;
+		for (var i = 0; i < len; i++) {
+			this._steps.push(noteToFreq(notes[i]));
+		}
 	}
-};
+});
+
