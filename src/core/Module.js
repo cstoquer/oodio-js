@@ -5,6 +5,8 @@
 
 function Module(params) {
 	var t = this;
+	params = params || {};
+
 	t.cables = {};
 
 	var dom = createDom('module x' + t.description_moduleSize, null);
@@ -30,9 +32,10 @@ function Module(params) {
 	}
 
 	for (var id in t.description_params) {
-		var param = t.description_params[id];
-		switch (param.type) {
-			case 'knob': t['$$' + id] = new Knob(t, id, param); break;
+		var control = t.description_params[id];
+		t[id] = params[id] !== undefined ? params[id] : control.init || 0.0;
+		switch (control.type) {
+			case 'knob': t['$$' + id] = new Knob(t, id, control); break;
 		}
 	}
 

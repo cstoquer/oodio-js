@@ -8,7 +8,7 @@
 function Mix1_1A(params) {
 	Module.call(this, params);
 	params = params || {};
-	this.volume = params.volume !== undefined ? params.volume : 0.0;
+	// this.volume = params.volume !== undefined ? params.volume : 0.0;
 }
 inherit(Mix1_1A, Module);
 
@@ -24,7 +24,7 @@ Mix1_1A.prototype.description_outputs    = {
 	out:    { rate: 'A', x: 16, y: 1 }
 };
 Mix1_1A.prototype.description_params     = {
-	volume: { type: 'knob', x: 7, y: 0 }
+	volume: { type: 'knob', x: 7, y: 0, min: 0, max: 1, int: false, init: 0.0 }
 };
 library.register(Mix1_1A);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
