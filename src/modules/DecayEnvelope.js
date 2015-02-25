@@ -5,19 +5,18 @@
  * @author Cedric Stoquer
  */
 function DecayEnvelope(params) {
-	Module.call(this, params);
-	params = params || {};
-
-	this._decay     = params.decay     === undefined ? 0.5 : params.decay;
-	this._curvature = params.curvature === undefined ? 0.5 : map(params.curvature, 0, 1, 0.3, 0.7);
+	this._decay     = 0.5;
+	this._curvature = 0.5;
 	this._stopped   = true;
 	this._raw       = 0.0;
 	this._a         = 0;
 	this._b         = 0;
 	this._t         = 0;
-	this._duration  = 0; 
+	this._duration  = 0;
+	
+	Module.call(this, params);
 
-	this.update();
+	// this.update();
 }
 inherit(DecayEnvelope, Module);
 
@@ -34,8 +33,8 @@ DecayEnvelope.prototype.description_outputs    = {
 	env:     { rate: 'K', x: 16, y: 0 }
 };
 DecayEnvelope.prototype.description_params     = {
-	decay:     {},
-	curvature: {}
+	decay:     { type: 'knob', x: 4, y: 0, min: 0, max: 1, int: false, init: 0.5 },
+	curvature: { type: 'knob', x: 7, y: 0, min: 0, max: 1, int: false, init: 0.5 }
 };
 library.register(DecayEnvelope);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄

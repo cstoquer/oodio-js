@@ -7,8 +7,6 @@
 
 function Mix1_1A(params) {
 	Module.call(this, params);
-	params = params || {};
-	// this.volume = params.volume !== undefined ? params.volume : 0.0;
 }
 inherit(Mix1_1A, Module);
 
