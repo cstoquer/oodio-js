@@ -4,7 +4,7 @@
 
 /*function SimpleSynth(params) {
 	Module.call(this, params);
-	this.seq    = moduleManager.add(new SeqNote({ steps: [69, 57, 60, 64, 48, 57, 52, 62] }));
+	this.seq    = moduleManager.add(new SeqNote({ notes: [69, 57, 60, 64, 48, 57, 52, 62] }));
 	this.glide  = moduleManager.add(new FastFilter({ freq: 0.004 }));
 	this.lfo    = moduleManager.add(new TriOsc({ freq: 0.03, width: 0.9 }));
 	this.osc1   = moduleManager.add(new PulseOsc({ freq: 110.0 }));

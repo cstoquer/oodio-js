@@ -18,6 +18,8 @@ function ModuleManager() {
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ModuleManager.prototype.add = function (module, x, y) {
 	var id = this._idCount++;
+	while (this.modules[this._idCount]) this._idCount++;
+
 	module.id = id;
 	this.modules[id] = module;
 
@@ -70,6 +72,7 @@ ModuleManager.prototype._addModuleInGrid = function (module, x, y) {
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ModuleManager.prototype.remove = function (module) {
 	delete this.modules[module.id];
+	if (module.id < this._idCount) this._idCount = module.id;
 
 	function removeFromArray(array) {
 		var index = array.indexOf(module);
@@ -246,6 +249,20 @@ ModuleManager.prototype.processAudio = function (outBufferL, outBufferR) {
 		outBufferL[i] = outL;
 		outBufferR[i] = outR;
 	}
+};
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+ModuleManager.prototype.getPatch = function () {
+	var patch = {
+		modules: [],
+		cables:  []
+	};
+	for (var id in this.modules) {
+		patch.modules.push(this.modules[id].getState());
+		// TODO
+	}
+
+	return patch;
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄

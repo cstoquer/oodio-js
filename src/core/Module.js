@@ -82,7 +82,12 @@ Module.prototype.removeCable = function (cable) {
 
 /** Get module state for patch saving */
 Module.prototype.getState = function () {
-	var state = {};
+	var state = {
+		_mod: this.constructor.name,
+		id:   this.id,
+		x:    this.x,
+		y:    this.y
+	};
 	for (var id in this.description_params) {
 		state[id] = this[id];
 	}
