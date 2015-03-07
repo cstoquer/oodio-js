@@ -7,7 +7,7 @@ function ConnectorMenu() {
 window.connectorMenu = new ConnectorMenu();
 
 
-ConnectorMenu.prototype.show = function (connector) {
+ConnectorMenu.prototype.show = function (e, connector) {
 	var t = this;
 
 	t.selected = connector;

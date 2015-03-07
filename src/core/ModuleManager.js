@@ -136,8 +136,6 @@ ModuleManager.prototype.startDrag = function (module, e) {
 	d.addEventListener('mouseup', dragEnd, false);
 };
 
-var connectorMenu = document.getElementById('connectorMenu');
-
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ModuleManager.prototype.startConnection = function (connector, e) {
 	var t = this;
@@ -164,7 +162,7 @@ ModuleManager.prototype.startConnection = function (connector, e) {
 
 		if (!drag) {
 			// open menu with disconnection option
-			window.connectorMenu.show(connector);
+			window.connectorMenu.show(e, connector);
 			return;
 		}
 
