@@ -1,4 +1,7 @@
-
+/** Connector Menu
+ *
+ * @author Cedric Stoquer
+ */
 function ConnectorMenu() {
 	this.dom = document.getElementById('connectorMenu');
 	this.selected = null;
@@ -6,7 +9,7 @@ function ConnectorMenu() {
 
 window.connectorMenu = new ConnectorMenu();
 
-
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ConnectorMenu.prototype.show = function (e, connector) {
 	var t = this;
 
