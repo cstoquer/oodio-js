@@ -26,14 +26,14 @@ function Connector(module, id, connectorDescription) {
 	overlay.addEventListener('mousedown', function mouseStart(e) {
 		e.stopPropagation();
 		e.preventDefault();
-		moduleManager.startConnection(t, e);
+		window.moduleManager.startConnection(t, e);
 	});
 }
 
 Connector.prototype.color = ROOT.COLOR.NONE;
 
 Connector.prototype.connect = function (connector) {
-	moduleManager.addCable(this, connector, this.color);
+	window.moduleManager.addCable(this, connector, this.color);
 };
 
 Connector.prototype.disconnect = function () {

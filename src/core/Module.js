@@ -43,7 +43,7 @@ function Module(params) {
 	overlay.module = t;
 
 	overlay.addEventListener('mousedown', function mouseStart(e) {
-		moduleManager.startDrag(t, e);
+		window.moduleManager.startDrag(t, e);
 	});
 }
 

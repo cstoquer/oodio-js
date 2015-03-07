@@ -85,7 +85,7 @@ DecayEnvelope.prototype.tic = function () {
 	this.out[0] = this.input[0] * this.env[0];
 };
 
-DecayEnvelope.prototype.trigger = function () {
+DecayEnvelope.prototype.trigger = function (value) {
 	this._stopped = false;
 	this._t = 0;
 };

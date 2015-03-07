@@ -25,6 +25,6 @@ EventOutConnector.prototype.connect = function (connector) {
 EventOutConnector.prototype.emit = function (value) {
 	for (var i = 0; i < this._length; i++) {
 		var mod = this._mod[i];
-		mod[this._func[i]].apply(mod, value);
+		mod[this._func[i]].call(mod, value);
 	}
 };

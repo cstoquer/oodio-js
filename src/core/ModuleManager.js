@@ -163,17 +163,8 @@ ModuleManager.prototype.startConnection = function (connector, e) {
 		d.removeEventListener('mouseup', moveEnd);
 
 		if (!drag) {
-			// TODO: open menu with disconnection option
-			connectorMenu.style.left = Math.max(0, e.clientX - 10) + 'px';
-			connectorMenu.style.top  = Math.max(0, e.clientY - 10) + 'px';
-			connectorMenu.style.display = 'block';
-
-			function menuOut() {
-				connectorMenu.style.display = 'none';
-				connectorMenu.removeEventListener('mouseout', menuOut);
-			}
-
-			connectorMenu.addEventListener('mouseout', menuOut);
+			// open menu with disconnection option
+			window.connectorMenu.show(connector);
 			return;
 		}
 
@@ -266,4 +257,4 @@ ModuleManager.prototype.getPatch = function () {
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-var moduleManager = new ModuleManager();
+window.moduleManager = new ModuleManager();
