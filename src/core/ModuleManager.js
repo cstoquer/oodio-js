@@ -181,10 +181,8 @@ ModuleManager.prototype.startConnection = function (sourceConnector, e) {
 		var dom = d.elementFromPoint(x, y);
 		var targetConnector = dom && dom.connector;
 		if (targetConnector && targetConnector.isCompatible(sourceConnector)) {
-			// overCtx.drawImage(jackConnect, x - 3, y - 3);
 			DOCUMENT_BODY.style.cursor = JACK_CONNECT_CURSOR;
 		} else {
-			// overCtx.drawImage(jackFree, x - 2, y - 3);
 			DOCUMENT_BODY.style.cursor = JACK_FREE_CURSOR;
 		}
 	}

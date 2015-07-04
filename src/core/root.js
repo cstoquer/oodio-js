@@ -37,7 +37,3 @@ overCtx.strokeStyle = '#444';
 overCtx.lineCap     = 'butt';
 overCtx.setLineDash([2, 2]);
 
-jackFree            = new Image();
-jackConnect         = new Image();
-jackFree.src        = 'img/jack-free.png';
-jackConnect.src     = 'img/jack-connect.png';
