@@ -39,10 +39,9 @@ function Module(params) {
 		}
 	}
 
-	var overlay = createDom('moduleOverlay x' + t.description_moduleSize, dom);
-	overlay.module = t;
+	dom.module = t;
 
-	overlay.addEventListener('mousedown', function mouseStart(e) {
+	dom.addEventListener('mousedown', function mouseStart(e) {
 		window.moduleManager.startDrag(t, e);
 	});
 }

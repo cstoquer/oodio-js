@@ -18,12 +18,11 @@ function Knob(module, id, description) {
 	dom.style.left = (t.x * MODULE_HEIGHT + 2) + 'px';
 	dom.style.top  = (t.y * MODULE_HEIGHT + 2) + 'px';
 	t._mark     = createDom('knob knobMark', dom);
-	var overlay = createDom('knobOverlay',   dom);
-	overlay.connector = t;
+	dom.connector = t;
 
 	t.setValue(description.init);
 
-	overlay.addEventListener('mousedown', function mouseStart(e) {
+	dom.addEventListener('mousedown', function mouseStart(e) {
 		e.stopPropagation();
 		e.preventDefault();
 

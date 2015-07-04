@@ -1,3 +1,4 @@
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 /** Module manager
  *
  * @author Cedric Stoquer
@@ -70,6 +71,10 @@ ModuleManager.prototype._addModuleInGrid = function (module, x, y) {
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+/** Remove a module
+ *
+ * @param {Object} module - module to remove
+ */
 ModuleManager.prototype.remove = function (module) {
 	delete this.modules[module.id];
 	if (module.id < this._idCount) this._idCount = module.id;
@@ -91,6 +96,12 @@ ModuleManager.prototype.remove = function (module) {
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+/** Move a module to a position (x, y)
+ *
+ * @param {Object} module - 
+ * @param {number} x      - 
+ * @param {number} y      - 
+ */
 ModuleManager.prototype.move = function (module, x, y) {
 	var row = this.grid[module.x]
 	var index = row.indexOf(module);
@@ -137,15 +148,15 @@ ModuleManager.prototype.startDrag = function (module, e) {
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-ModuleManager.prototype.startConnection = function (connector, e) {
+ModuleManager.prototype.startConnection = function (sourceConnector, e) {
 	var t = this;
 	var d = document;
 	
 	var mouseX = e.clientX;
 	var mouseY = e.clientY;
 
-	var startX = connector.module.x * MODULE_WIDTH  + connector.x * MODULE_HEIGHT + 8;
-	var startY = connector.module.y * MODULE_HEIGHT + connector.y * MODULE_HEIGHT + 8;
+	var startX = sourceConnector.module.x * MODULE_WIDTH  + sourceConnector.x * MODULE_HEIGHT + 8;
+	var startY = sourceConnector.module.y * MODULE_HEIGHT + sourceConnector.y * MODULE_HEIGHT + 8;
 
 	drag = false;
 
@@ -153,32 +164,37 @@ ModuleManager.prototype.startConnection = function (connector, e) {
 		e.preventDefault();
 		if (Math.abs(e.clientX - mouseX) < 4 && Math.abs(e.clientY - mouseY) < 4) return;
 		drag = true;
-		d.removeEventListener('mousemove', move);
+		overCtx.clearRect(0, 0, overlay.width, overlay.height);
+		overCtx.beginPath();
+		overCtx.moveTo(startX, startY);
+		overCtx.lineTo(e.clientX, e.clientY);
+		overCtx.stroke();
+		// d.removeEventListener('mousemove', move);
 	}
 
 	function moveEnd(e) {
 		e.preventDefault();
 		d.removeEventListener('mouseup', moveEnd);
+		d.removeEventListener('mousemove', move);
+		overCtx.clearRect(0, 0, overlay.width, overlay.height);
 
 		if (!drag) {
 			// open menu with disconnection option
-			window.connectorMenu.show(e, connector);
+			window.connectorMenu.show(e, sourceConnector);
 			return;
 		}
 
-		d.removeEventListener('mousemove', move);
-
 		var dom = document.elementFromPoint(e.clientX, e.clientY);
-		var c = dom.connector;
-		if (!c) return;
-		if (c === connector) return;
+		var targetConnector = dom.connector;
+		if (!targetConnector) return;
+		if (targetConnector === sourceConnector) return;
 
 		// check that connection don't already exist
-		var forwardId  = Cable.prototype.getId(c, connector);
-		var backwardId = Cable.prototype.getId(connector, c);
+		var forwardId  = Cable.prototype.getId(targetConnector, sourceConnector);
+		var backwardId = Cable.prototype.getId(sourceConnector, targetConnector);
 		if (t.cables[forwardId] || t.cables[backwardId]) return;
 
-		connector.connect(dom.connector);
+		sourceConnector.connect(targetConnector);
 	}
 
 	d.addEventListener('mousemove', move, false);

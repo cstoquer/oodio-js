@@ -31,6 +31,15 @@ body {
 	top:      0;
 	left:     0;
 	z-index:  2;
+	pointer-events: none;
+}
+
+.overlay {
+	position: absolute;
+	top:      0;
+	left:     0;
+	z-index:  99;
+	pointer-events: none;
 }
 
 .module {
@@ -39,15 +48,6 @@ body {
 	height:     13px;
 	border:     1px;
 	border-image: url("img/mod-bg.png") 1 1 1 1 fill;
-}
-
-.moduleOverlay {
-	position: absolute;
-	top:      0;
-	left:     0;
-	width:    254px;
-	height:   13px;
-	z-index:  3;
 }
 
 .dummy {
@@ -109,13 +109,6 @@ body {
 	height:   11px;
 }
 
-.connectorOverlay {
-	position: fixed;
-	z-index:  4;
-	width:    11px;
-	height:   11px;
-}
-
 .eventOut   { background-image: url("img/out-Y.png"); }
 .eventIn    { background-image: url("img/in-Y.png");  }
 .audioOut   { background-image: url("img/out-R.png"); }
@@ -135,9 +128,3 @@ body {
 	background-image: url("img/knobMark.png");
 }
 
-.knobOverlay {
-	position: absolute;
-	z-index:  4;
-	width:    23px;
-	height:   23px;
-}

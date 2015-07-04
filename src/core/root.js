@@ -10,17 +10,27 @@ var ROOT = {
 	}
 };
 
-var canvas = document.getElementById('cableCanvas');
-canvas.height = window.innerHeight; 
-canvas.width  = window.innerWidth;
-canvas.style.width  = canvas.width  + 'px';
-canvas.style.height = canvas.height + 'px';
-var ctx = canvas.getContext('2d');
+function resizeCanvas(canvas) {
+	canvas.height = window.innerHeight; 
+	canvas.width  = window.innerWidth;
+	canvas.style.width  = canvas.width  + 'px';
+	canvas.style.height = canvas.height + 'px';
+}
 
-// ctx.lineCap       = 'butt';
+var canvas  = document.getElementById('cableCanvas');
+var overlay = document.getElementById('overlayCanvas');
+var ctx     = canvas.getContext('2d');
+var overCtx = overlay.getContext('2d');
+
+resizeCanvas(canvas);
+resizeCanvas(overlay);
+
 ctx.lineCap       = 'round';
 ctx.shadowColor   = '#000';
 ctx.shadowBlur    = 3;
 ctx.lineWidth     = 3;
 ctx.shadowOffsetX = 1; 
 ctx.shadowOffsetY = 1;
+
+overCtx.lineWidth = 1;
+overCtx.lineCap   = 'butt';
