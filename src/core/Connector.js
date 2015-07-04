@@ -39,3 +39,9 @@ Connector.prototype.disconnect = function () {
 	// TODO: remove all connections from this connector
 	console.log('DISCONNECT')
 };
+
+Connector.prototype.isCompatible = function (connector) {
+	if (connector === this) return false;
+	// TODO
+	return true;
+};

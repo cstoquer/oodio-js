@@ -25,12 +25,19 @@ var overCtx = overlay.getContext('2d');
 resizeCanvas(canvas);
 resizeCanvas(overlay);
 
-ctx.lineCap       = 'round';
-ctx.shadowColor   = '#000';
-ctx.shadowBlur    = 3;
-ctx.lineWidth     = 3;
-ctx.shadowOffsetX = 1; 
-ctx.shadowOffsetY = 1;
+ctx.lineCap         = 'round';
+ctx.shadowColor     = '#000';
+ctx.shadowBlur      = 3;
+ctx.lineWidth       = 3;
+ctx.shadowOffsetX   = 1; 
+ctx.shadowOffsetY   = 1;
 
-overCtx.lineWidth = 1;
-overCtx.lineCap   = 'butt';
+overCtx.lineWidth   = 1;
+overCtx.strokeStyle = '#444';
+overCtx.lineCap     = 'butt';
+overCtx.setLineDash([2, 2]);
+
+jackFree            = new Image();
+jackConnect         = new Image();
+jackFree.src        = 'img/jack-free.png';
+jackConnect.src     = 'img/jack-connect.png';

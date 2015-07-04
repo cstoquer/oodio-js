@@ -1,3 +1,6 @@
+var JACK_CONNECT_CURSOR = 'url(img/jack-connect.png) 3 3, auto';
+var JACK_FREE_CURSOR    = 'url(img/jack-free.png) 2 3, auto';
+
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 /** Module manager
  *
@@ -151,7 +154,7 @@ ModuleManager.prototype.startDrag = function (module, e) {
 ModuleManager.prototype.startConnection = function (sourceConnector, e) {
 	var t = this;
 	var d = document;
-	
+
 	var mouseX = e.clientX;
 	var mouseY = e.clientY;
 
@@ -161,21 +164,36 @@ ModuleManager.prototype.startConnection = function (sourceConnector, e) {
 	drag = false;
 
 	function move(e) {
+		var x = e.clientX;
+		var y = e.clientY;
 		e.preventDefault();
-		if (Math.abs(e.clientX - mouseX) < 4 && Math.abs(e.clientY - mouseY) < 4) return;
+		if (!drag && Math.abs(x - mouseX) < 4 && Math.abs(y - mouseY) < 4) return;
 		drag = true;
+
+		// draw a line on overlay
 		overCtx.clearRect(0, 0, overlay.width, overlay.height);
 		overCtx.beginPath();
 		overCtx.moveTo(startX, startY);
-		overCtx.lineTo(e.clientX, e.clientY);
+		overCtx.lineTo(x, y);
 		overCtx.stroke();
-		// d.removeEventListener('mousemove', move);
+
+		// check if there is a compatible connector under pointer
+		var dom = d.elementFromPoint(x, y);
+		var targetConnector = dom && dom.connector;
+		if (targetConnector && targetConnector.isCompatible(sourceConnector)) {
+			// overCtx.drawImage(jackConnect, x - 3, y - 3);
+			DOCUMENT_BODY.style.cursor = JACK_CONNECT_CURSOR;
+		} else {
+			// overCtx.drawImage(jackFree, x - 2, y - 3);
+			DOCUMENT_BODY.style.cursor = JACK_FREE_CURSOR;
+		}
 	}
 
 	function moveEnd(e) {
 		e.preventDefault();
 		d.removeEventListener('mouseup', moveEnd);
 		d.removeEventListener('mousemove', move);
+		DOCUMENT_BODY.style.cursor = '';
 		overCtx.clearRect(0, 0, overlay.width, overlay.height);
 
 		if (!drag) {
@@ -184,7 +202,7 @@ ModuleManager.prototype.startConnection = function (sourceConnector, e) {
 			return;
 		}
 
-		var dom = document.elementFromPoint(e.clientX, e.clientY);
+		var dom = d.elementFromPoint(e.clientX, e.clientY);
 		var targetConnector = dom.connector;
 		if (!targetConnector) return;
 		if (targetConnector === sourceConnector) return;
