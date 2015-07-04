@@ -1,15 +1,12 @@
 # oodio-js
 
 Modular synthesizer. Based on WebAudio's `createScriptProcessor` for audio rendering.
-This project is a work in progress. Demo is [here](http://cstoquer.github.io/oodio-js).
+
+This project is a work in progress.
+
+Demo is [here](http://cstoquer.github.io/oodio-js).
 
 ## Modules
-
-### Effect
- - FreeVerb: reverberation based on FreeVerb implementation.
-
-### Enveloppe
- - EnvDecay: Simple logarithmic decay enveloppe.
 
 ### Oscillator
  - OscSaw: simple sawtooth wave generator.
@@ -22,10 +19,16 @@ This project is a work in progress. Demo is [here](http://cstoquer.github.io/ood
  - FastFilter: simple one pole 6db/oct filter
  - RCFilter: Resistor-Capacitor type filter.
 
+### Enveloppe
+ - EnvDecay: Simple logarithmic decay enveloppe.
+
 ### Amplification
  - Gain
  - Clipper
  - Mix1-1A
+
+### Effect
+ - FreeVerb: reverberation based on FreeVerb implementation.
 
 ### Sequencer
  - ClockGen: Clock pulse generator
