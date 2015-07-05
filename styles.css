@@ -55,15 +55,14 @@ body {
 	pointer-events: none;
 }
 
+.selected { background-color: #FFF }
+
 .module {
 	position:   absolute;
 	width:      254px;
-	height:     13px;
 	border:     1px;
 	border-image: url("img/mod-bg.png") 1 1 1 1 fill;
 }
-
-.selected { background-color: #FFF }
 
 .dummy {
 	position:     absolute;
@@ -73,17 +72,6 @@ body {
 	border-image: url("img/mod-dummy.png") 4 4 round;
 	z-index:      5;
 }
-
-.x1 { height: 13px; }
-.x2 { height: 28px; }
-.x3 { height: 43px; }
-.x4 { height: 58px; }
-.x5 { height: 73px; }
-.x6 { height: 88px; }
-.x7 { height: 103px; }
-.x8 { height: 118px; }
-.x9 { height: 133px; }
-
 
 .R0 { border-image: url("img/mod-bgR0.png") 1 1 1 1 fill; }
 .R1 { border-image: url("img/mod-bgR1.png") 1 1 1 1 fill; }

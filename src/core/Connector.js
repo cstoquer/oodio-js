@@ -16,8 +16,8 @@ function Connector(module, id, connectorDescription) {
 		// TODO: remove this
 		dom.style.position = 'relative'
 	} else {
-		dom.style.left = (t.x * MODULE_HEIGHT + 1) + 'px';
-		dom.style.top  = (t.y * MODULE_HEIGHT + 1) + 'px';
+		dom.style.left = (t.x * CONNECTOR_GRID_SIZE + 1) + 'px';
+		dom.style.top  = (t.y * CONNECTOR_GRID_SIZE + 1) + 'px';
 	}
 
 	dom.connector = t;
