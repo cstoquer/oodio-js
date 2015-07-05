@@ -70,6 +70,10 @@ Module.prototype.setPosition = function (x, y) {
 
 /** Remove module */
 Module.prototype.remove = function () {
+	// disconnect all connectors
+	for (var id in this.cables) {
+		window.moduleManager.removeCable(this.cables[id]);
+	}
 	removeDom(this._dom, null);
 };
 

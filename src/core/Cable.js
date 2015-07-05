@@ -44,10 +44,10 @@ Cable.prototype.draw = function () {
 Cable.prototype.update = function () {
 	var t = this;
 
-	t.x = t.endPointA.module.x * MODULE_WIDTH  + t.endPointA.x * MODULE_HEIGHT + 7;
-	t.y = t.endPointA.module.y * MODULE_HEIGHT + t.endPointA.y * MODULE_HEIGHT + 7;
-	t.w = t.endPointB.module.x * MODULE_WIDTH  + t.endPointB.x * MODULE_HEIGHT + 7;
-	t.h = t.endPointB.module.y * MODULE_HEIGHT + t.endPointB.y * MODULE_HEIGHT + 7;
+	t.x = t.endPointA.module.x * MODULE_WIDTH  + t.endPointA.x * CONNECTOR_GRID_SIZE + 7;
+	t.y = t.endPointA.module.y * MODULE_HEIGHT + t.endPointA.y * CONNECTOR_GRID_SIZE + 7;
+	t.w = t.endPointB.module.x * MODULE_WIDTH  + t.endPointB.x * CONNECTOR_GRID_SIZE + 7;
+	t.h = t.endPointB.module.y * MODULE_HEIGHT + t.endPointB.y * CONNECTOR_GRID_SIZE + 7;
 
 	var w = (t.w - t.x) / 2;
 	var h = (t.h - t.y) / 2;
@@ -56,4 +56,19 @@ Cable.prototype.update = function () {
 	t.b = ~~(t.y + h *  Math.random()      + 10 * Math.random() - 5);
 	t.c = ~~(t.x + w * (Math.random() + 1) + 10 * Math.random() - 5);
 	t.d = ~~(t.y + h * (Math.random() + 1) + 10 * Math.random() - 5);
+};
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+Cable.prototype.disconnect = function () {
+	var t = this;
+	if (t.endPointA) {
+		// remove connections
+		t.endPointA.disconnect(t.endPointB);
+		t.endPointB.disconnect(t.endPointA);
+		// remove cables references from modules
+		t.endPointA.module.removeCable(t);
+		t.endPointB.module.removeCable(t);
+	}
+	t.endPointA = null;
+	t.endPointB = null;
 };

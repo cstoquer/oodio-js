@@ -130,7 +130,8 @@ ModuleManager.prototype.remove = function (module) {
 	removeFromArray(this.grid[module.x]);
 	module.remove();
 
-	// TODO: disconnect module connector
+	// redraw cable to remove deleted ones
+	this.drawCables();
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
@@ -163,6 +164,12 @@ ModuleManager.prototype.startDrag = function (module, e) {
 	var t = this;
 	var d = document;
 
+	var x = module.x * MODULE_WIDTH;
+	var y = module.y * MODULE_HEIGHT;
+	var startX = e.clientX - x;
+	var startY = e.clientY - y;
+
+	// select module
 	if (t.selectedModules.indexOf(module) === -1) {
 		// unselect previous modules
 		for (var i = 0; i < t.selectedModules.length; i++) {
@@ -174,28 +181,40 @@ ModuleManager.prototype.startDrag = function (module, e) {
 		module.select();
 	}
 
-	// start dragging
-	var x = module.x * MODULE_WIDTH;
-	var y = module.y * MODULE_HEIGHT;
-	var startX = e.clientX - x;
-	var startY = e.clientY - y;
-	var dummy = createDiv('dummy', null);
-	dummy.style.height = (module.description_moduleSize * MODULE_HEIGHT - 8) + 'px';
-	dummy.style.left   = x + 'px';
-	dummy.style.top    = y + 'px';
+	function createDummy(module) {
+		var x = module.x * MODULE_WIDTH;
+		var y = module.y * MODULE_HEIGHT;
+		var dummy = createDiv('dummy', null);
+		dummy.style.width  = (MODULE_WIDTH - 8) + 'px';
+		dummy.style.height = (module.description_moduleSize * MODULE_HEIGHT - 8) + 'px';
+		dummy.style.left   = x + 'px';
+		dummy.style.top    = y + 'px';
+		return dummy;
+	}
 
 	// TODO: allow draging several selected modules at once
+	var dummy = null;
 
 	function dragMove(e) {
 		e.preventDefault();
-		dummy.style.left = e.clientX - startX + 'px';
-		dummy.style.top  = e.clientY - startY + 'px';
+		var x = e.clientX;
+		var y = e.clientY;
+		if (Math.abs(x - startX) < 4 && Math.abs(x - startX) < 4) return;
+		// start dragging
+		if (!dummy) dummy = createDummy(module);
+		dummy.style.left = x - startX + 'px';
+		dummy.style.top  = y - startY + 'px';
 	}
 
 	function dragEnd(e) {
 		e.preventDefault();
 		d.removeEventListener('mouseup', dragEnd);
 		d.removeEventListener('mousemove', dragMove);
+
+		//it was not a drag but a tap
+		if (!dummy) return;
+
+		// put module at position and cleanup dummy
 		removeDom(dummy, null);
 		var x = Math.max(0, ~~Math.round((e.clientX - startX) / MODULE_WIDTH));
 		var y = Math.max(0, ~~Math.round((e.clientY - startY) / MODULE_HEIGHT));
@@ -216,8 +235,8 @@ ModuleManager.prototype.startConnection = function (sourceConnector, e) {
 	var mouseX = e.clientX;
 	var mouseY = e.clientY;
 
-	var startX = sourceConnector.module.x * MODULE_WIDTH  + sourceConnector.x * MODULE_HEIGHT + 8;
-	var startY = sourceConnector.module.y * MODULE_HEIGHT + sourceConnector.y * MODULE_HEIGHT + 8;
+	var startX = sourceConnector.module.x * MODULE_WIDTH  + sourceConnector.x * CONNECTOR_GRID_SIZE + 8;
+	var startY = sourceConnector.module.y * MODULE_HEIGHT + sourceConnector.y * CONNECTOR_GRID_SIZE + 8;
 
 	drag = false;
 
@@ -283,8 +302,10 @@ ModuleManager.prototype.addCable = function (connectorA, connectorB, color) {
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-ModuleManager.prototype.removeCable = function (connectorA, connectorB) {
-	// TODO
+ModuleManager.prototype.removeCable = function (cable) {
+	if (!this.cables[cable.id]) return;
+	cable.disconnect();
+	delete this.cables[cable.id];
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄

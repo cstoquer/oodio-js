@@ -59,15 +59,12 @@ body {
 
 .module {
 	position:   absolute;
-	width:      254px;
 	border:     1px;
 	border-image: url("img/mod-bg.png") 1 1 1 1 fill;
 }
 
 .dummy {
 	position:     absolute;
-	width:        248px;
-	height:       7px;
 	border:       4px;
 	border-image: url("img/mod-dummy.png") 4 4 round;
 	z-index:      5;

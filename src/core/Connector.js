@@ -35,9 +35,9 @@ Connector.prototype.connect = function (connector) {
 	window.moduleManager.addCable(this, connector, this.color);
 };
 
-Connector.prototype.disconnect = function () {
+Connector.prototype.disconnect = function (connector) {
 	// TODO: remove all connections from this connector
-	console.log('DISCONNECT')
+	console.log('TODO >> connector.disconnect', this, connector)
 };
 
 Connector.prototype.isCompatible = function (connector) {
