@@ -10,7 +10,7 @@ function Connector(module, id, connectorDescription) {
 	t.module = module;
 	t.id     = id;
 
-	var dom = t._dom = createDom('connector ' + t.connectorClassName, module._dom);
+	var dom = t._dom = createDiv('connector ' + t.connectorClassName, module._dom);
 
 	if (t.x === undefined) {
 		// TODO: remove this

@@ -14,10 +14,10 @@ function Knob(module, id, description) {
 	t.max    = description.max !== undefined ? description.max : 1;
 	t.int    = description.int || false;
 
-	var dom = t._dom = createDom('knob', module._dom);
+	var dom = t._dom = createDiv('knob', module._dom);
 	dom.style.left = (t.x * MODULE_HEIGHT + 2) + 'px';
 	dom.style.top  = (t.y * MODULE_HEIGHT + 2) + 'px';
-	t._mark     = createDom('knob knobMark', dom);
+	t._mark     = createDiv('knob knobMark', dom);
 	dom.connector = t;
 
 	t.setValue(description.init);

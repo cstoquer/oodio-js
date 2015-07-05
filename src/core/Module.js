@@ -9,8 +9,10 @@ function Module(params) {
 
 	t.cables = {};
 
-	var dom = createDom('module x' + t.description_moduleSize, null);
-	dom.textContent = t.description_moduleName;
+	var dom = createDiv('module x' + t.description_moduleSize, null);
+	t._title = createDom('span', '', dom);
+	t._title.textContent = t.description_moduleName;
+	// dom.textContent = t.description_moduleName;
 	t._dom = dom;
 
 	for (var id in t.description_inputs) {
@@ -95,10 +97,10 @@ Module.prototype.getState = function () {
 
 Module.prototype.select = function () {
 	// TODO
-	this._dom.className = 'R3 module x' + this.description_moduleSize;
+	this._title.className = 'selected';
 };
 
 Module.prototype.deselect = function () {
 	// TODO
-	this._dom.className = 'module x' + this.description_moduleSize;
+	this._title.className = '';
 };

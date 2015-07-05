@@ -63,6 +63,8 @@ body {
 	border-image: url("img/mod-bg.png") 1 1 1 1 fill;
 }
 
+.selected { background-color: #FFF }
+
 .dummy {
 	position:     absolute;
 	width:        248px;
@@ -81,6 +83,7 @@ body {
 .x7 { height: 103px; }
 .x8 { height: 118px; }
 .x9 { height: 133px; }
+
 
 .R0 { border-image: url("img/mod-bgR0.png") 1 1 1 1 fill; }
 .R1 { border-image: url("img/mod-bgR1.png") 1 1 1 1 fill; }
