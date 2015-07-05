@@ -92,3 +92,13 @@ Module.prototype.getState = function () {
 	}
 	return state;
 };
+
+Module.prototype.select = function () {
+	// TODO
+	this._dom.className = 'R3 module x' + this.description_moduleSize;
+};
+
+Module.prototype.deselect = function () {
+	// TODO
+	this._dom.className = 'module x' + this.description_moduleSize;
+};

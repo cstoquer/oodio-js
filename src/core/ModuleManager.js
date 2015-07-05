@@ -17,7 +17,42 @@ function ModuleManager() {
 	this.frame = 64;
 
 	this.grid = [[]];
+
+	this.selectedModules = [];
+
+	// this._deleteMode = false;
+
+	this.registerKeyEvents();
 }
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+ModuleManager.prototype.registerKeyEvents = function () {
+	var t = this;
+
+	function keyPress(e) {
+		// e.preventDefault();
+		// console.log(e.keyCode);
+		switch (e.keyCode) {
+			case 8:
+			case 46:
+				t.deleteSelectedModules();
+				// t._deleteMode = true;
+				break;
+		}
+	}
+
+	/*function keyRelease(e) {
+		switch (e.keyCode) {
+			case 8:
+			case 46:
+				t._deleteMode = false;
+				break;
+		}
+	}*/
+
+	document.addEventListener('keydown', keyPress,   false);
+	// document.addEventListener('keyup',   keyRelease, false);
+};
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ModuleManager.prototype.add = function (module, x, y) {
@@ -99,6 +134,16 @@ ModuleManager.prototype.remove = function (module) {
 };
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+ModuleManager.prototype.deleteSelectedModules = function () {
+	console.log('delete selected modules')
+	var modules = this.selectedModules;
+	for (var i = 0; i < modules.length; i++) {
+		this.remove(modules[i]);
+	}
+	this.selectedModules = [];
+};
+
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 /** Move a module to a position (x, y)
  *
  * @param {Object} module - 
@@ -117,6 +162,19 @@ ModuleManager.prototype.move = function (module, x, y) {
 ModuleManager.prototype.startDrag = function (module, e) {
 	var t = this;
 	var d = document;
+
+	if (t.selectedModules.indexOf(module) === -1) {
+		// unselect previous modules
+		for (var i = 0; i < t.selectedModules.length; i++) {
+			t.selectedModules[i].deselect();
+		}
+
+		// select this module
+		t.selectedModules = [module];
+		module.select();
+	}
+
+	// start dragging
 	var x = module.x * MODULE_WIDTH;
 	var y = module.y * MODULE_HEIGHT;
 	var startX = e.clientX - x;
