@@ -14,12 +14,20 @@ EventOutConnector.prototype.connectorClassName = 'eventOut';
 EventOutConnector.prototype.color = ROOT.COLOR.EVENT;
 
 EventOutConnector.prototype.connect = function (connector) {
-	Connector.prototype.connect.call(this, connector);
 	// TODO: check connector type
+	Connector.prototype.connect.call(this, connector);
 
 	this._mod.push(connector.module);
 	this._func.push(connector.id);
 	this._length++;
+};
+
+EventOutConnector.prototype.disconnect = function (connector) {
+	var index = this._mod.indexOf(connector.module);
+	if (index === -1) return console.error('Could not disconnect EventConnector', this, connector);
+	this._mod.splice(index, 1);
+	this._func.splice(index, 1);
+	this._length--;
 };
 
 EventOutConnector.prototype.emit = function (value) {

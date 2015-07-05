@@ -16,3 +16,7 @@ AudioInConnector.prototype.connect = function (connector) {
 	this.module[this.id] = connector.module[connector.id];
 };
 
+AudioInConnector.prototype.disconnect = function (connector) {
+	this.module[this.id] = ROOT.UNPLUGGED;
+};
+

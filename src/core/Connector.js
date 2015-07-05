@@ -36,8 +36,7 @@ Connector.prototype.connect = function (connector) {
 };
 
 Connector.prototype.disconnect = function (connector) {
-	// TODO: remove all connections from this connector
-	console.log('TODO >> connector.disconnect', this, connector)
+	/* virtual */
 };
 
 Connector.prototype.isCompatible = function (connector) {

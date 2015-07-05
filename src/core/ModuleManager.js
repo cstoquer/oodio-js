@@ -136,7 +136,6 @@ ModuleManager.prototype.remove = function (module) {
 
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ModuleManager.prototype.deleteSelectedModules = function () {
-	console.log('delete selected modules')
 	var modules = this.selectedModules;
 	for (var i = 0; i < modules.length; i++) {
 		this.remove(modules[i]);
