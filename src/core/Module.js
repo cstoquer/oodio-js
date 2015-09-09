@@ -9,8 +9,10 @@ function Module(params) {
 
 	t.cables = {};
 
-	var dom = createDom('module x' + t.description_moduleSize, null);
-	dom.textContent = t.description_moduleName;
+	var dom = createDiv('module x' + t.description_moduleSize, null);
+	t._title = createDom('span', '', dom);
+	t._title.textContent = t.description_moduleName;
+	// dom.textContent = t.description_moduleName;
 	t._dom = dom;
 
 	for (var id in t.description_inputs) {
@@ -39,10 +41,9 @@ function Module(params) {
 		}
 	}
 
-	var overlay = createDom('moduleOverlay x' + t.description_moduleSize, dom);
-	overlay.module = t;
+	dom.module = t;
 
-	overlay.addEventListener('mousedown', function mouseStart(e) {
+	dom.addEventListener('mousedown', function mouseStart(e) {
 		window.moduleManager.startDrag(t, e);
 	});
 }
@@ -69,6 +70,10 @@ Module.prototype.setPosition = function (x, y) {
 
 /** Remove module */
 Module.prototype.remove = function () {
+	// disconnect all connectors
+	for (var id in this.cables) {
+		window.moduleManager.removeCable(this.cables[id]);
+	}
 	removeDom(this._dom, null);
 };
 
@@ -92,4 +97,14 @@ Module.prototype.getState = function () {
 		state[id] = this[id];
 	}
 	return state;
+};
+
+Module.prototype.select = function () {
+	// TODO
+	this._title.className = 'selected';
+};
+
+Module.prototype.deselect = function () {
+	// TODO
+	this._title.className = '';
 };

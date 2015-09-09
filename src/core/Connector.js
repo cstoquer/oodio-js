@@ -10,20 +10,19 @@ function Connector(module, id, connectorDescription) {
 	t.module = module;
 	t.id     = id;
 
-	var dom = t._dom = createDom('connector ' + t.connectorClassName, module._dom);
+	var dom = t._dom = createDiv('connector ' + t.connectorClassName, module._dom);
 
 	if (t.x === undefined) {
 		// TODO: remove this
 		dom.style.position = 'relative'
 	} else {
-		dom.style.left = (t.x * MODULE_HEIGHT + 1) + 'px';
-		dom.style.top  = (t.y * MODULE_HEIGHT + 1) + 'px';
+		dom.style.left = (t.x * CONNECTOR_GRID_SIZE + 1) + 'px';
+		dom.style.top  = (t.y * CONNECTOR_GRID_SIZE + 1) + 'px';
 	}
 
-	var overlay = createDom('connectorOverlay', dom);
-	overlay.connector = t;
+	dom.connector = t;
 
-	overlay.addEventListener('mousedown', function mouseStart(e) {
+	dom.addEventListener('mousedown', function mouseStart(e) {
 		e.stopPropagation();
 		e.preventDefault();
 		window.moduleManager.startConnection(t, e);
@@ -36,7 +35,12 @@ Connector.prototype.connect = function (connector) {
 	window.moduleManager.addCable(this, connector, this.color);
 };
 
-Connector.prototype.disconnect = function () {
-	// TODO: remove all connections from this connector
-	console.log('DISCONNECT')
+Connector.prototype.disconnect = function (connector) {
+	/* virtual */
+};
+
+Connector.prototype.isCompatible = function (connector) {
+	if (connector === this) return false;
+	// TODO
+	return true;
 };

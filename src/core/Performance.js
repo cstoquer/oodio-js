@@ -12,7 +12,7 @@ function Performance() {
 	var dom  = document.createElement('div');
 	document.getElementsByTagName('body')[0].appendChild(dom);
 	dom.className = 'module performance';
-	dom.textContent = 'load: ----';
+	dom.textContent = 'CPU: ----';
 	this.dom = dom;
 }
 
@@ -33,7 +33,7 @@ Performance.prototype.start = function (interval) {
 		t.now = performance.now();
 		var elapsed = t.now - t.started;
 		var load = 100 * t.total / elapsed;
-		t.dom.textContent = 'load:' + load.toFixed(2) + '%';
+		t.dom.textContent = 'CPU:' + load.toFixed(2) + '%';
 		// var average = t.total / t.cycles;
 		// console.log('----------------------------');
 		// console.log('elapsed:  ' + elapsed + ' ms');

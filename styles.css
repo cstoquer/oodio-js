@@ -2,6 +2,19 @@ body {
 	font-family: "Arial", "Verdana";
 	font-weight: bold;
 	font-size: 11px;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+.background {
+	position: absolute;
+	z-index:  -1;
+	top:      0;
+	left:     0;
+	width:    100%;
+	height:   100%;
 	background-repeat: repeat;
 	background-image: url("img/background.png");
 }
@@ -10,13 +23,13 @@ body {
 	position: absolute;
 	z-index:  7;
 	display:  none;
-	background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 0.8);
 	padding: 2px;
+	border-radius: 4px;
 }
 
 .menuEntry {
-	border:       1px;
-	border-image: url("img/mod-bg.png") 1 1 1 1 fill;
+	border: 1px;
 }
 
 .library {
@@ -31,43 +44,31 @@ body {
 	top:      0;
 	left:     0;
 	z-index:  2;
+	pointer-events: none;
 }
+
+.overlay {
+	position: absolute;
+	top:      0;
+	left:     0;
+	z-index:  99;
+	pointer-events: none;
+}
+
+.selected { background-color: #FFF }
 
 .module {
 	position:   absolute;
-	width:      254px;
-	height:     13px;
 	border:     1px;
 	border-image: url("img/mod-bg.png") 1 1 1 1 fill;
 }
 
-.moduleOverlay {
-	position: absolute;
-	top:      0;
-	left:     0;
-	width:    254px;
-	height:   13px;
-	z-index:  3;
-}
-
 .dummy {
 	position:     absolute;
-	width:        248px;
-	height:       7px;
 	border:       4px;
 	border-image: url("img/mod-dummy.png") 4 4 round;
 	z-index:      5;
 }
-
-.x1 { height: 13px; }
-.x2 { height: 28px; }
-.x3 { height: 43px; }
-.x4 { height: 58px; }
-.x5 { height: 73px; }
-.x6 { height: 88px; }
-.x7 { height: 103px; }
-.x8 { height: 118px; }
-.x9 { height: 133px; }
 
 .R0 { border-image: url("img/mod-bgR0.png") 1 1 1 1 fill; }
 .R1 { border-image: url("img/mod-bgR1.png") 1 1 1 1 fill; }
@@ -109,19 +110,12 @@ body {
 	height:   11px;
 }
 
-.connectorOverlay {
-	position: fixed;
-	z-index:  4;
-	width:    11px;
-	height:   11px;
-}
-
 .eventOut   { background-image: url("img/out-Y.png"); }
 .eventIn    { background-image: url("img/in-Y.png");  }
 .audioOut   { background-image: url("img/out-R.png"); }
 .audioIn    { background-image: url("img/in-R.png");  }
 .controlOut { background-image: url("img/out-B.png"); }
-.controlIn  { background-image: url("img/in-Y.png");  }
+.controlIn  { background-image: url("img/in-B.png");  }
 
 
 .knob {
@@ -135,9 +129,3 @@ body {
 	background-image: url("img/knobMark.png");
 }
 
-.knobOverlay {
-	position: absolute;
-	z-index:  4;
-	width:    23px;
-	height:   23px;
-}

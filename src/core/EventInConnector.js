@@ -10,8 +10,7 @@ EventInConnector.prototype.connectorClassName = 'eventIn';
 EventInConnector.prototype.color = ROOT.COLOR.EVENT;
 
 EventInConnector.prototype.connect = function (connector) {
-	// Connector.prototype.connect.call(this, connector);
-	// TODO: check connector type
-	// TODO: enable to be connected to another inEvent for daisy chain
+	// TODO: check connector type.
+	// there is a "Maximum call stack size exceeded" bug if we try to connect 2 EventIn Connectors
 	connector.connect(this);
 };

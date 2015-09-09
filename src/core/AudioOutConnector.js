@@ -10,8 +10,8 @@ AudioOutConnector.prototype.connectorClassName = 'audioOut';
 AudioOutConnector.prototype.color = ROOT.COLOR.AUDIO;
 
 AudioOutConnector.prototype.connect = function (connector) {
-	Connector.prototype.connect.call(this, connector);
 	// TODO: check connector type
+	Connector.prototype.connect.call(this, connector);
 	// TODO: enable to be connected to another inEvent for daisy chain
 	connector.module[connector.id] = this.module[this.id];
 };
