@@ -26,7 +26,7 @@ OscRamp_B.prototype.description_inputs     = {
 	note: { rate: 'E', x: 0, y: 1 }
 };
 OscRamp_B.prototype.description_outputs    = {
-	out: { rate: 'A', x: 16, y: 0.5 }
+	out: { rate: 'A', x: 9, y: 0.5 }
 };
 OscRamp_B.prototype.description_params     = {
 	pitch:  { type: 'knob', x: 4, y: 0, min: -48, max: 48, int: true,  init: 0 },

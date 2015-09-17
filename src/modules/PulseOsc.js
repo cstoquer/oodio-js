@@ -17,10 +17,10 @@ PulseOsc.prototype.description_moduleName = 'OscPulse';
 PulseOsc.prototype.description_moduleSize = 1;
 PulseOsc.prototype.description_rate       = 'A';
 PulseOsc.prototype.description_inputs     = {
-	width: { rate: 'A', x: 8,  y: 0}
+	width: { rate: 'A', x: 6,  y: 0}
 };
 PulseOsc.prototype.description_outputs    = {
-	out: { rate: 'A', x: 16, y: 0 }
+	out: { rate: 'A', x: 9, y: 0 }
 };
 PulseOsc.prototype.description_params     = {};
 library.register(PulseOsc);

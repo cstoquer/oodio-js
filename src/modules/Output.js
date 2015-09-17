@@ -14,8 +14,8 @@ Output.prototype.description_moduleName = 'Output';
 Output.prototype.description_moduleSize = 1;
 Output.prototype.description_rate       = 'A';
 Output.prototype.description_inputs     = {
-	inputL: { rate: 'A', x: 14,  y: 0 },
-	inputR: { rate: 'A', x: 16, y: 0 }
+	inputL: { rate: 'A', x: 7,  y: 0 },
+	inputR: { rate: 'A', x: 9, y: 0 }
 };
 Output.prototype.description_outputs    = {};
 Output.prototype.description_params     = {};
