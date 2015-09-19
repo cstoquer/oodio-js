@@ -19,25 +19,29 @@ TestModule.prototype.description_inputs     = {
 	a0_07:  { rate: 'E', x:7,  y:0 }, a1_07:  { rate: 'E', x:7,  y:1 }, a2_07:  { rate: 'E', x:7,  y:2 },
 	a0_08:  { rate: 'E', x:8,  y:0 }, a1_08:  { rate: 'E', x:8,  y:1 }, a2_08:  { rate: 'E', x:8,  y:2 },
 	a0_09:  { rate: 'E', x:9,  y:0 }, a1_09:  { rate: 'E', x:9,  y:1 }, a2_09:  { rate: 'E', x:9,  y:2 },
-	a0_10:  { rate: 'E', x:10, y:0 }, a1_10:  { rate: 'E', x:10, y:1 }, a2_10:  { rate: 'E', x:10, y:2 },
-	a0_11:  { rate: 'E', x:11, y:0 }, a1_11:  { rate: 'E', x:11, y:1 }, a2_11:  { rate: 'E', x:11, y:2 },
-	a0_12:  { rate: 'E', x:12, y:0 }, a1_12:  { rate: 'E', x:12, y:1 }, a2_12:  { rate: 'E', x:12, y:2 },
-	a0_13:  { rate: 'E', x:13, y:0 }, a1_13:  { rate: 'E', x:13, y:1 }, a2_13:  { rate: 'E', x:13, y:2 },
-	a0_14:  { rate: 'E', x:14, y:0 }, a1_14:  { rate: 'E', x:14, y:1 }, a2_14:  { rate: 'E', x:14, y:2 },
-	a0_15:  { rate: 'E', x:15, y:0 }, a1_15:  { rate: 'E', x:15, y:1 }, a2_15:  { rate: 'E', x:15, y:2 },
-	a0_16:  { rate: 'E', x:16, y:0 }, a1_16:  { rate: 'E', x:16, y:1 }, a2_16:  { rate: 'E', x:16, y:2 },
+	// a0_10:  { rate: 'E', x:10, y:0 }, a1_10:  { rate: 'E', x:10, y:1 }, a2_10:  { rate: 'E', x:10, y:2 },
+	// a0_11:  { rate: 'E', x:11, y:0 }, a1_11:  { rate: 'E', x:11, y:1 }, a2_11:  { rate: 'E', x:11, y:2 },
+	// a0_12:  { rate: 'E', x:12, y:0 }, a1_12:  { rate: 'E', x:12, y:1 }, a2_12:  { rate: 'E', x:12, y:2 },
+	// a0_13:  { rate: 'E', x:13, y:0 }, a1_13:  { rate: 'E', x:13, y:1 }, a2_13:  { rate: 'E', x:13, y:2 },
+	// a0_14:  { rate: 'E', x:14, y:0 }, a1_14:  { rate: 'E', x:14, y:1 }, a2_14:  { rate: 'E', x:14, y:2 },
+	// a0_15:  { rate: 'E', x:15, y:0 }, a1_15:  { rate: 'E', x:15, y:1 }, a2_15:  { rate: 'E', x:15, y:2 },
+	// a0_16:  { rate: 'E', x:16, y:0 }, a1_16:  { rate: 'E', x:16, y:1 }, a2_16:  { rate: 'E', x:16, y:2 },
 };
-TestModule.prototype.description_outputs    = {};
+TestModule.prototype.description_outputs    = {
+};
 TestModule.prototype.description_params     = {
-	a: { type: 'knob', x: 2, y: 3 },
-	b: { type: 'knob', x: 4, y: 3 },
-	c: { type: 'knob', x: 6, y: 3 },
-	d: { type: 'knob', x: 8, y: 3 },
-	f: { type: 'knob', x: 2, y: 5 },
-	g: { type: 'knob', x: 4, y: 5 },
-	h: { type: 'knob', x: 6, y: 5 },
-	i: { type: 'knob', x: 8, y: 5 }
+	a: { type: 'knob', x: 0, y: 3 },
+	b: { type: 'knob', x: 2, y: 3 },
+	c: { type: 'knob', x: 4, y: 3 },
+	d: { type: 'knob', x: 6, y: 3 },
+	e: { type: 'knob', x: 8, y: 3 },
+	f: { type: 'knob', x: 0, y: 5 },
+	g: { type: 'knob', x: 2, y: 5 },
+	h: { type: 'knob', x: 4, y: 5 },
+	i: { type: 'knob', x: 6, y: 5 },
+	j: { type: 'knob', x: 8, y: 5 }
 };
+library.register(TestModule);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 TestModule.prototype.tic = function () {}

@@ -15,10 +15,10 @@ Clipper.prototype.description_moduleName = 'Clipper';
 Clipper.prototype.description_moduleSize = 2;
 Clipper.prototype.description_rate       = 'A';
 Clipper.prototype.description_inputs     = {
-	input: { rate: 'A', x: 14, y: 1 }
+	input: { rate: 'A', x: 7, y: 1 }
 };
 Clipper.prototype.description_outputs    = {
-	out:   { rate: 'A', x: 16, y: 1 }
+	out:   { rate: 'A', x: 9, y: 1 }
 };
 Clipper.prototype.description_params     = {};
 library.register(Clipper);

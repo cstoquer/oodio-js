@@ -16,7 +16,7 @@ NesPseudoNoise.prototype.description_moduleSize = 1;
 NesPseudoNoise.prototype.description_rate       = 'A';
 NesPseudoNoise.prototype.description_inputs     = {};
 NesPseudoNoise.prototype.description_outputs    = {
-	out: { rate: 'A', x: 16, y: 0 }
+	out: { rate: 'A', x: 9, y: 0 }
 };
 NesPseudoNoise.prototype.description_params     = {};
 library.register(NesPseudoNoise);

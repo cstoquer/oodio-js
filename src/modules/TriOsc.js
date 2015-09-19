@@ -17,10 +17,10 @@ TriOsc.prototype.description_moduleName = 'OscTri';
 TriOsc.prototype.description_moduleSize = 1;
 TriOsc.prototype.description_rate       = 'A';
 TriOsc.prototype.description_inputs     = {
-	width: { rate: 'A', x: 8,  y: 0}
+	width: { rate: 'A', x: 5,  y: 0}
 };
 TriOsc.prototype.description_outputs    = {
-	out:   { rate: 'A', x: 16, y: 0 }
+	out:   { rate: 'A', x: 9, y: 0 }
 };
 TriOsc.prototype.description_params     = {};
 library.register(TriOsc);

@@ -15,8 +15,8 @@ function Knob(module, id, description) {
 	t.int    = description.int || false;
 
 	var dom = t._dom = createDiv('knob', module._dom);
-	dom.style.left = (t.x * MODULE_HEIGHT + 2) + 'px';
-	dom.style.top  = (t.y * MODULE_HEIGHT + 2) + 'px';
+	dom.style.left = (t.x * CONNECTOR_GRID_SIZE + 2) + 'px';
+	dom.style.top  = (t.y * CONNECTOR_GRID_SIZE + 2) + 'px';
 	t._mark     = createDiv('knob knobMark', dom);
 	dom.connector = t;
 

@@ -16,10 +16,10 @@ FastFilter.prototype.description_moduleName = 'FastFilter';
 FastFilter.prototype.description_moduleSize = 2;
 FastFilter.prototype.description_rate       = 'A';
 FastFilter.prototype.description_inputs     = {
-	input: { rate: 'A', x: 14, y: 1 }
+	input: { rate: 'A', x: 7, y: 1 }
 };
 FastFilter.prototype.description_outputs    = {
-	out:   { rate: 'A', x: 16, y: 1 }
+	out:   { rate: 'A', x: 9, y: 1 }
 };
 FastFilter.prototype.description_params     = {};
 library.register(FastFilter);
