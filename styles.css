@@ -8,6 +8,18 @@ body {
 	-ms-user-select: none;
 }
 
+::-webkit-scrollbar {
+	width: 5px;
+	height: 0px;
+}
+::-webkit-scrollbar-thumb {
+	background-color: #777;
+	border-radius: 2px;
+}
+::-webkit-scrollbar-button {
+	display: none;
+}
+
 .background {
 	position: absolute;
 	z-index:  -1;
@@ -28,26 +40,53 @@ body {
 	border-radius: 4px;
 }
 
-.menuEntry {
-	border: 1px;
-}
-
 .library {
 	position: absolute;
 	z-index:  8;
 	right:    0;
-	top:      15px;
+	top:      0;
+	background-color: #CCC;
+	width: 100px;
+	height: 100%;
+	box-shadow: 0px 0px 10px #333;
+}
+
+.libraryHeader {
+	width: 100px;
+	height: 50px;
+	background-color: #AAA;
+}
+
+.libraryList {
+
+}
+
+.moduleEntry {
+	cursor: pointer;
+	border: 1px;
+	border-radius: 3px;
+	z-index: 10;
+}
+
+.moduleEntry:hover {
+	transform: scale(1.2, 1.2);
+    background-color: #EEE;
+	box-shadow: 0px 0px 10px #333;
 }
 
 .cables {
+	/* This is the canvas used to draw cables */
 	position: absolute;
 	top:      0;
 	left:     0;
-	z-index:  2;
+	z-index:  20;
 	pointer-events: none;
 }
 
 .overlay {
+	/* This is the canvas used to draw infos on
+	 * top of everythings (connection lines, etc.)
+	 */
 	position: absolute;
 	top:      0;
 	left:     0;
@@ -62,6 +101,12 @@ body {
 	border:     1px;
 	border-image: url("img/mod-bg.png") 1 1 1 1 fill;
 }
+
+.module:hover { 
+	box-shadow: 0px 0px 10px #333;
+    z-index: 9;
+}
+
 
 .dummy {
 	position:     absolute;

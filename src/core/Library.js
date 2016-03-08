@@ -3,15 +3,17 @@
  * @author Cedric Stoquer
  */
 function Library() {
-	this.dom = document.getElementById('library');
+	this.dom  = document.getElementById('library');
+	this.menu = createDiv('libraryHeader', this.dom);
+	this.modules = createDiv('libraryList', this.dom);
 }
 
 window.library = new Library();
 
 Library.prototype.register = function(module) {
-	var dom = createDiv('menuEntry', this.dom);
-	dom.textContent = module.prototype.description_moduleName;
-	dom.addEventListener('mousedown', function clic(e) {
+	var button = createDiv('moduleEntry', this.modules);
+	button.textContent = module.prototype.description_moduleName;
+	button.addEventListener('mousedown', function clic(e) {
 		window.moduleManager.add(new module());
 	});
 };

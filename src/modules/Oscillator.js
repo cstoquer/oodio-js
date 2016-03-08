@@ -19,7 +19,7 @@ Oscillator.prototype.description_moduleSize = 1;
 Oscillator.prototype.description_rate       = 'A';
 Oscillator.prototype.description_inputs     = {};
 Oscillator.prototype.description_outputs    = {
-	out: { rate: 'A', x: 16, y: 0 }
+	out: { rate: 'A', x: 9, y: 0 }
 };
 Oscillator.prototype.description_params     = {};
 library.register(Oscillator);

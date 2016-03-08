@@ -1,4 +1,5 @@
 /** Cable
+ *  Render one cable between two connectors
  *
  * @author Cedric Stoquer
  */

@@ -222,12 +222,12 @@ FreeVerb.prototype.description_moduleName = 'FreeVerb';
 FreeVerb.prototype.description_moduleSize = 2;
 FreeVerb.prototype.description_rate       = 'A';
 FreeVerb.prototype.description_inputs     = {
-	inputL: { rate: 'A', x: 14, y: 0 },
-	inputR: { rate: 'A', x: 16, y: 0 }
+	inputL: { rate: 'A', x: 7, y: 0 },
+	inputR: { rate: 'A', x: 9, y: 0 }
 };
 FreeVerb.prototype.description_outputs    = {
-	outL:   { rate: 'A', x: 14, y: 1 },
-	outR:   { rate: 'A', x: 16, y: 1 }
+	outL:   { rate: 'A', x: 7, y: 1 },
+	outR:   { rate: 'A', x: 9, y: 1 }
 };
 FreeVerb.prototype.description_params     = {};
 library.register(FreeVerb);

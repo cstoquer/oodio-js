@@ -26,15 +26,15 @@ DecayEnvelope.prototype.description_moduleSize = 2;
 DecayEnvelope.prototype.description_rate       = 'A'; // TODO: KR
 DecayEnvelope.prototype.description_inputs     = {
 	trigger: { rate: 'E', x: 0,  y: 1 }, // TODO: positions
-	input:   { rate: 'A', x: 14, y: 1 }, // TODO: remove built-in audio
+	input:   { rate: 'A', x: 8, y: 1 }, // TODO: remove built-in audio
 };
 DecayEnvelope.prototype.description_outputs    = {
-	out:     { rate: 'A', x: 16, y: 1 }, // TODO: remove built-in audio
-	env:     { rate: 'K', x: 16, y: 0 }
+	out:     { rate: 'A', x: 9, y: 1 }, // TODO: remove built-in audio
+	env:     { rate: 'K', x: 9, y: 0 }
 };
 DecayEnvelope.prototype.description_params     = {
 	decay:     { type: 'knob', x: 4, y: 0, min: 0, max: 1, int: false, init: 0.5 },
-	curvature: { type: 'knob', x: 7, y: 0, min: 0, max: 1, int: false, init: 0.5 }
+	curvature: { type: 'knob', x: 6, y: 0, min: 0, max: 1, int: false, init: 0.5 }
 };
 library.register(DecayEnvelope);
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄

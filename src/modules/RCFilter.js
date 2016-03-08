@@ -20,10 +20,10 @@ RCFilter.prototype.description_moduleName = 'RCFilter';
 RCFilter.prototype.description_moduleSize = 1;
 RCFilter.prototype.description_rate       = 'A';
 RCFilter.prototype.description_inputs     = {
-	input: { rate: 'A', x: 12, y: 0 }
+	input: { rate: 'A', x: 6, y: 0 }
 };
 RCFilter.prototype.description_outputs    = {
-	out:   { rate: 'A', x: 16, y: 0 }
+	out:   { rate: 'A', x: 9, y: 0 }
 };
 RCFilter.prototype.description_params     = {};
 library.register(RCFilter);
