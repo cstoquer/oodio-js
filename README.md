@@ -1,8 +1,10 @@
+**DEPRECATED** This project is based on webAudio [ScriptProcessorNode](https://www.w3.org/TR/webaudio/#the-scriptprocessornode-interface---deprecated) that has been deprecated.
+
+Please have a look at [Modular](https://github.com/cstoquer/modular) which implements the same functionnalities and more using plain webAudio.
+
 # oodio-js
 
 Modular synthesizer. Based on WebAudio's `createScriptProcessor` for audio rendering.
-
-This project is a work in progress.
 
 Demo is [here](http://cstoquer.github.io/oodio-js).
 
